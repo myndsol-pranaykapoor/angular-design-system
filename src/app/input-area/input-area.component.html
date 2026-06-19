@@ -1,0 +1,49 @@
+<div class="pds-input-area" [class.pds-input-area--disabled]="disabled" [class.pds-input-area--multiline]="multiline">
+
+  <!-- supporting icon — 16px · leading -->
+  @if (supportingIcon) {
+    <span
+      class="pds-input-area__icon"
+      [style.maskImage]="'url(/icons/16px/' + supportingIcon + '.svg)'"
+      [style.webkitMaskImage]="'url(/icons/16px/' + supportingIcon + '.svg)'"
+      aria-hidden="true"
+    ></span>
+  }
+
+  <!-- placeholder / value — Body/2 -->
+  @if (editable && multiline) {
+    <textarea
+      class="pds-input-area__input pds-input-area__input--multiline"
+      [placeholder]="placeholder"
+      [value]="value"
+      [disabled]="disabled"
+      (input)="onInput($event)"
+    ></textarea>
+  } @else if (editable) {
+    <input
+      class="pds-input-area__input"
+      type="text"
+      [placeholder]="placeholder"
+      [value]="value"
+      [disabled]="disabled"
+      (input)="onInput($event)"
+    />
+  } @else {
+    <span
+      class="pds-input-area__text"
+      [class.pds-input-area__text--placeholder]="!value"
+    >{{ value || placeholder }}</span>
+  }
+
+  <!-- action icon — 16px · trailing -->
+  @if (actionIcon) {
+    <span
+      class="pds-input-area__icon pds-input-area__icon--action"
+      [style.maskImage]="'url(/icons/16px/' + actionIcon + '.svg)'"
+      [style.webkitMaskImage]="'url(/icons/16px/' + actionIcon + '.svg)'"
+      (click)="onActionClick($event)"
+      aria-hidden="true"
+    ></span>
+  }
+
+</div>

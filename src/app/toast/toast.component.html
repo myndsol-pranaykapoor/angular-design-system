@@ -1,0 +1,21 @@
+<div class="pds-toast-overlay" [class.pds-toast-overlay--showing]="showing">
+  <div
+    class="pds-toast-container"
+    [style.backgroundColor]="config.bgColor"
+    [style.borderColor]="config.borderColor"
+  >
+    <pds-card-header
+      [title]="message"
+      [icon]="config.icon"
+      [iconColor]="config.iconColor"
+      [titleColor]="config.titleColor"
+      [showSubtitle]="false"
+      [showButton1]="false"
+      [showButton2]="false"
+      [showButton4]="false"
+      [showButton3]="true"
+      button3Icon="x"
+      (button3Click)="dismiss()"
+    />
+  </div>
+</div>

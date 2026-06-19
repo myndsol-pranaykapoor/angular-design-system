@@ -1,0 +1,41 @@
+/* PDS Command Bar — outer wrapper: fixed position with 60px left sidebar offset */
+
+.pds-command-bar {
+  position: fixed;
+  top: 42px;                       /* directly below web-header (0px gap) */
+  left: 0;
+  right: 0;
+  z-index: 199;
+  padding-left: 56px;              /* sidebar offset */
+  pointer-events: none;            /* transparent gap on left doesn't block sidebar */
+}
+
+/* ─── COMMAND BAR CONTAINER — white bg, border, padding, gap ─── */
+
+.pds-command-bar__container {
+  display: flex;
+  align-items: center;
+  gap: 12px;                       /* Spacing/6 between all elements */
+  height: 42px;
+  padding: 6px 12px;               /* Spacing/3 top/bottom · Spacing/6 left/right */
+  box-sizing: border-box;
+
+  background-color: #ffffff;       /* Grey/0 */
+  border-bottom: 1px solid #e4e4e4; /* 1px · Grey/3 · bottom only */
+  pointer-events: all;             /* re-enable clicks inside container */
+}
+
+/* ─── PAGE TITLE — fills remaining width, truncates if too long ─── */
+
+.pds-command-bar__title {
+  flex: 1;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;                /* Regular */
+  font-size: 14px;                 /* Tight Body/3 */
+  line-height: 20px;
+  color: #3f3f3f;                  /* Grey/7 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}

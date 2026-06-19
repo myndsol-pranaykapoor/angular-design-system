@@ -1,0 +1,90 @@
+/* PDS Input Area — inner element of Input Field · supporting icon · placeholder/value · action icon */
+
+/* host fills its parent width (custom elements are inline by default) */
+pds-input-area {
+  display: block;
+  width: 100%;
+}
+
+.pds-input-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;                                   /* Spacing/4 */
+  height: 30px;                               /* fixed — border included (border-box) */
+  padding: 6px 8px;                           /* Spacing/3 (top & bottom) · Spacing/4 (left & right) */
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;                  /* Grey/0 */
+  border: 1px solid #e4e4e4;                  /* Grey/3 */
+  border-radius: 8px;                         /* Radius/4 */
+  overflow: hidden;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* ─── ICONS — 16px · Secondary/3 ─── */
+.pds-input-area__icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background-color: #263b74;                  /* Secondary/3 */
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.pds-input-area__icon--action {
+  cursor: pointer;
+}
+
+/* ─── TEXT (editable input) — Body/2 · value Grey/7 · placeholder Grey/5 ─── */
+.pds-input-area__input {
+  flex: 1 1 0;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;                           /* Regular — Body/2 */
+  color: #3f3f3f;                             /* Grey/7 (value) */
+}
+
+.pds-input-area__input::placeholder {
+  color: #9d9d9d;                             /* Grey/5 (placeholder) */
+  opacity: 1;
+}
+
+/* multi-line — taller, top-aligned, no resize */
+.pds-input-area--multiline {
+  align-items: flex-start;
+  height: 48px;
+}
+
+.pds-input-area__input--multiline {
+  height: 100%;
+  resize: none;
+}
+
+/* ─── TEXT (read-only display) — Body/2 ─── */
+.pds-input-area__text {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;                           /* Regular — Body/2 */
+  color: #3f3f3f;                             /* Grey/7 (value) */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pds-input-area__text--placeholder {
+  color: #9d9d9d;                             /* Grey/5 (placeholder) */
+}

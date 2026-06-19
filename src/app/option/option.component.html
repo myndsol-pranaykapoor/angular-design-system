@@ -1,0 +1,35 @@
+<!-- option: 40px · Radius/2 · padding Spacing/4 L/R · gap Spacing/4 · cross-centre -->
+<div
+  class="pds-option"
+  [class.pds-option--hover]="forceHover && !disabled"
+  [class.pds-option--disabled]="disabled"
+  (click)="onClick()"
+>
+  <!-- size/0 check-box -->
+  @if (showCheckbox) {
+    <pds-checkbox class="pds-option__checkbox" [type]="checkboxType" [size]="0" [disabled]="disabled" />
+  }
+
+  <!-- size/0 profile-avatar (image) -->
+  @if (showAvatar) {
+    <pds-profile-avatar
+      class="pds-option__avatar"
+      type="image"
+      [size]="0"
+      [imageSrc]="avatarSrc"
+      [showBadge]="showAvatarBadge"
+    />
+  }
+
+  <!-- 16px icon -->
+  @if (showIcon) {
+    <span
+      class="pds-option__icon"
+      [style.mask-image]="'url(' + iconPath + ')'"
+      [style.-webkit-mask-image]="'url(' + iconPath + ')'"
+    ></span>
+  }
+
+  <!-- text — Body/2 -->
+  <span class="pds-option__text">{{ label }}</span>
+</div>

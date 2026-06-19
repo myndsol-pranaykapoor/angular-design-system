@@ -1,0 +1,14 @@
+<div
+  class="pds-progress-bar"
+  role="progressbar"
+  [attr.aria-valuenow]="clampedProgress"
+  aria-valuemin="0"
+  aria-valuemax="100"
+>
+  <div class="pds-progress-bar__trail">
+    <div
+      class="pds-progress-bar__fill"
+      [style.width]="barWidth"
+    ></div>
+  </div>
+</div>

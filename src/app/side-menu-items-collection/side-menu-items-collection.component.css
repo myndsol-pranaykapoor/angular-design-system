@@ -1,0 +1,109 @@
+/* PDS Side Menu Items Collection — 2 states · 3-level nesting */
+
+/* ── ANIMATION WRAPPER — grid-template-rows: 0fr → 1fr ── */
+
+.pds-smic__anim {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.pds-smic__anim--open {
+  grid-template-rows: 1fr;
+}
+
+/* ── TOP-LEVEL ANIMATION (level-one): negative margin offsets gap when collapsed ── */
+
+.pds-smic > .pds-smic__anim {
+  margin-top: -8px;                /* Negative offset to hide gap when collapsed */
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pds-smic > .pds-smic__anim--open {
+  margin-top: 0;                   /* Normal margin shows gap when expanded · Spacing/4 */
+}
+
+/* ── LEVEL-TWO ANIMATION: negative margin offsets gap when collapsed ── */
+
+.pds-smic__level-two-expandable > .pds-smic__anim {
+  margin-top: -8px;                /* Negative offset to hide gap when collapsed */
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pds-smic__level-two-expandable > .pds-smic__anim--open {
+  margin-top: 0;                   /* Normal margin shows gap when expanded · Spacing/4 */
+}
+
+/* The direct child must have overflow:hidden and min-height:0 for the trick to work */
+.pds-smic__anim-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ── ROOT: vertical, gap Spacing/4 between header and level-one ── */
+.pds-smic {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                        /* Spacing/4 */
+  width: 100%;
+}
+
+/* ── LEVEL-ONE: horizontal · padding-left Spacing/6 · gap Spacing/6 · top-left ── */
+.pds-smic__level-one {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;                       /* Spacing/6 between expansion-line and level-two-group */
+  padding-left: 12px;              /* Spacing/6 — left only */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── EXPANSION LINE: 1px wide · Grey/3 · fills full height · rounded ── */
+.pds-smic__expansion-line {
+  flex-shrink: 0;
+  width: 1px;
+  align-self: stretch;
+  background-color: #e4e4e4;       /* Grey/3 */
+  border-radius: 999px;
+}
+
+/* ── LEVEL-TWO GROUP: vertical · gap Spacing/4 · top-left ── */
+.pds-smic__level-two-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;                        /* Spacing/4 */
+  min-width: 0;
+}
+
+/* ── LEVEL-TWO EXPANDABLE: vertical · gap Spacing/4 ── */
+.pds-smic__level-two-expandable {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                        /* Spacing/4 */
+}
+
+/* ── LEVEL-THREE GROUP: horizontal · padding-left Spacing/6 · gap Spacing/6 · top-left ── */
+.pds-smic__level-three-group {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;                       /* Spacing/6 between expansion-line and list */
+  padding-left: 12px;              /* Spacing/6 — left only */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── LEVEL-THREE LIST: vertical · gap Spacing/4 ── */
+.pds-smic__level-three-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;                        /* Spacing/4 */
+  min-width: 0;
+}

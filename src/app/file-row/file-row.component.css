@@ -1,0 +1,88 @@
+/* PDS File Row — success · failed · in-process · gap Spacing/4 */
+
+.pds-file-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;                                   /* Spacing/4 */
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* ─── STATUS ICON — 16px mask, coloured per state ─── */
+
+.pds-file-row__icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.pds-file-row--success .pds-file-row__icon    { background-color: #51b389; } /* Semantic/Success */
+.pds-file-row--failed .pds-file-row__icon     { background-color: #f44336; } /* Semantic/Error */
+.pds-file-row--in-process .pds-file-row__icon { background-color: #ff9800; } /* Semantic/Alert */
+
+/* ─── FILE — name + second line · gap Spacing/0 ─── */
+
+.pds-file-row__file {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;                                     /* Spacing/0 */
+}
+
+/* file-name — Body Highlight/2 · Grey/7 · truncate */
+.pds-file-row__name {
+  margin: 0;
+  width: 100%;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;                           /* Medium */
+  color: #3f3f3f;                             /* Grey/7 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* file-size (success) — Body/2 · Grey/5 */
+.pds-file-row__size {
+  margin: 0;
+  width: 100%;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;                           /* Regular */
+  color: #9d9d9d;                             /* Grey/5 */
+}
+
+/* failed-status (failed) — Body/2 · Semantic/Error */
+.pds-file-row__failed {
+  margin: 0;
+  width: 100%;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;                           /* Regular */
+  color: #f44336;                             /* Semantic/Error */
+}
+
+/* progress-status (in-process) — fixed 18px height · progress bar vertically centred */
+.pds-file-row__progress-status {
+  display: flex;
+  align-items: center;
+  height: 18px;
+  width: 100%;
+}
+
+.pds-file-row__progress-status pds-progress-bar {
+  flex: 1 1 0;
+  min-width: 0;
+}

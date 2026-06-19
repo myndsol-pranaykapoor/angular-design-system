@@ -1,0 +1,88 @@
+/* PDS Web Header — fixed top · 42px · Spacing/3 top/bottom · Spacing/6 left/right */
+
+.pds-web-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 202;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;                       /* Spacing/6 between elements */
+  height: 42px;
+  padding: 6px 12px;               /* Spacing/3 top/bottom · Spacing/6 left/right */
+  box-sizing: border-box;
+
+  background-color: #ffffff;       /* Grey/0 */
+  border-bottom: 1px solid #e4e4e4; /* Grey/3 */
+}
+
+/* ─── LOGO CONTAINER — 100×30px, image left-aligned ─── */
+
+.pds-web-header__logo {
+  width: 100px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.pds-web-header__logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+
+/* ─── SPACER — fills remaining horizontal space ─── */
+
+.pds-web-header__spacer {
+  flex: 1;
+  height: 30px;
+}
+
+/* ─── USER INFO — avatar · name/designation · chevron ─── */
+
+.pds-web-header__user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;                        /* Spacing/4 */
+  padding: 0 12px;                 /* Spacing/6 left/right */
+  height: 30px;
+  flex-shrink: 0;
+}
+
+/* ─── NAME / DESIGNATION ─── */
+
+.pds-web-header__name-designation {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;                        /* Spacing/1 */
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Tight Body Highlight/2 — 12px · Medium · line-height 14px · Grey/7 */
+.pds-web-header__user-name {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #3f3f3f;                  /* Grey/7 */
+  white-space: nowrap;
+}
+
+/* Tight Body/2 — 12px · Regular · line-height 14px · Grey/6 */
+.pds-web-header__user-designation {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #5d5d5d;                  /* Grey/6 */
+  white-space: nowrap;
+}

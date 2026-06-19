@@ -1,0 +1,39 @@
+<div [class]="hostClasses.join(' ')">
+
+  <!-- status icon — 16px · semantic colour per state -->
+  <span
+    class="pds-file-row__icon"
+    [style.maskImage]="'url(/icons/16px/' + icon + '.svg)'"
+    [style.webkitMaskImage]="'url(/icons/16px/' + icon + '.svg)'"
+    aria-hidden="true"
+  ></span>
+
+  <!-- file — name + second line (size / status / progress) -->
+  <div class="pds-file-row__file">
+    <p class="pds-file-row__name">{{ fileName }}</p>
+
+    @switch (state) {
+      @case ('success') {
+        <p class="pds-file-row__size">{{ fileSize }}</p>
+      }
+      @case ('failed') {
+        <p class="pds-file-row__failed">{{ failedText }}</p>
+      }
+      @case ('in-process') {
+        <div class="pds-file-row__progress-status">
+          <pds-progress-bar [progress]="progress" />
+        </div>
+      }
+    }
+  </div>
+
+  <!-- cancel — tertiary size/0 only-icon (x) -->
+  <pds-button
+    type="tertiary"
+    [size]="0"
+    content="only-icon"
+    centerIcon="x"
+    (click)="cancel.emit()"
+  />
+
+</div>

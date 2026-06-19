@@ -1,0 +1,13 @@
+@if (isVisible) {
+  <span
+    class="pds-alert-badge"
+    [class.pds-alert-badge--indicator]="type === 'alert-indicator'"
+    [class.pds-alert-badge--count]="type === 'count'"
+    [class.pds-alert-badge--size-0]="size === 0"
+    [class.pds-alert-badge--size-1]="size === 1"
+  >
+    @if (type === 'count') {
+      <span class="pds-alert-badge__label">{{ displayCount }}</span>
+    }
+  </span>
+}

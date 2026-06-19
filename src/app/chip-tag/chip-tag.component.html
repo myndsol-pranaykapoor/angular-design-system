@@ -1,0 +1,29 @@
+<div [class]="hostClasses.join(' ')">
+  @if (showSupportingIcon && supportingIcon) {
+    <span
+      class="pds-chip-tag__icon pds-chip-tag__icon--supporting"
+      [style.maskImage]="'url(' + iconFolder + '/' + supportingIcon + '.svg)'"
+      [style.webkitMaskImage]="'url(' + iconFolder + '/' + supportingIcon + '.svg)'"
+      aria-hidden="true"
+    ></span>
+  }
+
+  <span class="pds-chip-tag__label">{{ label }}</span>
+
+  @if (showAction) {
+    <button
+      class="pds-chip-tag__action"
+      type="button"
+      [disabled]="disabled"
+      [attr.aria-label]="'Remove ' + label"
+      (click)="onActionClick($event)"
+    >
+      <span
+        class="pds-chip-tag__action-icon"
+        [style.maskImage]="'url(' + iconFolder + '/x.svg)'"
+        [style.webkitMaskImage]="'url(' + iconFolder + '/x.svg)'"
+        aria-hidden="true"
+      ></span>
+    </button>
+  }
+</div>

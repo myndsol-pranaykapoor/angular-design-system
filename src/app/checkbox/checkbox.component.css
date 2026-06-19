@@ -1,0 +1,97 @@
+/* PDS Checkbox — Size 0–2 × Checked/Indeterminate/Cleared × Default/Hover/Disabled */
+
+/* Host element: flex so the inner button height drives the cell, not the inherited line-height */
+pds-checkbox { display: flex; }
+
+.pds-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;                  /* Spacing/0 */
+  margin: 0;
+  border-style: solid;
+  border-radius: 4px;          /* Radius/2 */
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-height: 0;               /* override browser UA button min-height */
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.pds-checkbox:focus-visible {
+  outline: 2px solid #00ad61;
+  outline-offset: 3px;
+}
+
+.pds-checkbox--disabled,
+.pds-checkbox:disabled {
+  cursor: not-allowed;
+}
+
+/* ─── SIZE ─── */
+
+.pds-checkbox--size-0 { width: 16px; height: 16px; }
+.pds-checkbox--size-1 { width: 20px; height: 20px; }
+.pds-checkbox--size-2 { width: 24px; height: 24px; }
+
+/* Border widths — Indeterminate & Cleared only (Checked has no border) */
+.pds-checkbox--size-0.pds-checkbox--indeterminate,
+.pds-checkbox--size-0.pds-checkbox--cleared     { border-width: 1.25px; }
+.pds-checkbox--size-1.pds-checkbox--indeterminate,
+.pds-checkbox--size-1.pds-checkbox--cleared     { border-width: 1.50px; }
+.pds-checkbox--size-2.pds-checkbox--indeterminate,
+.pds-checkbox--size-2.pds-checkbox--cleared     { border-width: 1.75px; }
+
+.pds-checkbox--checked { border-width: 0; }
+
+/* ─── CHECKED — Primary/3 fill, no border ─── */
+
+.pds-checkbox--checked                                                   { background-color: #00ad61; border-color: transparent; }
+.pds-checkbox--checked:hover:not(:disabled):not(.pds-checkbox--disabled) { background-color: #007b45; }
+.pds-checkbox--checked.pds-checkbox--disabled,
+.pds-checkbox--checked:disabled                                          { background-color: #9d9d9d; }
+
+/* ─── INDETERMINATE — border + bg ─── */
+
+.pds-checkbox--indeterminate                                                   { background-color: #ffffff; border-color: #00ad61; }
+.pds-checkbox--indeterminate:hover:not(:disabled):not(.pds-checkbox--disabled) { background-color: #b0e6ce; border-color: #007b45; }
+.pds-checkbox--indeterminate.pds-checkbox--disabled,
+.pds-checkbox--indeterminate:disabled                                          { background-color: #e4e4e4; border-color: #9d9d9d; }
+
+/* ─── CLEARED — border + bg ─── */
+
+.pds-checkbox--cleared                                                   { background-color: #ffffff; border-color: #00ad61; }
+.pds-checkbox--cleared:hover:not(:disabled):not(.pds-checkbox--disabled) { background-color: #b0e6ce; border-color: #007b45; }
+.pds-checkbox--cleared.pds-checkbox--disabled,
+.pds-checkbox--cleared:disabled                                          { background-color: #e4e4e4; border-color: #9d9d9d; }
+
+/* ─── ICON (CSS mask) ─── */
+
+.pds-checkbox__icon {
+  display: block;
+  flex-shrink: 0;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.pds-checkbox--size-0 .pds-checkbox__icon { width: 12px; height: 12px; }
+.pds-checkbox--size-1 .pds-checkbox__icon { width: 16px; height: 16px; }
+.pds-checkbox--size-2 .pds-checkbox__icon { width: 20px; height: 20px; }
+
+/* Checked icon — Grey/0 white */
+.pds-checkbox--checked .pds-checkbox__icon                                                   { background-color: #ffffff; }
+.pds-checkbox--checked:hover:not(:disabled):not(.pds-checkbox--disabled) .pds-checkbox__icon { background-color: #ffffff; }
+.pds-checkbox--checked.pds-checkbox--disabled .pds-checkbox__icon,
+.pds-checkbox--checked:disabled .pds-checkbox__icon                                          { background-color: #ffffff; }
+
+/* Indeterminate icon — matches border color */
+.pds-checkbox--indeterminate .pds-checkbox__icon                                                   { background-color: #00ad61; }
+.pds-checkbox--indeterminate:hover:not(:disabled):not(.pds-checkbox--disabled) .pds-checkbox__icon { background-color: #007b45; }
+.pds-checkbox--indeterminate.pds-checkbox--disabled .pds-checkbox__icon,
+.pds-checkbox--indeterminate:disabled .pds-checkbox__icon                                          { background-color: #9d9d9d; }

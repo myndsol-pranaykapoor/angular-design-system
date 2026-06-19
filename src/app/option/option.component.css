@@ -1,0 +1,68 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PDS Option — default · hover · disabled
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.pds-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;             /* cross-axis centre */
+  gap: 8px;                        /* Spacing/4 */
+  height: 32px;
+  padding: 0 8px;                  /* Spacing/4 — left & right only */
+  box-sizing: border-box;
+  border-radius: 4px;              /* Radius/2 */
+
+  background-color: #ffffff;       /* Grey/0 — Default */
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ── HOVER — interactive + forced (preview) ── */
+.pds-option:not(.pds-option--disabled):hover,
+.pds-option--hover {
+  background-color: #f4f5f8;       /* Secondary/0 */
+}
+
+/* ── DISABLED ── */
+.pds-option--disabled {
+  background-color: #e4e4e4;       /* Grey/3 */
+  cursor: not-allowed;
+}
+
+/* ── ICON — 16px, Secondary/3 ── */
+.pds-option__icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background-color: #263b74;       /* Secondary/3 */
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.pds-option--disabled .pds-option__icon {
+  background-color: #9d9d9d;       /* Grey/5 */
+}
+
+/* ── TEXT — Body/2 ── */
+.pds-option__text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;                /* Regular */
+  font-size: 12px;                 /* Body/2 */
+  line-height: 18px;
+  color: #3f3f3f;                  /* Grey/7 — Default & Hover */
+  white-space: nowrap;
+}
+
+.pds-option--disabled .pds-option__text {
+  color: #9d9d9d;                  /* Grey/5 */
+}
+
+/* ── avatar/checkbox shouldn't shrink ── */
+.pds-option__checkbox,
+.pds-option__avatar {
+  flex-shrink: 0;
+}

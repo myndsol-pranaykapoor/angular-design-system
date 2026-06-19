@@ -1,0 +1,146 @@
+/* PDS Date Picker — layout delegated to pds-popup-layout */
+
+/* ── CARD HEADER (date-change & date-range calendars): 4 buttons equal space-between, no spacers ── */
+/* year-change & month-change keep the default card-header layout (left anchor · spacer · nav buttons at gap spacing/6) */
+pds-date-picker.pds-date-picker--date-change .pds-card-header__main-row,
+pds-date-picker.pds-date-picker--date-range .pds-card-header__main-row {
+  justify-content: space-between !important;
+  gap: 0 !important;
+}
+
+pds-date-picker.pds-date-picker--date-change .pds-card-header__spacer,
+pds-date-picker.pds-date-picker--date-range .pds-card-header__spacer {
+  display: none !important;
+}
+
+/* Fix month & year button widths — prevents layout shift when text changes */
+pds-date-picker.pds-date-picker--date-change .pds-card-header__main-row .pds-button--secondary,
+pds-date-picker.pds-date-picker--date-range .pds-card-header__main-row .pds-button--secondary {
+  min-width: 70px;
+  justify-content: center;
+}
+
+/* month-change: hide spacer-1 so the year button (button-3) anchors to the left */
+pds-date-picker.pds-date-picker--month-change .pds-card-header__spacer:first-of-type {
+  display: none;
+}
+
+/* Card-footer buttons hug content — override card-footer's global min-width */
+pds-date-picker .pds-card-footer .pds-button {
+  min-width: unset;
+}
+
+/* ── GRID — flex column · gap spacing/2 · centred in play-area ── */
+
+.pds-date-picker__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                                   /* Spacing/2 */
+  align-self: center;                         /* centre 192px grid in play-area */
+}
+
+/* Week-days row + date rows share the same flex layout */
+
+.pds-date-picker__week-row,
+.pds-date-picker__date-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;                                   /* Spacing/2 */
+}
+
+/* Week-day labels — body highlight/2 · grey/5 · 24px fixed */
+
+.pds-date-picker__weekday {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;                            /* body highlight/2 */
+  font-weight: 500;                           /* medium */
+  line-height: 18px;
+  letter-spacing: 0;
+  color: #9d9d9d;                             /* grey/5 */
+  box-sizing: border-box;
+}
+
+/* ── YEAR-CHANGE & MONTH-CHANGE GRID — rows · gap spacing/2 · centred in play-area ── */
+
+.pds-date-picker__year-grid,
+.pds-date-picker__month-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                                   /* Spacing/2 */
+  align-self: center;
+}
+
+/* Row — three cells · gap spacing/12 (24px) */
+.pds-date-picker__year-row,
+.pds-date-picker__month-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;                                  /* Spacing/12 */
+}
+
+/* Cell — 48px wide (the inner state element) */
+.pds-date-picker__year-cell .pds-dt-state,
+.pds-date-picker__month-cell .pds-dt-state {
+  width: 48px;
+}
+
+/* ── DATE-RANGE LAYOUT ── */
+
+/* date-range-group: date-from · separation-line · date-till · gap spacing/6 */
+.pds-date-picker__range-group {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 12px;                                  /* Spacing/6 */
+}
+
+/* Each calendar column — card-header + grid · gap spacing/6 · 216px wide */
+.pds-date-picker__range-cal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;                                  /* Spacing/6 */
+  width: 216px;
+}
+
+/* Bordered grid (replaces the popup play-area chrome, disabled for date-range) */
+.pds-date-picker__range-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                                   /* Spacing/2 */
+  padding: 12px;                              /* Spacing/6 */
+  border: 1px solid #e4e4e4;                  /* Grey/3 */
+  border-radius: 8px;                         /* Radius/4 */
+  box-sizing: border-box;
+  align-items: center;
+}
+
+/* Vertical separation line between the two calendars — Grey/3, full height */
+.pds-date-picker__range-separator {
+  width: 1px;
+  align-self: stretch;
+  background-color: #e4e4e4;                  /* Grey/3 */
+}
+
+/* ── MONTH SELECTOR OVERLAY — over the date-picker popup ── */
+
+/* Backdrop sits above the popup-layout (z-index: 400) so clicks register */
+.pds-date-picker__month-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 401;
+  background: transparent;
+}
+
+/* Selector container — fixed coords supplied by the component */
+.pds-date-picker__month-overlay {
+  position: fixed;
+  z-index: 402;
+}
+

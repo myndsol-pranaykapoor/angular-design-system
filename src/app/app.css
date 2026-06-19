@@ -1,0 +1,242 @@
+* { margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+app-root {
+  display: block;
+}
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: #f6fcf9;             /* Primary/0 */
+  color: #262626;
+}
+
+/* ── PREVIEW SHELL — fills viewport, scrolls vertically ── */
+.ds-preview {
+  min-height: 100vh;
+  background: #f6fcf9;             /* Primary/0 */
+}
+
+/* ── BODY — scrollable area with sections ── */
+/* Web-header (42px) + Command-bar (42px) = 84px top offset · Side-menu collapsed = 56px left offset */
+/* Gap: spacing/0 with collapsed side menu, command bar, and right edge */
+/* Inner padding: spacing/6 (12px) on all sides */
+.ds-main {
+  margin-top: 84px;                /* 42px web-header + 42px command-bar */
+  margin-left: 56px;               /* collapsed side-menu width */
+  padding: 12px;                   /* Spacing/6 on all sides */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;                       /* Spacing/6 between body-sections */
+  background: #f6fcf9;             /* Primary/0 */
+}
+
+/* ── PAGE HEADER — currently hidden, body-sections take over ── */
+.ds-page-header {
+  display: none;
+}
+
+/* Heading/5 — 28px / 34px, SemiBold (IBM Plex Sans) */
+.ds-page-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 34px;
+  color: #262626;
+}
+
+/* Body/3 — 14px / 20px, Regular */
+.ds-page-subtitle {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #8c8c8c;
+  margin-top: 4px;
+}
+
+/* ── BODY-SECTION — card-like container for each component group ── */
+.ds-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;                       /* Spacing/6 — between card-header and play-area */
+  padding: 12px;                   /* Spacing/6 on all sides */
+  background: #ffffff;             /* Grey/0 */
+  border: 1px solid #e4e4e4;       /* Grey/3 */
+  border-radius: 12px;             /* Radius/6 */
+}
+
+/* ── CARD-HEADER — title + description block ── */
+/* Heading/3 — 20px / 26px, SemiBold */
+.ds-section__title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #262626;
+}
+
+/* Body/3 — 14px / 20px, Regular */
+.ds-section__desc {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #8c8c8c;
+  margin-top: 4px;
+}
+
+/* ── PLAY-AREA — wraps the section's variants ── */
+.play-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Type title (Primary / Secondary / Tertiary) ── */
+/* Heading/2 — 16px / 22px, SemiBold */
+.ds-type-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #263b74;
+  margin: 16px 0 8px;
+  padding-left: 10px;
+  border-left: 3px solid #263b74;
+}
+
+.ds-type-title:first-child {
+  margin-top: 0;
+}
+
+/* ── Token group ── */
+.ds-token-group {
+  margin-bottom: 12px;
+}
+
+.ds-token-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Tight Body Highlight/2 — 12px / 14px, Medium · UPPERCASE styling preserved */
+.ds-token-label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8c8c8c;
+  margin-bottom: 8px;
+}
+
+/* ── Matrix: Default | Hover | Disabled ── */
+.ds-matrix-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.ds-matrix-cell {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+/* ── State tag ── */
+/* Tight Body Highlight/1 — 10px / 12px, Medium · UPPERCASE preserved */
+.ds-state-tag {
+  display: inline-block;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #595959;
+  background: #f0f0f0;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-bottom: 12px;
+}
+
+.ds-state-tag--hover {
+  color: #00ad61;
+  background: #fdf0ef;
+}
+
+.ds-state-tag--disabled {
+  color: #9d9d9d;
+  background: #f5f5f5;
+}
+
+/* ── Alert badge swatch ── */
+.ds-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 16px 20px;
+}
+
+/* Button rows inside matrix cells don't need card bg */
+.ds-matrix-cell .ds-row {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.ds-swatch-item {
+  align-self: flex-start;
+  display: grid;
+  grid-template-rows: auto 28px;
+  justify-items: center;
+  gap: 6px;
+  min-width: 96px;
+}
+
+/* Lock first row to the exact component height so subpixel border changes can't shift it */
+.ds-swatch-item:has(.pds-checkbox--size-0),
+.ds-swatch-item:has(.pds-radio--size-0),
+.ds-swatch-item:has(.pds-switch--size-0)  { grid-template-rows: 16px 28px; }
+
+.ds-swatch-item:has(.pds-checkbox--size-1),
+.ds-swatch-item:has(.pds-radio--size-1),
+.ds-swatch-item:has(.pds-switch--size-1)  { grid-template-rows: 20px 28px; }
+
+.ds-swatch-item:has(.pds-checkbox--size-2),
+.ds-swatch-item:has(.pds-radio--size-2),
+.ds-swatch-item:has(.pds-switch--size-2)  { grid-template-rows: 24px 28px; }
+
+/* Body/1 — 10px / 16px, Regular */
+.ds-swatch-label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #8c8c8c;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Card preview wrapper ── */
+.ds-card-preview {
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 16px 20px;
+}
+
+/* ── Divider (deprecated — gap between sections used now) ── */
+.ds-divider {
+  display: none;
+}

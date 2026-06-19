@@ -1,0 +1,98 @@
+/* PDS Filter Drawer — right-docked, full-height sliding panel */
+
+/* ─── OVERLAY — full screen · clips the off-screen panel ─── */
+.pds-filter-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  overflow: hidden;
+  pointer-events: none;                       /* click-through while closed */
+}
+.pds-filter-drawer--open {
+  pointer-events: auto;
+}
+
+/* ─── BACKDROP — Dark/2 · fades in ─── */
+.pds-filter-drawer__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.30);      /* Transparency Dark/2 */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.pds-filter-drawer--open .pds-filter-drawer__backdrop {
+  opacity: 1;
+}
+
+/* ─── PANEL — docked at right edge · full height · slides in from the right ─── */
+/* inner padding Spacing/6 on top, bottom & right (flush left) */
+/* NB: animate `right` (not `transform`) — a transform would establish a containing
+   block, breaking the position:fixed search overlay inside the filter-sections. */
+.pds-filter-drawer__panel {
+  position: absolute;
+  top: 0;
+  right: -460px;                              /* off-screen right when closed */
+  bottom: 0;
+  display: flex;
+  padding: 12px 12px 12px 0;                  /* Spacing/6 top · right · bottom */
+  box-sizing: border-box;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pds-filter-drawer--open .pds-filter-drawer__panel {
+  right: 0;
+}
+
+/* pop-up-layout fills the panel height */
+.pds-filter-drawer__panel pds-popup-layout {
+  display: flex;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pds-filter-drawer__backdrop,
+  .pds-filter-drawer__panel { transition: none; }
+}
+
+/* The drawer's overflow:hidden clips the off-screen panel but must NOT clip the
+   search overlay — that's position:fixed (containing block = viewport), so it is
+   unaffected now that the panel no longer uses a transform. */
+
+
+/* ─── SCROLL AREA — fills play-area · sections + separators · gap Spacing/6 ─── */
+.pds-filter-drawer__scroll-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;                                  /* Spacing/6 */
+  width: 100%;
+}
+.pds-filter-drawer__scroll-area pds-filter-section {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* separation line between filter-sections — Grey/3 */
+.pds-filter-drawer__separator {
+  height: 1px;
+  width: 100%;
+  background-color: #e4e4e4;                  /* Grey/3 */
+  flex-shrink: 0;
+}
+
+/* ─── FOOTER — Extra (hug, left) + Apply (fills) · py Spacing/2 · no leading spacer ─── */
+.pds-filter-drawer__footer .pds-card-footer {
+  padding: 4px 0;                             /* Spacing/2 vertical */
+  justify-content: flex-start;
+}
+.pds-filter-drawer__footer .pds-card-footer__spacer {
+  display: none;
+}
+/* Apply (button-1, primary, last in DOM) fills the remaining width.
+   Target the <pds-button> host element (not the inner .pds-button div). */
+.pds-filter-drawer__footer .pds-card-footer > pds-button:last-child {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.pds-filter-drawer__footer .pds-card-footer > pds-button:last-child .pds-button {
+  width: 100%;
+}

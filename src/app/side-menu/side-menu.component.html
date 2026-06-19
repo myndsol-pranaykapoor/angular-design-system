@@ -1,0 +1,65 @@
+<!-- Side Menu (parent): fixed left · NO background · 42px top padding · 56→300px -->
+<div
+  class="pds-side-menu"
+  [class.pds-side-menu--expanded]="isExpanded"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
+
+  <!-- side-menu-container: starts below the 42px padding · right border · elevation when expanded -->
+  <div class="pds-smc">
+
+    <!-- menu-section: padding Spacing/6 all sides -->
+    <div class="pds-smc__section">
+
+      <!-- scroll-area: 32px collapsed / 276px expanded · vertical scroll · gap Spacing/4 -->
+      <div class="pds-smc__scroll">
+
+        @for (entry of entries; track entry.id) {
+
+          @if (entry.type === 'collection') {
+            <pds-side-menu-items-collection
+              [title]="entry.title"
+              [icon]="entry.icon"
+              [items]="entry.items ?? []"
+              [isExpanded]="isExpanded && expandedCollectionId === entry.id"
+              [headerSelected]="collectionHeaderSelected(entry.id)"
+              [selectedId]="selectedItemId"
+              (expandToggle)="onCollectionToggle(entry.id)"
+              (itemSelected)="onCollectionItemSelected($event, entry.id)"
+            />
+          } @else {
+            <pds-side-menu-item
+              [title]="entry.title"
+              [icon]="entry.icon"
+              [selected]="selectedItemId === entry.id"
+              (itemClick)="onStandaloneItemSelected(entry.id)"
+            />
+          }
+
+        }
+
+      </div>
+    </div>
+
+    <!-- version-grp: 84px tall · top border · padding Spacing/6 · gap Spacing/6 · centre aligned -->
+    <div class="pds-smc__vg">
+
+      <!-- actions: chevron-right (collapsed) or 3 secondary size/1 buttons (expanded) -->
+      <div class="pds-smc__actions">
+        @if (isExpanded) {
+          <pds-button type="secondary" [size]="1" content="only-icon" [centerIcon]="action1Icon" (click)="action1Click.emit()" />
+          <pds-button type="secondary" [size]="1" content="only-icon" [centerIcon]="action2Icon" (click)="action2Click.emit()" />
+          <pds-button type="secondary" [size]="1" content="only-icon" [centerIcon]="action3Icon" (click)="action3Click.emit()" />
+        } @else {
+          <span class="pds-smc__chevron-icon"></span>
+        }
+      </div>
+
+      <!-- version text: Body/2 · Grey/5 -->
+      <span class="pds-smc__version">{{ versionLabel }}</span>
+
+    </div>
+
+  </div>
+</div>

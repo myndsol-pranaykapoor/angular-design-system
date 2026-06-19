@@ -1,0 +1,18 @@
+<button
+  [class]="hostClasses.join(' ')"
+  type="button"
+  [disabled]="disabled"
+  [attr.aria-checked]="type === 'checked' ? 'true' : type === 'indeterminate' ? 'mixed' : 'false'"
+  [attr.aria-disabled]="disabled"
+  role="checkbox"
+  (click)="toggle()"
+>
+  @if (type !== 'cleared') {
+    <span
+      class="pds-checkbox__icon"
+      [style.maskImage]="'url(' + iconPath + '/' + iconName + '.svg)'"
+      [style.webkitMaskImage]="'url(' + iconPath + '/' + iconName + '.svg)'"
+      aria-hidden="true"
+    ></span>
+  }
+</button>

@@ -1,0 +1,26 @@
+/* PDS Progress Bar — fluid width, Secondary/1 trail, Secondary/3 fill */
+
+.pds-progress-bar {
+  display: block;
+  width: 100%;
+}
+
+.pds-progress-bar__trail {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;         /* Radius/Full */
+  background-color: #bcc2d4;     /* Secondary/1 */
+  overflow: hidden;
+}
+
+.pds-progress-bar__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  min-width: 6px;                /* 6px minimum at 0% */
+  border-radius: 9999px;         /* Radius/Full */
+  background-color: #263b74;     /* Secondary/3 */
+  transition: width 0.3s ease;
+}

@@ -1,0 +1,13 @@
+<button
+  [class]="hostClasses.join(' ')"
+  type="button"
+  [disabled]="disabled"
+  [attr.aria-checked]="on"
+  [attr.aria-disabled]="disabled"
+  role="switch"
+  (click)="toggle()"
+>
+  <span class="pds-switch__trail">
+    <span class="pds-switch__button"></span>
+  </span>
+</button>

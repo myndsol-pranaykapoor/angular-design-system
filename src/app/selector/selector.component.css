@@ -1,0 +1,96 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PDS Selector — list of options, with auto scroller when overflowing
+   Both types: 1px Grey/3 border · Radius/4 · Elevation/3 · Spacing/2 padding
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.pds-selector {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 4px;                        /* Spacing/2 — between list and scroller */
+  padding: 4px;                    /* Spacing/2 — all four sides */
+  box-sizing: border-box;
+
+  background-color: #ffffff;       /* Grey/0 */
+  border-radius: 8px;              /* Radius/4 */
+  /* 1px Grey/3 border as an inset ring (no layout impact) + Elevation/3 */
+  box-shadow:
+    inset 0 0 0 1px #e4e4e4,       /* Grey/3 border */
+    0px 4px 6px   rgba(0, 0, 0, 0.12),
+    0px 4px 8px -1px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ── LIST — vertical options, gap Spacing/2, scrollable (native bar hidden) ── */
+
+.pds-selector__list {
+  flex: 1;
+  min-width: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                        /* Spacing/2 between options */
+  scrollbar-width: none;           /* Firefox */
+}
+
+.pds-selector__list::-webkit-scrollbar {
+  display: none;                   /* Chrome / Safari */
+}
+
+/* options fill the list width */
+.pds-selector__list > pds-option {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ── SCROLLER — 12px column beside the list (appears only on overflow) ── */
+
+.pds-selector__scroller {
+  position: relative;
+  flex-shrink: 0;
+  width: 12px;                     /* fixed scroller width */
+  align-self: stretch;
+}
+
+/* trail — Secondary/1, 4px, padded Spacing/2 top & bottom, centred in 12px */
+.pds-selector__trail {
+  position: absolute;
+  top: 4px;                        /* Spacing/2 */
+  bottom: 4px;                     /* Spacing/2 */
+  right: 4px;                      /* centres 4px trail in 12px column */
+  width: 4px;
+  border-radius: 9999px;           /* Radius/Full */
+  background-color: #bcc2d4;       /* Secondary/1 */
+}
+
+/* slider — Grey/0 fill, Secondary/3 2px border, Elevation/2; grows on hover */
+.pds-selector__slider {
+  position: absolute;
+  right: 4px;                      /* aligns with trail */
+  width: 4px;
+  border-radius: 9999px;           /* Radius/Full */
+  background-color: #ffffff;       /* Grey/0 */
+  border: 2px solid #263b74;       /* Secondary/3 */
+  box-sizing: border-box;
+  box-shadow:                      /* Elevation/2 */
+    0px 2px 4px rgba(0, 0, 0, 0.10),
+    0px 2px 6px -1px rgba(0, 0, 0, 0.06);
+  cursor: grab;
+  transition: width 0.15s ease, right 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pds-selector__slider:hover {
+  right: 2px;                      /* (12 - 8) / 2 = 2px — centres 8px slider */
+  width: 8px;
+  box-shadow:                      /* Elevation/3 */
+    0px 4px 6px   rgba(0, 0, 0, 0.12),
+    0px 4px 8px -1px rgba(0, 0, 0, 0.08);
+}
+
+.pds-selector__slider:active {
+  cursor: grabbing;
+  right: 2px;
+  width: 8px;
+}

@@ -1,0 +1,81 @@
+<!-- side-menu-items-collection: vertical, gap spacing/4 -->
+<div class="pds-smic">
+
+  <!-- ── COLLECTION HEADER — side-menu-item with icon & chevron ── -->
+  <pds-side-menu-item
+    [title]="title"
+    [icon]="icon"
+    [showChevron]="true"
+    [isExpanded]="isExpanded"
+    [selected]="resolvedHeaderSelected"
+    (itemClick)="onHeaderClick()"
+  />
+
+  <!-- ── LEVEL-ONE CONTAINER — animated with grid-template-rows ── -->
+  <div class="pds-smic__anim" [class.pds-smic__anim--open]="isExpanded">
+    <div class="pds-smic__anim-inner">
+      <div class="pds-smic__level-one">
+
+        <!-- Expansion line -->
+        <div class="pds-smic__expansion-line"></div>
+
+        <!-- Level-two group -->
+        <div class="pds-smic__level-two-group">
+
+          @for (item of items; track item.id) {
+
+            @if (item.children && item.children.length > 0) {
+
+              <!-- ── LEVEL-TWO EXPANDABLE ── -->
+              <div class="pds-smic__level-two-expandable">
+
+                <pds-side-menu-item
+                  [title]="item.title"
+                  [icon]="item.icon || ''"
+                  [showChevron]="true"
+                  [isExpanded]="isLevel2Open(item.id)"
+                  [selected]="selectedId === item.id"
+                  (itemClick)="onLevel2Click(item)"
+                />
+
+                <!-- Level-three — animated -->
+                <div class="pds-smic__anim" [class.pds-smic__anim--open]="isLevel2Open(item.id)">
+                  <div class="pds-smic__anim-inner">
+                    <div class="pds-smic__level-three-group">
+                      <div class="pds-smic__expansion-line"></div>
+                      <div class="pds-smic__level-three-list">
+                        @for (child of item.children; track child.id) {
+                          <pds-side-menu-item
+                            [title]="child.title"
+                            [icon]="child.icon || ''"
+                            [selected]="selectedId === child.id"
+                            (itemClick)="onLeafClick(child.id)"
+                          />
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            } @else {
+
+              <!-- ── NON-EXPANDABLE LEVEL-TWO ITEM ── -->
+              <pds-side-menu-item
+                [title]="item.title"
+                [icon]="item.icon || ''"
+                [selected]="selectedId === item.id"
+                (itemClick)="onLeafClick(item.id)"
+              />
+
+            }
+
+          }
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

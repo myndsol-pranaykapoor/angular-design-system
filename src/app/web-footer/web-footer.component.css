@@ -1,0 +1,88 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PDS Web Footer — rights · powered-by · actions
+   Placed as the last body-section; scrolls with the rest of the body.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.pds-web-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;             /* all three elements vertically centred */
+  gap: 12px;                       /* Spacing/6 */
+  padding: 12px;                   /* Spacing/6 — all four sides */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ── RIGHTS — fills width, text left-aligned & vertically centred ────────── */
+
+.pds-wf__rights {
+  flex: 1;                         /* fill width */
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+/* "© 2026 ... All Rights Reserved." — Body/3 · Grey/7 */
+.pds-wf__copy {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;                /* Regular */
+  font-size: 14px;                 /* Body/3 */
+  line-height: 20px;
+  color: #3f3f3f;                  /* Grey/7 */
+  white-space: nowrap;
+}
+
+/* "Mynd Integrated Solutions" — Body Highlight/3 · Secondary/3 */
+.pds-wf__company {
+  font-weight: 500;                /* Medium — Body Highlight/3 */
+  color: #263b74;                  /* Secondary/3 */
+}
+
+/* ── POWERED BY — hug width, logos + text, gap Spacing/4 ─────────────────── */
+
+.pds-wf__powered {
+  flex: 0 0 auto;                  /* hug */
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;                        /* Spacing/4 */
+}
+
+/* tool-logo — 55×30 default (sizing applied inline so it's configurable) */
+.pds-wf__tool-logo {
+  flex-shrink: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* "Powered by" — Body/3 · Grey/5 */
+.pds-wf__powered-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #9d9d9d;                  /* Grey/5 */
+  white-space: nowrap;
+}
+
+/* company-logo — 83×30 default (sizing applied inline so it's configurable) */
+.pds-wf__company-logo {
+  flex-shrink: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ── ACTIONS — fills width, two tertiary buttons right-aligned ───────────── */
+
+.pds-wf__actions {
+  flex: 1;                         /* fill width */
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;       /* right aligned */
+  gap: 12px;                       /* Spacing/6 */
+}

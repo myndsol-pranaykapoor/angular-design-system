@@ -1,0 +1,48 @@
+<header class="pds-web-header">
+
+  <!-- Logo container: 100×30px, image left-aligned, proportionate fit -->
+  <div class="pds-web-header__logo">
+    @if (logoSrc) {
+      <img [src]="logoSrc" [alt]="logoAlt" class="pds-web-header__logo-img" />
+    }
+  </div>
+
+  <!-- Spacer: flex fill, transparent -->
+  <div class="pds-web-header__spacer"></div>
+
+  <!-- Notification button: tertiary size/1, bell icon, count badge -->
+  <pds-button
+    type="tertiary"
+    [size]="1"
+    content="only-icon"
+    centerIcon="bell"
+    [showBadge]="notificationCount > 0"
+    badgeType="count"
+    [badgeCount]="notificationCount"
+    (click)="notificationClick.emit()"
+  />
+
+  <!-- User info: avatar + name/designation + chevron -->
+  <div class="pds-web-header__user-info">
+    <pds-profile-avatar
+      type="image"
+      [size]="1"
+      [imageSrc]="userAvatarSrc"
+      [showBadge]="false"
+    />
+
+    <div class="pds-web-header__name-designation">
+      <span class="pds-web-header__user-name">{{ userName }}</span>
+      <span class="pds-web-header__user-designation">{{ userDesignation }}</span>
+    </div>
+
+    <pds-button
+      type="tertiary"
+      [size]="0"
+      content="only-icon"
+      centerIcon="chevron-down"
+      (click)="userMenuClick.emit()"
+    />
+  </div>
+
+</header>

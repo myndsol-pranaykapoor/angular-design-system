@@ -1,0 +1,88 @@
+/* PDS Radio — Tokens: Size 0–2 × Selected/Cleared × Default/Hover/Disabled */
+
+pds-radio { display: flex; }
+
+.pds-radio {
+  position: relative;
+  display: inline-flex;
+  padding: 0;
+  border-style: solid;
+  border-radius: 9999px;        /* Radius/Full */
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.pds-radio:focus-visible {
+  outline: 2px solid #00ad61;  /* Primary/3 */
+  outline-offset: 3px;
+}
+
+.pds-radio--disabled,
+.pds-radio:disabled {
+  cursor: not-allowed;
+}
+
+/* ─── SIZE ─── */
+
+.pds-radio--size-0 { width: 16px; height: 16px; border-width: 1.25px; }
+.pds-radio--size-1 { width: 20px; height: 20px; border-width: 1.50px; }
+.pds-radio--size-2 { width: 24px; height: 24px; border-width: 1.75px; }
+
+/* ─── DEFAULT STATE — border: Primary/3, bg: Grey/0 ─── */
+
+.pds-radio--cleared,
+.pds-radio--selected {
+  background-color: #ffffff;   /* Grey/0 */
+  border-color: #00ad61;       /* Primary/3 */
+}
+
+/* ─── HOVER STATE — border: Primary/4, bg: Primary/1 ─── */
+
+.pds-radio--cleared:hover:not(:disabled):not(.pds-radio--disabled),
+.pds-radio--selected:hover:not(:disabled):not(.pds-radio--disabled) {
+  background-color: #b0e6ce;   /* Primary/1 */
+  border-color: #007b45;       /* Primary/4 */
+}
+
+/* ─── DISABLED STATE — border: Grey/5, bg: Grey/4 ─── */
+
+.pds-radio--cleared.pds-radio--disabled,
+.pds-radio--cleared:disabled,
+.pds-radio--selected.pds-radio--disabled,
+.pds-radio--selected:disabled {
+  background-color: #c0c0c0;   /* Grey/4 */
+  border-color: #9d9d9d;       /* Grey/5 */
+}
+
+/* ─── INNER DOT ─── */
+
+.pds-radio__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;       /* Radius/Full */
+  background-color: #00ad61;   /* Primary/3 — default */
+  transition: background-color 0.15s ease;
+}
+
+.pds-radio--size-0 .pds-radio__dot { width: 9.33px;  height: 9.33px;  }
+.pds-radio--size-1 .pds-radio__dot { width: 11.67px; height: 11.67px; }
+.pds-radio--size-2 .pds-radio__dot { width: 14px;    height: 14px;    }
+
+/* Cleared — dot hidden */
+.pds-radio--cleared .pds-radio__dot { display: none; }
+
+/* Hover — dot: Primary/4 */
+.pds-radio--selected:hover:not(:disabled):not(.pds-radio--disabled) .pds-radio__dot {
+  background-color: #007b45;   /* Primary/4 */
+}
+
+/* Disabled — dot: Grey/5 */
+.pds-radio--selected.pds-radio--disabled .pds-radio__dot,
+.pds-radio--selected:disabled .pds-radio__dot {
+  background-color: #9d9d9d;   /* Grey/5 */
+}

@@ -1,0 +1,138 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PDS Side Menu
+   Collapsed (default): 56px   Expanded: 300px   Fixed left   Hover to expand
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── PARENT SIDE MENU ────────────────────────────────────────────────────── */
+/* NO background fill. 42px top padding only. Overflow visible so the          */
+/* container's elevation shadow is never clipped.                              */
+
+.pds-side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 201;                    /* overlaps web-header / command-bar / content */
+
+  width: 56px;                     /* collapsed (default) */
+  height: 100vh;                   /* responsive to screen height */
+  padding-top: 42px;               /* compensates web-header — top only */
+  box-sizing: border-box;
+
+  background: none;                /* IMPORTANT — no background fill */
+
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pds-side-menu--expanded {
+  width: 300px;                    /* expanded */
+}
+
+/* ── side-menu-container ─────────────────────────────────────────────────── */
+/* Holds the visible UI. Right border + elevation (expanded). Fills the area   */
+/* below the parent's 42px padding. Width follows parent (56 / 300).           */
+
+.pds-smc {
+  display: flex;
+  flex-direction: column;
+  gap: 0;                          /* Spacing/0 */
+  width: 100%;                     /* = 56px collapsed / 300px expanded */
+  height: 100%;                    /* below the 42px padding */
+  overflow: hidden;                /* clip children width during transition */
+
+  background-color: #ffffff;       /* Grey/0 — the visible sidebar surface */
+  border-right: 1px solid #e4e4e4; /* Grey/3 — right only */
+  box-shadow: none;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pds-side-menu--expanded .pds-smc {
+  /* Elevation/3 — expanded state only */
+  box-shadow:
+    0px 4px 6px   rgba(0, 0, 0, 0.12),
+    0px 4px 8px -1px rgba(0, 0, 0, 0.08);
+}
+
+/* ── menu-section ────────────────────────────────────────────────────────── */
+
+.pds-smc__section {
+  flex: 1;
+  min-height: 0;
+  padding: 12px;                   /* Spacing/6 all sides */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* scroll-area: 32px collapsed / 276px expanded (= container − 2×12px padding) */
+.pds-smc__scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;              /* clip item title/chevron when collapsed */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                        /* Spacing/4 between entries */
+  scrollbar-width: none;
+}
+
+.pds-smc__scroll::-webkit-scrollbar { display: none; }
+
+/* ── COLLAPSED ITEMS — only the supporting icon stays visible ────────────── */
+/* Items fill width (32px). Their title/chevron overflow and are clipped.     */
+
+.pds-side-menu:not(.pds-side-menu--expanded) .pds-side-menu-item {
+  overflow: hidden;
+}
+
+/* ── version-grp ─────────────────────────────────────────────────────────── */
+
+.pds-smc__vg {
+  flex-shrink: 0;
+  height: 84px;                    /* fixed in both states */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;                       /* Spacing/6 between actions and version */
+  padding: 12px;                   /* Spacing/6 all sides */
+  border-top: 1px solid #e4e4e4;  /* Grey/3 — top only */
+  overflow: hidden;
+}
+
+/* ── actions ─────────────────────────────────────────────────────────────── */
+
+.pds-smc__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;                       /* Spacing/6 */
+}
+
+/* chevron-right icon — collapsed state */
+.pds-smc__chevron-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background-color: #9d9d9d;       /* Grey/5 */
+  mask-image: url('/icons/20px/chevron-right.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url('/icons/20px/chevron-right.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+/* ── version text — Body/2 · Grey/5 ─────────────────────────────────────── */
+
+.pds-smc__version {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #9d9d9d;                  /* Grey/5 */
+  white-space: nowrap;
+}

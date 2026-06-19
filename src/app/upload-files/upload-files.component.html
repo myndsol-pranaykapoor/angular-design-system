@@ -1,0 +1,74 @@
+<pds-popup-layout
+  [visible]="visible"
+  [width]="600"
+  height="auto"
+  [playAreaChrome]="false"
+  (closed)="onCancel()"
+>
+
+  <!-- ── CARD HEADER — title + count chips · subtitle ── -->
+  <pds-card-header
+    [showIcon]="false"
+    [showTitle]="true"
+    [title]="title"
+    [subtitle]="subtitle"
+    [showSubtitle]="true"
+    [showButton4]="false"
+    [showButton3]="false"
+    [showButton2]="false"
+    [showButton1]="false"
+  >
+    <div card-header-actions class="pds-upload-files__counts">
+      <pds-chip-tag type="border" [size]="0" [colorScheme]="scheme(successCount, 'success')"
+        [showSupportingIcon]="true" supportingIcon="check-inside-circle" [label]="pad(successCount)" />
+      <pds-chip-tag type="border" [size]="0" [colorScheme]="scheme(failedCount, 'error')"
+        [showSupportingIcon]="true" supportingIcon="x-circle" [label]="pad(failedCount)" />
+      <pds-chip-tag type="border" [size]="0" [colorScheme]="scheme(pendingCount, 'alert')"
+        [showSupportingIcon]="true" supportingIcon="circle" [label]="pad(pendingCount)" />
+    </div>
+  </pds-card-header>
+
+  <!-- ── PLAY AREA — drop-area + files-list · gap spacing/6 ── -->
+  <div class="pds-upload-files__play">
+
+    <pds-drop-area class="pds-upload-files__drop" (filesSelected)="onFilesSelected($event)" />
+
+    <div class="pds-upload-files__list">
+      @if (isEmpty) {
+        <div class="pds-upload-files__empty">
+          <img src="/illustrations/empty-box.svg" alt="No files" width="200" height="200" />
+        </div>
+      } @else {
+        <pds-scroller class="pds-upload-files__scroller" layout="inline">
+          @for (f of items; track f) {
+            <pds-file-row
+              [state]="f.state"
+              [fileName]="f.name"
+              [fileSize]="f.size || ''"
+              [progress]="f.progress || 0"
+              (cancel)="removeFile(f)"
+            />
+            @if (!$last) {
+              <div class="pds-upload-files__sep"></div>
+            }
+          }
+        </pds-scroller>
+      }
+    </div>
+
+  </div>
+
+  <!-- ── CARD FOOTER — Download Sample · spacer · Cancel · Confirm ── -->
+  <pds-card-footer
+    [button4Label]="downloadSampleLabel"
+    button4LeftIcon="download"
+    [showButton3]="false"
+    button2Label="Cancel"
+    button1Label="Confirm"
+    [disabledButton1]="successCount === 0"
+    (button4Click)="downloadSample.emit()"
+    (button2Click)="onCancel()"
+    (button1Click)="onConfirm()"
+  />
+
+</pds-popup-layout>

@@ -1,0 +1,95 @@
+<pds-popup-layout [visible]="visible" [width]="240" height="auto" (closed)="cancel()">
+
+  <!-- ── CARD HEADER — title only (time-picker type) ── -->
+  <pds-card-header
+    [showIcon]="false"
+    [showTitle]="true"
+    [title]="title"
+    [showButton4]="false"
+    [showButton3]="false"
+    [showButton2]="false"
+    [showButton1]="false"
+  />
+
+  <!-- ── PLAY AREA — scroll columns: hours · minutes · [seconds] · [am-pm] ── -->
+  <!-- Each column has a FIXED centre indicator band; only the numbers scroll through it -->
+  <div class="pds-time-picker__columns">
+
+    <!-- Hours -->
+    <div class="pds-time-picker__col-wrap">
+      <div class="pds-time-picker__indicator" aria-hidden="true"></div>
+      <div class="pds-time-picker__col" #col data-col="hour" (scroll)="onScroll($event, 'hour')">
+        @for (h of hours; track $index) {
+          <pds-date-time-selection-state
+            class="pds-time-picker__cell"
+            [state]="hourState($index)"
+            [label]="h"
+            (click)="scrollToIndex('hour', $index)"
+          />
+        }
+      </div>
+    </div>
+
+    <!-- Minutes -->
+    <div class="pds-time-picker__col-wrap">
+      <div class="pds-time-picker__indicator" aria-hidden="true"></div>
+      <div class="pds-time-picker__col" #col data-col="minute" (scroll)="onScroll($event, 'minute')">
+        @for (m of minutes; track $index) {
+          <pds-date-time-selection-state
+            class="pds-time-picker__cell"
+            [state]="minuteState($index)"
+            [label]="m"
+            (click)="scrollToIndex('minute', $index)"
+          />
+        }
+      </div>
+    </div>
+
+    <!-- Seconds -->
+    @if (showSeconds) {
+      <div class="pds-time-picker__col-wrap">
+        <div class="pds-time-picker__indicator" aria-hidden="true"></div>
+        <div class="pds-time-picker__col" #col data-col="second" (scroll)="onScroll($event, 'second')">
+          @for (s of seconds; track $index) {
+            <pds-date-time-selection-state
+              class="pds-time-picker__cell"
+              [state]="secondState($index)"
+              [label]="s"
+              (click)="scrollToIndex('second', $index)"
+            />
+          }
+        </div>
+      </div>
+    }
+
+    <!-- AM/PM (12-hour only) -->
+    @if (type === '12-hour-time') {
+      <div class="pds-time-picker__col-wrap">
+        <div class="pds-time-picker__indicator" aria-hidden="true"></div>
+        <div class="pds-time-picker__col" #col data-col="meridiem" (scroll)="onScroll($event, 'meridiem')">
+          @for (mer of meridiem; track $index) {
+            <pds-date-time-selection-state
+              class="pds-time-picker__cell"
+              [state]="meridiemState($index)"
+              [label]="mer"
+              (click)="scrollToIndex('meridiem', $index)"
+            />
+          }
+        </div>
+      </div>
+    }
+
+  </div>
+
+  <!-- ── CARD FOOTER — Now (tertiary) · spacer · Cancel (secondary) · Okay (primary) ── -->
+  <pds-card-footer
+    button4Label="Now"
+    [showButton3]="false"
+    button2Label="Cancel"
+    button1Label="Okay"
+    (button4Click)="now()"
+    (button2Click)="cancel()"
+    (button1Click)="confirm()"
+  />
+
+</pds-popup-layout>

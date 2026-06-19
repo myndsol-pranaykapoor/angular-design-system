@@ -1,0 +1,76 @@
+/* PDS Upload Files — popup-layout · card-header (title + count chips) · play-area · card-footer */
+
+/* ── COUNT CHIPS in card-header — gap spacing/6 ── */
+.pds-upload-files__counts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;                                  /* Spacing/6 */
+  flex-shrink: 0;
+}
+
+/* ── PLAY AREA — drop-area + files-list · gap spacing/6 · centred ── */
+.pds-upload-files__play {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;                                  /* Spacing/6 */
+  width: 100%;
+}
+
+/* drop-area — fixed 282 × 282 (its natural size) */
+.pds-upload-files__drop {
+  display: block;
+  flex: 0 0 auto;
+}
+
+/* files-list — fixed 282 × 282 · bordered · Radius/4 · Spacing/6 padding · overflow clipped */
+.pds-upload-files__list {
+  flex: 0 0 auto;
+  width: 282px;
+  height: 282px;
+  padding: 12px;                              /* Spacing/6 */
+  border: 1px solid #e4e4e4;                  /* Grey/3 */
+  border-radius: 8px;                         /* Radius/4 */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* empty state — empty-box illustration centred, 200×200 */
+.pds-upload-files__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.pds-upload-files__empty img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+/* files-attached — scroller fills the list */
+.pds-upload-files__scroller {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* file rows stack with gap spacing/2 inside files-scroll (no extra padding — files-list owns the spacing/6) */
+.pds-upload-files__scroller .pds-scroller__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                                   /* Spacing/2 */
+  padding: 0;
+}
+
+/* separation line between file rows — Grey/3 */
+.pds-upload-files__sep {
+  height: 1px;
+  width: 100%;
+  background-color: #e4e4e4;                  /* Grey/3 */
+  flex-shrink: 0;
+}

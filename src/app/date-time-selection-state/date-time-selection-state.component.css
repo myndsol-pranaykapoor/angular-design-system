@@ -1,0 +1,107 @@
+/* PDS Date-Time Selection State — Tokens: default · default-hover · now · now-hover · selected-range · selected-range-hover · selected · excluded */
+
+.pds-dt-state {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;       /* body/2 */
+  line-height: 18px;     /* body/2 */
+  font-weight: 400;      /* body/2 — regular */
+  letter-spacing: 0;
+  user-select: none;
+  cursor: default;
+}
+
+/* ─── BORDER RADIUS — radius/2 = 4px ─── */
+
+.pds-dt-state--default,
+.pds-dt-state--default-hover,
+.pds-dt-state--now,
+.pds-dt-state--now-hover,
+.pds-dt-state--selected,
+.pds-dt-state--excluded {
+  border-radius: 4px;
+}
+
+/* selected-range & selected-range-hover: no border-radius */
+
+/* ─── TEXT COLOUR ─── */
+
+.pds-dt-state--default .pds-dt-state__label,
+.pds-dt-state--default-hover .pds-dt-state__label,
+.pds-dt-state--now .pds-dt-state__label,
+.pds-dt-state--now-hover .pds-dt-state__label,
+.pds-dt-state--selected-range .pds-dt-state__label,
+.pds-dt-state--selected-range-hover .pds-dt-state__label {
+  color: #3F3F3F; /* grey/7 */
+}
+
+.pds-dt-state--selected .pds-dt-state__label {
+  color: #FFFFFF;        /* grey/0 */
+  font-weight: 500;      /* body highlight/2 — medium */
+}
+
+.pds-dt-state--excluded .pds-dt-state__label {
+  color: #9D9D9D; /* grey/5 */
+}
+
+/* ─── BACKGROUND FILL ─── */
+
+.pds-dt-state--now,
+.pds-dt-state--selected-range {
+  background-color: #F4F5F8; /* secondary/0 */
+}
+
+.pds-dt-state--default-hover,
+.pds-dt-state--now-hover,
+.pds-dt-state--selected-range-hover {
+  background-color: #BCC2D4; /* secondary/1 */
+}
+
+.pds-dt-state--selected {
+  background-color: #263B74; /* secondary/3 */
+}
+
+/* ─── BORDERS ─── */
+
+/* now & now-hover: 1px solid secondary/3 on all sides */
+.pds-dt-state--now,
+.pds-dt-state--now-hover {
+  border: 1px solid #263B74; /* secondary/3 */
+}
+
+/* selected-range & selected-range-hover: 1.75px bottom border only */
+/* transparent top border of equal width balances the border-box so the centred text doesn't shift up */
+.pds-dt-state--selected-range,
+.pds-dt-state--selected-range-hover {
+  border-top: 1.75px solid transparent;
+  border-bottom: 1.75px solid #263B74; /* secondary/3 */
+}
+
+/* ─── HOVER BEHAVIOUR — default · now · selected-range transition to their hover variants ─── */
+
+.pds-dt-state--default,
+.pds-dt-state--now,
+.pds-dt-state--selected-range {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+/* default → default-hover */
+.pds-dt-state--default:hover {
+  background-color: #BCC2D4; /* secondary/1 */
+}
+
+/* now → now-hover (keeps the secondary/3 border) */
+.pds-dt-state--now:hover {
+  background-color: #BCC2D4; /* secondary/1 */
+}
+
+/* selected-range → selected-range-hover (keeps the 1.75px bottom border) */
+.pds-dt-state--selected-range:hover {
+  background-color: #BCC2D4; /* secondary/1 */
+}

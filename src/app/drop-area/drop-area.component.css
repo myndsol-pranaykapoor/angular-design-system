@@ -1,0 +1,118 @@
+/* PDS Drop Area — Default · Hover · 282×282 · dashed 6/6 border · Radius/4 */
+
+.pds-drop-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;                                     /* Spacing/0 */
+  width: 282px;
+  height: 282px;
+  padding: 12px;                              /* Spacing/6 — all sides */
+  box-sizing: border-box;
+  border-radius: 8px;                         /* Radius/4 */
+  font-family: 'IBM Plex Sans', sans-serif;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+  /* dashed border drawn via SVG so the dash is exactly 6 / 6 with rounded corners */
+  background-color: #f4f5f8;                  /* Secondary/0 (default fill) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='282' height='282'%3E%3Crect x='0.5' y='0.5' width='281' height='281' rx='7.5' ry='7.5' fill='none' stroke='%23E4E4E4' stroke-width='1' stroke-dasharray='6 6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  transition: background-color 0.15s ease;
+}
+
+/* ─── HOVER (real :hover and forced .pds-drop-area--hover) ─── */
+
+.pds-drop-area:hover,
+.pds-drop-area--hover {
+  background-color: #bcc2d4;                  /* Secondary/1 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='282' height='282'%3E%3Crect x='0.5' y='0.5' width='281' height='281' rx='7.5' ry='7.5' fill='none' stroke='%23263B74' stroke-width='1' stroke-dasharray='6 6'/%3E%3C/svg%3E");
+}
+
+/* ─── UPLOAD-IMAGE — 150×150, swap SVG on hover ─── */
+
+.pds-drop-area__image {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+}
+
+.pds-drop-area__img {
+  position: absolute;
+  inset: 0;
+  width: 150px;
+  height: 150px;
+  display: block;
+}
+
+.pds-drop-area__img--hover { display: none; }
+
+.pds-drop-area:hover .pds-drop-area__img--default,
+.pds-drop-area--hover .pds-drop-area__img--default { display: none; }
+
+.pds-drop-area:hover .pds-drop-area__img--hover,
+.pds-drop-area--hover .pds-drop-area__img--hover { display: block; }
+
+/* ─── DIRECTIONS — main + sub · gap Spacing/1 ─── */
+
+.pds-drop-area__directions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;                                   /* Spacing/1 */
+  width: 100%;
+}
+
+.pds-drop-area__main,
+.pds-drop-area__sub {
+  margin: 0;
+  width: 100%;
+}
+
+/* main — Body Highlight/2 (12px Medium) */
+.pds-drop-area__main {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  color: #6e7ca2;                             /* Secondary/2 (default) */
+}
+
+/* sub — Body/2 (12px Regular) */
+.pds-drop-area__sub {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #6e7ca2;                             /* Secondary/2 (default) */
+}
+
+/* CLICK HERE link — semantic/link (default) */
+.pds-drop-area__link {
+  color: #2962ff;                             /* semantic/link */
+  text-decoration: underline;
+  text-underline-position: from-font;
+  cursor: pointer;
+}
+
+/* Hidden native file input — triggered programmatically by CLICK HERE */
+.pds-drop-area__input {
+  display: none;
+}
+
+/* ─── HOVER text colours ─── */
+
+.pds-drop-area:hover .pds-drop-area__main,
+.pds-drop-area--hover .pds-drop-area__main {
+  color: #263b74;                             /* Secondary/3 */
+}
+
+.pds-drop-area:hover .pds-drop-area__sub,
+.pds-drop-area--hover .pds-drop-area__sub {
+  color: #263b74;                             /* Secondary/3 */
+}
+
+.pds-drop-area:hover .pds-drop-area__link,
+.pds-drop-area--hover .pds-drop-area__link {
+  color: #2b72ac;                             /* Blue/4 */
+}

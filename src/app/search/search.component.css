@@ -1,0 +1,94 @@
+/* PDS Search — 300×30px · Radius/4 · icon + text/input + button */
+
+.pds-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;                        /* Spacing/3 */
+  width: 300px;
+  height: 30px;
+  padding: 0 6px;                  /* left/right only */
+  box-sizing: border-box;
+
+  border: 1px solid #e4e4e4;       /* Grey/3 — default */
+  border-radius: 8px;              /* Radius/4 */
+  background-color: #ffffff;       /* Grey/0 — default */
+  color: #263b74;                  /* Secondary/3 for icon */
+  cursor: text;
+  transition: all 0.2s ease;
+}
+
+.pds-search__icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: #263b74;                  /* Secondary/3 */
+}
+
+/* ─── PLACEHOLDER (Default state) ─── */
+
+.pds-search__placeholder {
+  flex: 1;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #9d9d9d;                  /* Grey/5 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── INPUT (Selected state) ─── */
+
+.pds-search__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #3f3f3f;                  /* Grey/7 */
+  outline: none;
+  padding: 0;
+  min-width: 0;
+}
+
+/* Hidden but always in DOM so click-to-focus works */
+.pds-search__input--hidden {
+  width: 0;
+  flex: 0;
+  pointer-events: none;
+}
+
+.pds-search__input::placeholder {
+  color: #9d9d9d;                  /* Grey/5 */
+}
+
+/* ─── HOVER STATE ─── */
+
+.pds-search--hover:not(.pds-search--selected) {
+  background-color: #f6fcf9;       /* Primary/0 */
+  border-color: #00ad61;           /* Primary/3 */
+}
+
+/* ─── SELECTED STATE ─── */
+
+.pds-search--selected {
+  border-color: #00ad61;           /* Primary/3 */
+  background-color: #ffffff;       /* Grey/0 */
+}
+
+/* ─── SUGGESTION OVERLAY — fixed under search, 2px gap ─── */
+
+.pds-search__overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: transparent;
+}
+
+.pds-search__overlay {
+  position: fixed;
+  z-index: 9999;
+}

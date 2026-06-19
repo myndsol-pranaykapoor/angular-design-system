@@ -1,0 +1,116 @@
+/* PDS Scroller — Secondary/1 trail · Secondary/3 border slider · Elevation/2→3 on hover */
+
+.pds-scroller {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+/* ─── INLINE LAYOUT — viewport (files-scroll) + scrollbar side-by-side, gap Spacing/6 ─── */
+
+.pds-scroller--inline {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;                    /* Spacing/6 */
+}
+
+/* files-scroll — vertical scroll shown, no horizontal movement */
+.pds-scroller--inline .pds-scroller__viewport {
+  position: relative;
+  inset: auto;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* scroller — its own column beside the content */
+.pds-scroller--inline .pds-scroller__scrollbar {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  flex: 0 0 12px;
+  align-self: stretch;
+}
+
+/* ─── VIEWPORT — native scrollbar hidden ─── */
+
+.pds-scroller__viewport {
+  position: absolute;
+  inset: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;        /* Firefox */
+  background: inherit;          /* inherit from host so no white bleed-through */
+}
+
+.pds-scroller__content {
+  padding: 4px;
+  min-height: 100%;
+  width: 100%;
+}
+
+.pds-scroller__viewport::-webkit-scrollbar {
+  display: none;                /* Chrome / Safari */
+}
+
+/* ─── SCROLLBAR CONTAINER — 12px wide, Spacing/2 (4px) padding all sides ─── */
+
+.pds-scroller__scrollbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 12px;                  /* fixed container width */
+  padding: 4px;                 /* Spacing/2 on all sides */
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* ─── TRAIL — Secondary/1, 4px, fills padded height ─── */
+
+.pds-scroller__trail {
+  position: absolute;
+  top: 4px;                     /* Spacing/2 */
+  bottom: 4px;                  /* Spacing/2 */
+  right: 4px;                   /* Spacing/2 — centres 4px trail in 12px container */
+  width: 4px;
+  border-radius: 9999px;        /* Radius/Full */
+  background-color: #bcc2d4;    /* Secondary/1 */
+  pointer-events: none;
+}
+
+/* ─── SLIDER — Default: 4px, Grey/0 fill, Secondary/3 2px border, Elevation/2 ─── */
+
+.pds-scroller__slider {
+  position: absolute;
+  right: 4px;                   /* Spacing/2 — aligns with trail */
+  width: 4px;
+  border-radius: 9999px;        /* Radius/Full */
+  background-color: #ffffff;    /* Grey/0 */
+  border: 2px solid #263b74;    /* Secondary/3 */
+  box-sizing: border-box;
+  box-shadow:                   /* Elevation/2 */
+    0px 2px 4px rgba(0, 0, 0, 0.10),
+    0px 2px 6px -1px rgba(0, 0, 0, 0.06);
+  cursor: grab;
+  pointer-events: all;
+  transition: width 0.15s ease, right 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* ─── SLIDER HOVER — 8px, centred in 12px container, Elevation/3 ─── */
+
+.pds-scroller__slider:hover {
+  right: 2px;                   /* (12 - 8) / 2 = 2px — centres 8px slider in 12px */
+  width: 8px;
+  box-shadow:                   /* Elevation/3 */
+    0px 4px 6px rgba(0, 0, 0, 0.12),
+    0px 4px 8px -1px rgba(0, 0, 0, 0.08);
+}
+
+.pds-scroller__slider:active {
+  cursor: grabbing;
+  right: 2px;
+  width: 8px;
+}

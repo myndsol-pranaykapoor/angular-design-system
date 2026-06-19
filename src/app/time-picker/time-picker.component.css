@@ -1,0 +1,77 @@
+/* PDS Time Picker — scroll-snap columns · centred cell = selected · 44px cells */
+
+/* Card-footer buttons hug content — override card-footer's global min-width */
+pds-time-picker .pds-card-footer .pds-button {
+  min-width: unset;
+}
+
+/* Columns row — hours · minutes · [seconds] · [am-pm] · gap spacing/2 */
+.pds-time-picker__columns {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 4px;                                   /* Spacing/2 */
+  align-self: center;
+}
+
+/* Column wrapper — holds the fixed indicator band behind the scrolling numbers */
+.pds-time-picker__col-wrap {
+  position: relative;
+  width: 44px;
+  height: 136px;
+}
+
+/* Fixed selection band — stays centred while numbers scroll through it */
+.pds-time-picker__indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 24px;
+  background-color: #263b74;                  /* Secondary/3 */
+  border-radius: 4px;                         /* Radius/2 */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Each column — 44px wide · 136px tall · vertical scroll-snap · numbers sit above the band */
+.pds-time-picker__col {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                                   /* Spacing/2 */
+  width: 44px;
+  height: 136px;
+  box-sizing: border-box;
+  /* top/bottom padding so the first & last cell can reach the centre: (136 - 24) / 2 = 56 */
+  padding-block: 56px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  /* hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pds-time-picker__col::-webkit-scrollbar {
+  display: none;
+}
+
+/* Each cell snaps its centre to the column centre */
+.pds-time-picker__cell {
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
+/* Cell width override — 44px (default state element is 24px) */
+.pds-time-picker__cell .pds-dt-state {
+  width: 44px;
+}
+
+/* Centred cell: keep the white selected text, but drop its blue background —
+   the fixed indicator band provides the blue so the box never appears to move */
+.pds-time-picker__cell .pds-dt-state--selected {
+  background-color: transparent;
+}

@@ -1,0 +1,11 @@
+<button
+  [class]="hostClasses.join(' ')"
+  type="button"
+  [disabled]="disabled"
+  [attr.aria-checked]="selected"
+  [attr.aria-disabled]="disabled"
+  role="radio"
+  (click)="select()"
+>
+  <span class="pds-radio__dot"></span>
+</button>

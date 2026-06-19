@@ -1,0 +1,31 @@
+<div
+  [ngClass]="hostClasses"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false"
+  (click)="itemClick.emit()"
+>
+
+  <!-- Supporting icon — 16px
+       Default & default-hover → dual-colour SVG via background-image (preserves Primary/3 + Secondary/3)
+       Selected & selected-hover → single-colour mask painted white (handled in CSS) -->
+  @if (icon) {
+    <span
+      class="pds-side-menu-item__icon"
+      [style.--dual-icon-url]="'url(' + dualIconPath + ')'"
+      [style.--mask-icon-url]="'url(' + iconPath + ')'"
+    ></span>
+  }
+
+  <!-- Title — Body/3, fills remaining width -->
+  <span class="pds-side-menu-item__title">{{ title }}</span>
+
+  <!-- Chevron — 16px, chevron-down or chevron-up, show/hide as per requirement -->
+  @if (showChevron) {
+    <span
+      class="pds-side-menu-item__chevron"
+      [style.mask-image]="'url(' + chevronPath + ')'"
+      [style.-webkit-mask-image]="'url(' + chevronPath + ')'"
+    ></span>
+  }
+
+</div>

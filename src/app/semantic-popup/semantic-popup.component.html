@@ -1,0 +1,16 @@
+<pds-popup-layout [visible]="visible" (closed)="onCancel()">
+  <pds-card-header
+    [title]="resolvedTitle" [titleColor]="config.iconColor"
+    [subtitle]="resolvedSubtitle" [showSubtitle]="true"
+    [showIcon]="true" [icon]="config.icon" [iconColor]="config.iconColor"
+    [showButton1]="false" [showButton2]="false" [showButton3]="false" [showButton4]="false"
+  />
+  <div class="pds-semantic-popup__illustration">
+    <img [src]="'/illustrations/' + config.illustration + '.svg'" [alt]="type" width="200" height="200" />
+  </div>
+  <pds-card-footer
+    [button1Label]="confirmLabel" [button2Label]="cancelLabel"
+    [showButton3]="false" [showButton4]="false"
+    (button1Click)="onConfirm()" (button2Click)="onCancel()"
+  />
+</pds-popup-layout>

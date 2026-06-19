@@ -1,0 +1,246 @@
+<div #hostRef></div>
+
+@if (type === 'date-range') {
+
+  <!-- ── DATE-RANGE — two date-change calendars + shared footer ── -->
+  <pds-popup-layout
+    [visible]="visible"
+    [width]="'auto'"
+    height="auto"
+    [showHeader]="false"
+    [playAreaChrome]="false"
+    (closed)="cancel()"
+  >
+
+    <!-- date-range-group: date-from · separation-line · date-till · gap spacing/6 -->
+    <div class="pds-date-picker__range-group">
+
+      <!-- ── DATE-FROM ── -->
+      <div class="pds-date-picker__range-cal pds-date-picker__range-cal--from">
+        <pds-card-header
+          [showIcon]="false" [showTitle]="false"
+          button4Type="secondary" [button4Label]="fromMonthName" button4RightIcon="chevron-down"
+          button3Type="secondary" [button3Label]="fromYearStr"   button3RightIcon="chevron-down"
+          button2Type="tertiary"  button2Icon="chevron-left"
+          button1Type="tertiary"  button1Icon="chevron-right"
+          (button4Click)="toggleMonthOverlay('from')"
+          (button3Click)="toggleYearOverlay('from')"
+          (button2Click)="prevFromMonth()"
+          (button1Click)="nextFromMonth()"
+        />
+        <div class="pds-date-picker__range-grid">
+          <div class="pds-date-picker__week-row">
+            @for (day of weekDays; track $index) {
+              <span class="pds-date-picker__weekday">{{ day }}</span>
+            }
+          </div>
+          @for (week of fromGrid; track $index) {
+            <div class="pds-date-picker__date-row">
+              @for (cell of week; track $index) {
+                <pds-date-time-selection-state
+                  [state]="getRangeState(cell)"
+                  [label]="cell.date.getDate().toString()"
+                  (click)="cell.inCurrentMonth && selectRangeDate(cell.date)"
+                />
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- ── SEPARATION LINE ── -->
+      <div class="pds-date-picker__range-separator"></div>
+
+      <!-- ── DATE-TILL ── -->
+      <div class="pds-date-picker__range-cal pds-date-picker__range-cal--till">
+        <pds-card-header
+          [showIcon]="false" [showTitle]="false"
+          button4Type="secondary" [button4Label]="tillMonthName" button4RightIcon="chevron-down"
+          button3Type="secondary" [button3Label]="tillYearStr"   button3RightIcon="chevron-down"
+          button2Type="tertiary"  button2Icon="chevron-left"
+          button1Type="tertiary"  button1Icon="chevron-right"
+          (button4Click)="toggleMonthOverlay('till')"
+          (button3Click)="toggleYearOverlay('till')"
+          (button2Click)="prevTillMonth()"
+          (button1Click)="nextTillMonth()"
+        />
+        <div class="pds-date-picker__range-grid">
+          <div class="pds-date-picker__week-row">
+            @for (day of weekDays; track $index) {
+              <span class="pds-date-picker__weekday">{{ day }}</span>
+            }
+          </div>
+          @for (week of tillGrid; track $index) {
+            <div class="pds-date-picker__date-row">
+              @for (cell of week; track $index) {
+                <pds-date-time-selection-state
+                  [state]="getRangeState(cell)"
+                  [label]="cell.date.getDate().toString()"
+                  (click)="cell.inCurrentMonth && selectRangeDate(cell.date)"
+                />
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── CARD FOOTER ── -->
+    <pds-card-footer
+      button4Label="Today"
+      [showButton3]="false"
+      button2Label="Cancel"
+      button1Label="Okay"
+      (button4Click)="goToToday()"
+      (button2Click)="cancel()"
+      (button1Click)="confirm()"
+    />
+
+  </pds-popup-layout>
+
+} @else {
+
+<pds-popup-layout [visible]="visible" [width]="244" height="auto" [anchored]="anchored" [anchorTop]="anchorTop" [anchorLeft]="anchorLeft" (closed)="cancel()">
+
+  <!-- ── CARD HEADER — single static child so it projects ABOVE the play-area ── -->
+  <!-- date-change:  month (b4) + year (b3) secondary buttons · single-chevron nav -->
+  <!-- year-change:  title range · double-chevron nav (b4 & b3 hidden) -->
+  <!-- month-change: year (b3) secondary button · double-chevron nav (b4 hidden) -->
+  <pds-card-header
+    [showIcon]="false"
+    [showTitle]="type === 'year-change'"
+    [title]="type === 'year-change' ? yearRangeTitle : ''"
+    [showButton4]="type === 'date-change'"
+    [showButton3]="type === 'date-change' || type === 'month-change'"
+    button4Type="secondary" [button4Label]="monthName" button4RightIcon="chevron-down"
+    button3Type="secondary" [button3Label]="yearStr"   button3RightIcon="chevron-down"
+    button2Type="tertiary"  [button2Icon]="navPrevIcon"
+    button1Type="tertiary"  [button1Icon]="navNextIcon"
+    (button4Click)="toggleMonthOverlay()"
+    (button3Click)="toggleYearOverlay()"
+    (button2Click)="onPrevNav()"
+    (button1Click)="onNextNav()"
+  />
+
+  <!-- ── PLAY AREA — single default-projected child, content switches by type ── -->
+  @if (type === 'year-change') {
+
+    <!-- year-change: year-rows · gap spacing/2 -->
+    <div class="pds-date-picker__year-grid">
+      @for (row of yearGrid; track $index) {
+        <div class="pds-date-picker__year-row">
+          @for (year of row; track $index) {
+            <pds-date-time-selection-state
+              class="pds-date-picker__year-cell"
+              [state]="getYearState(year)"
+              [label]="year.toString()"
+              (click)="selectYear(year)"
+            />
+          }
+        </div>
+      }
+    </div>
+
+  } @else if (type === 'month-change') {
+
+    <!-- month-change: month-rows · gap spacing/2 · 3 months per row · gap spacing/12 -->
+    <div class="pds-date-picker__month-grid">
+      @for (row of monthGrid; track $index) {
+        <div class="pds-date-picker__month-row">
+          @for (m of row; track $index) {
+            <pds-date-time-selection-state
+              class="pds-date-picker__month-cell"
+              [state]="getMonthState(m)"
+              [label]="monthShort(m)"
+              (click)="selectMonth(m)"
+            />
+          }
+        </div>
+      }
+    </div>
+
+  } @else {
+
+    <!-- date-change: week-days row + date rows · gap spacing/2 -->
+    <div class="pds-date-picker__grid">
+
+      <!-- Week-days row -->
+      <div class="pds-date-picker__week-row">
+        @for (day of weekDays; track $index) {
+          <span class="pds-date-picker__weekday">{{ day }}</span>
+        }
+      </div>
+
+      <!-- Date rows -->
+      @for (week of dateGrid; track $index) {
+        <div class="pds-date-picker__date-row">
+          @for (cell of week; track $index) {
+            <pds-date-time-selection-state
+              [state]="getState(cell)"
+              [label]="cell.date.getDate().toString()"
+              (click)="cell.inCurrentMonth && selectDate(cell.date)"
+            />
+          }
+        </div>
+      }
+
+    </div>
+
+  }
+
+  <!-- ── CARD FOOTER — single static child, same for all types ── -->
+  <!-- button-4: Today (tertiary) · spacer · button-2: Cancel (secondary) · button-1: Okay (primary) -->
+  <pds-card-footer
+    button4Label="Today"
+    [showButton3]="false"
+    button2Label="Cancel"
+    button1Label="Okay"
+    (button4Click)="goToToday()"
+    (button2Click)="cancel()"
+    (button1Click)="confirm()"
+  />
+
+</pds-popup-layout>
+
+}
+
+<!-- ── MONTH SELECTOR OVERLAY — under the month button, 2px gap, fixed 100×180px ── -->
+@if (monthOverlayVisible) {
+  <div class="pds-date-picker__month-backdrop" (mousedown)="closeMonthOverlay()"></div>
+  <div class="pds-date-picker__month-overlay"
+    [style.top.px]="monthOverlayTop"
+    [style.left.px]="monthOverlayLeft"
+    [style.width.px]="MONTH_SELECTOR_WIDTH"
+    (mousedown)="$event.stopPropagation()">
+    <pds-selector
+      [options]="monthOptions"
+      [width]="MONTH_SELECTOR_WIDTH"
+      [height]="MONTH_SELECTOR_HEIGHT"
+      [showCheckbox]="false"
+      [showAvatar]="false"
+      [showIcon]="false"
+      (selectionChange)="onMonthOptionSelected($event)"
+    />
+  </div>
+}
+
+<!-- ── YEAR SELECTOR OVERLAY — under the year button, 2px gap, fixed 100×180px ── -->
+@if (yearOverlayVisible) {
+  <div class="pds-date-picker__month-backdrop" (mousedown)="closeYearOverlay()"></div>
+  <div class="pds-date-picker__month-overlay"
+    [style.top.px]="yearOverlayTop"
+    [style.left.px]="yearOverlayLeft"
+    [style.width.px]="YEAR_SELECTOR_WIDTH"
+    (mousedown)="$event.stopPropagation()">
+    <pds-selector
+      [options]="yearOptions"
+      [width]="YEAR_SELECTOR_WIDTH"
+      [height]="YEAR_SELECTOR_HEIGHT"
+      [showCheckbox]="false"
+      [showAvatar]="false"
+      [showIcon]="false"
+      (selectionChange)="onYearOptionSelected($event)"
+    />
+  </div>
+}

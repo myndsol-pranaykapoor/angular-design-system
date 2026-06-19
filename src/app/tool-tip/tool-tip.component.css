@@ -1,0 +1,64 @@
+/* PDS Tool Tip — tip (pointer) + body · directions up / down / left / right · Elevation/3 */
+
+.pds-tool-tip {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  font-family: 'IBM Plex Sans', sans-serif;
+  /* Elevation/3 — drop-shadow follows the pointer + body shape (not the bounding box) */
+  filter:
+    drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.12))
+    drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.08));
+}
+
+/* ─── DIRECTION LAYOUT (DOM order: tip → body) ─── */
+.pds-tool-tip--up    { flex-direction: column; }          /* tip top · body below */
+.pds-tool-tip--down  { flex-direction: column-reverse; }  /* body top · tip bottom */
+.pds-tool-tip--left  { flex-direction: row; }             /* tip left · body right */
+.pds-tool-tip--right { flex-direction: row-reverse; }     /* body left · tip right */
+
+/* ─── TIP — 42px along the body edge · 10px deep · pointer centred ─── */
+.pds-tool-tip__tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pds-tool-tip--up .pds-tool-tip__tip,
+.pds-tool-tip--down .pds-tool-tip__tip { width: 42px; height: 10px; }
+.pds-tool-tip--left .pds-tool-tip__tip,
+.pds-tool-tip--right .pds-tool-tip__tip { width: 10px; height: 42px; }
+
+/* overlap the body by 1px so there is no hairline seam */
+.pds-tool-tip--up .pds-tool-tip__tip    { margin-bottom: -1px; }
+.pds-tool-tip--down .pds-tool-tip__tip  { margin-top: -1px; }
+.pds-tool-tip--left .pds-tool-tip__tip  { margin-right: -1px; }
+.pds-tool-tip--right .pds-tool-tip__tip { margin-left: -1px; }
+
+/* ─── POINTER — base points up · rotated per direction ─── */
+.pds-tool-tip__pointer { display: block; }
+.pds-tool-tip--down .pds-tool-tip__pointer  { transform: rotate(180deg); }
+.pds-tool-tip--left .pds-tool-tip__pointer  { transform: rotate(-90deg); }
+.pds-tool-tip--right .pds-tool-tip__pointer { transform: rotate(90deg); }
+
+/* ─── BODY — Secondary/3 · Radius/6 · Spacing/6 padding · gap Spacing/4 ─── */
+.pds-tool-tip__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                                   /* Spacing/4 */
+  padding: 12px;                              /* Spacing/6 */
+  background-color: #263b74;                  /* Secondary/3 */
+  border-radius: 12px;                        /* Radius/6 */
+  box-sizing: border-box;
+}
+
+/* title white (via card-header titleColor) · subtitle Grey/1 */
+.pds-tool-tip__body .pds-card-header__subtitle {
+  color: #fcfcfc;                             /* Grey/1 */
+}
+
+/* Action button hugs its content — override card-footer's 70px min-width */
+.pds-tool-tip__body .pds-card-footer .pds-button {
+  min-width: unset;
+  width: max-content;
+}

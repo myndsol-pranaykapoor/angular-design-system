@@ -1,0 +1,132 @@
+/* PDS Side Menu Item — 4 states · Radius/4 · Spacing/4 gap · Spacing/3 v-pad */
+
+.pds-side-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;                        /* Spacing/4 */
+  width: 100%;
+  padding: 6px 8px;                /* Spacing/3 top/bottom · Spacing/4 left/right */
+  box-sizing: border-box;
+  border-radius: 8px;              /* Radius/4 */
+
+  background-color: #ffffff;       /* Grey/0 — Default */
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ─── SUPPORTING ICON — 16px ───
+   Default & default-hover: dual-colour SVG via background-image (keeps Primary/3 + Secondary/3)
+   Selected & selected-hover: switched to mask-image painted white (overridden below) */
+
+.pds-side-menu-item__icon {
+  flex-shrink: 0;
+  align-self: center;              /* vertically centred inside flex row */
+  width: 16px;
+  height: 16px;
+  background-image: var(--dual-icon-url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+}
+
+/* ─── TITLE — Body/3, fills width, vertically centred ─── */
+
+.pds-side-menu-item__title {
+  flex: 1;
+  align-self: center;              /* vertically centred inside flex row */
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;                /* Regular */
+  font-size: 14px;                 /* Body/3 */
+  line-height: 20px;
+  color: #3f3f3f;                  /* Grey/7 — Default */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* ─── CHEVRON ICON — 16px, Primary/3 default, rotates when expanded ─── */
+
+.pds-side-menu-item__chevron {
+  flex-shrink: 0;
+  align-self: center;              /* vertically centred inside flex row */
+  width: 16px;
+  height: 16px;
+  background-color: #00ad61;       /* Primary/3 */
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+/* ─── DEFAULT HOVER ─── */
+
+.pds-side-menu-item--default-hover {
+  background-color: #f6fcf9;       /* Primary/0 */
+}
+
+/* ─── SELECTED ─── */
+
+.pds-side-menu-item--selected {
+  background-color: #00ad61;       /* Primary/3 */
+}
+
+.pds-side-menu-item--selected .pds-side-menu-item__icon {
+  /* switch supporting icon to single-colour mask painted white */
+  background-image: none;
+  background-color: #ffffff;       /* Grey/0 */
+  mask-image: var(--mask-icon-url);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: var(--mask-icon-url);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.pds-side-menu-item--selected .pds-side-menu-item__chevron {
+  background-color: #ffffff;       /* Grey/0 */
+}
+
+.pds-side-menu-item--selected .pds-side-menu-item__title {
+  color: #ffffff;                  /* Grey/0 */
+}
+
+/* ─── SELECTED HOVER ─── */
+
+.pds-side-menu-item--selected-hover {
+  background-color: #007b45;       /* Primary/4 */
+}
+
+.pds-side-menu-item--selected-hover .pds-side-menu-item__icon {
+  /* switch supporting icon to single-colour mask painted white */
+  background-image: none;
+  background-color: #ffffff;       /* Grey/0 */
+  mask-image: var(--mask-icon-url);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: var(--mask-icon-url);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.pds-side-menu-item--selected-hover .pds-side-menu-item__chevron {
+  background-color: #ffffff;       /* Grey/0 */
+}
+
+.pds-side-menu-item--selected-hover .pds-side-menu-item__title {
+  color: #ffffff;                  /* Grey/0 */
+}
+
+/* ─── EXPANDED — rotate chevron 180° ─── */
+
+.pds-side-menu-item--expanded .pds-side-menu-item__chevron {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,56 @@
+/* PDS Alert Badge — Tokens: Semantic/Warning · Grey/0 · Radius/Full · Elevation/1 */
+
+.pds-alert-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff9800;
+  border: 1px solid #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+  box-sizing: border-box;
+}
+
+/* Alert Indicator — fixed dot, no text */
+.pds-alert-badge--indicator.pds-alert-badge--size-0 {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+}
+
+.pds-alert-badge--indicator.pds-alert-badge--size-1 {
+  width: 14px;
+  height: 14px;
+  padding: 0;
+}
+
+/* Count — hugs content width */
+.pds-alert-badge--count {
+  width: fit-content;
+}
+
+.pds-alert-badge--count.pds-alert-badge--size-0 {
+  padding: 1px 4.5px;
+}
+
+.pds-alert-badge--count.pds-alert-badge--size-0 .pds-alert-badge__label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.pds-alert-badge--count.pds-alert-badge--size-1 {
+  padding: 1px 5px;
+}
+
+.pds-alert-badge--count.pds-alert-badge--size-1 .pds-alert-badge__label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #ffffff;
+  white-space: nowrap;
+}

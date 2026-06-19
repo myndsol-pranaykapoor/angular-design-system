@@ -1,0 +1,1426 @@
+<div class="ds-preview">
+
+  <!-- Side Menu — fixed left · no bg · 56px collapsed / 300px expanded on hover · z-index: 201 -->
+  <pds-side-menu [entries]="sideMenuEntries" version="1.1" />
+
+  <!-- Web Header — fixed at top, z-index: 200 -->
+  <pds-web-header
+    logoSrc="/images/logo.svg"
+    logoAlt="PDS Logo"
+    [notificationCount]="5"
+    userAvatarSrc="/images/avatar.png"
+    userName="Pranay Kapoor"
+    userDesignation="Product Designer"
+  />
+
+  <!-- Command Bar — fixed below web-header (0px gap), z-index: 199 -->
+  <!-- Showing all 7 elements: back + title + search + 2 tertiary + secondary + primary -->
+  <pds-command-bar
+    title="Design Components"
+    [showTertiary1]="false"
+    tertiary1Icon="filter"
+    [showTertiary2]="false"
+    tertiary2Icon="settings"
+    [showSecondary]="true"
+    secondaryLabel="Discard"
+    [showPrimary]="true"
+    primaryLabel="Save"
+    [searchSuggestions]="searchSuggestions"
+    (back)="onCommandBarBack()"
+    (searchSelected)="onSearchSelected($event)"
+  />
+
+  <!-- Content starts 84px below (42px header + 42px command bar) -->
+  <main class="ds-main">
+
+    <header class="ds-page-header">
+      <h1 class="ds-page-title">Design Components</h1>
+      <p class="ds-page-subtitle">PDS — Pranay Design System</p>
+    </header>
+
+    <!-- ── ALERT BADGE ── -->
+    <section class="ds-section" id="sec-alert-badge">
+      <h2 class="ds-section__title">Alert Badge</h2>
+      <p class="ds-section__desc">Indicator and count variants across sizes.</p>
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Indicator</div>
+        <div class="ds-row">
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="alert-indicator" [size]="0" />
+            <span class="ds-swatch-label">Size 0</span>
+          </div>
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="alert-indicator" [size]="1" />
+            <span class="ds-swatch-label">Size 1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Count — Size 0</div>
+        <div class="ds-row">
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="count" [size]="0" [count]="1" />
+            <span class="ds-swatch-label">1</span>
+          </div>
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="count" [size]="0" [count]="9" />
+            <span class="ds-swatch-label">9</span>
+          </div>
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="count" [size]="0" [count]="42" />
+            <span class="ds-swatch-label">42</span>
+          </div>
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="count" [size]="0" [count]="100" />
+            <span class="ds-swatch-label">99+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Count — Size 1</div>
+        <div class="ds-row">
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="count" [size]="1" [count]="1" />
+            <span class="ds-swatch-label">1</span>
+          </div>
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="count" [size]="1" [count]="9" />
+            <span class="ds-swatch-label">9</span>
+          </div>
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="count" [size]="1" [count]="42" />
+            <span class="ds-swatch-label">42</span>
+          </div>
+          <div class="ds-swatch-item">
+            <pds-alert-badge type="count" [size]="1" [count]="100" />
+            <span class="ds-swatch-label">99+</span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ── BUTTON: PRIMARY ── -->
+    <section class="ds-section" id="sec-button">
+      <h2 class="ds-section__title">Button</h2>
+      <p class="ds-section__desc">All variants — Type × Content × Size × State</p>
+      <div class="play-area">
+
+      <h3 class="ds-type-title">Primary</h3>
+      @for (size of sizes; track size) {
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }}</div>
+          <div class="ds-matrix-row">
+            <div class="ds-matrix-cell">
+              <span class="ds-state-tag">Default</span>
+              <div class="ds-row ds-row--wrap">
+                <pds-button type="primary" [size]="size" content="only-text" label="Button" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="left-icon" label="Button" leftIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="right-icon" label="Button" rightIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="icon-text-icon" label="Button" leftIcon="life-buoy" rightIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="only-icon" centerIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+              </div>
+            </div>
+            <div class="ds-matrix-cell">
+              <span class="ds-state-tag ds-state-tag--hover">Hover</span>
+              <div class="ds-row ds-row--wrap">
+                <pds-button type="primary" [size]="size" content="only-text" label="Button" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="left-icon" label="Button" leftIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="right-icon" label="Button" rightIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="icon-text-icon" label="Button" leftIcon="life-buoy" rightIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="only-icon" centerIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+              </div>
+            </div>
+            <div class="ds-matrix-cell">
+              <span class="ds-state-tag ds-state-tag--disabled">Disabled</span>
+              <div class="ds-row ds-row--wrap">
+                <pds-button type="primary" [size]="size" content="only-text" label="Button" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="left-icon" label="Button" leftIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="right-icon" label="Button" rightIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="icon-text-icon" label="Button" leftIcon="life-buoy" rightIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="primary" [size]="size" content="only-icon" centerIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+      <h3 class="ds-type-title">Secondary</h3>
+      @for (size of sizes; track size) {
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }}</div>
+          <div class="ds-matrix-row">
+            <div class="ds-matrix-cell">
+              <span class="ds-state-tag">Default</span>
+              <div class="ds-row ds-row--wrap">
+                <pds-button type="secondary" [size]="size" content="only-text" label="Button" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="left-icon" label="Button" leftIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="right-icon" label="Button" rightIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="icon-text-icon" label="Button" leftIcon="life-buoy" rightIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="only-icon" centerIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+              </div>
+            </div>
+            <div class="ds-matrix-cell">
+              <span class="ds-state-tag ds-state-tag--hover">Hover</span>
+              <div class="ds-row ds-row--wrap">
+                <pds-button type="secondary" [size]="size" content="only-text" label="Button" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="left-icon" label="Button" leftIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="right-icon" label="Button" rightIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="icon-text-icon" label="Button" leftIcon="life-buoy" rightIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="only-icon" centerIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+              </div>
+            </div>
+            <div class="ds-matrix-cell">
+              <span class="ds-state-tag ds-state-tag--disabled">Disabled</span>
+              <div class="ds-row ds-row--wrap">
+                <pds-button type="secondary" [size]="size" content="only-text" label="Button" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="left-icon" label="Button" leftIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="right-icon" label="Button" rightIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="icon-text-icon" label="Button" leftIcon="life-buoy" rightIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="secondary" [size]="size" content="only-icon" centerIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+      <h3 class="ds-type-title">Tertiary</h3>
+      @for (size of sizes; track size) {
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }}</div>
+          <div class="ds-matrix-row">
+            <div class="ds-matrix-cell">
+              <span class="ds-state-tag">Default</span>
+              <div class="ds-row ds-row--wrap">
+                <pds-button type="tertiary" [size]="size" content="only-text" label="Button" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="left-icon" label="Button" leftIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="right-icon" label="Button" rightIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="icon-text-icon" label="Button" leftIcon="life-buoy" rightIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="only-icon" centerIcon="life-buoy" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+              </div>
+            </div>
+            <div class="ds-matrix-cell">
+              <span class="ds-state-tag ds-state-tag--hover">Hover</span>
+              <div class="ds-row ds-row--wrap">
+                <pds-button type="tertiary" [size]="size" content="only-text" label="Button" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="left-icon" label="Button" leftIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="right-icon" label="Button" rightIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="icon-text-icon" label="Button" leftIcon="life-buoy" rightIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="only-icon" centerIcon="life-buoy" [forceHover]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+              </div>
+            </div>
+            <div class="ds-matrix-cell">
+              <span class="ds-state-tag ds-state-tag--disabled">Disabled</span>
+              <div class="ds-row ds-row--wrap">
+                <pds-button type="tertiary" [size]="size" content="only-text" label="Button" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="left-icon" label="Button" leftIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="right-icon" label="Button" rightIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="icon-text-icon" label="Button" leftIcon="life-buoy" rightIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+                <pds-button type="tertiary" [size]="size" content="only-icon" centerIcon="life-buoy" [disabled]="true" [showBadge]="true" badgeType="count" [badgeCount]="5" />
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+      </div>
+    </section>
+
+    <!-- ── CHIP TAG ── -->
+    <section class="ds-section" id="sec-chip-tag">
+      <h2 class="ds-section__title">Chip Tag</h2>
+      <p class="ds-section__desc">Filled · Border × Size 0–1 × Icon · Action · State</p>
+      <div class="play-area">
+
+      <h3 class="ds-type-title">Filled</h3>
+      @for (size of chipSizes; track size) {
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }} — Default</div>
+          <div class="ds-row">
+            <pds-chip-tag type="filled" [size]="size" label="Chip" />
+            <pds-chip-tag type="filled" [size]="size" label="Chip" [showSupportingIcon]="true" supportingIcon="life-buoy" />
+            <pds-chip-tag type="filled" [size]="size" label="Chip" [showAction]="true" />
+            <pds-chip-tag type="filled" [size]="size" label="Chip" [showSupportingIcon]="true" supportingIcon="life-buoy" [showAction]="true" />
+          </div>
+        </div>
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }} — Disabled</div>
+          <div class="ds-row">
+            <pds-chip-tag type="filled" [size]="size" label="Chip" [disabled]="true" />
+            <pds-chip-tag type="filled" [size]="size" label="Chip" [showSupportingIcon]="true" supportingIcon="life-buoy" [disabled]="true" />
+            <pds-chip-tag type="filled" [size]="size" label="Chip" [showAction]="true" [disabled]="true" />
+            <pds-chip-tag type="filled" [size]="size" label="Chip" [showSupportingIcon]="true" supportingIcon="life-buoy" [showAction]="true" [disabled]="true" />
+          </div>
+        </div>
+      }
+
+      <h3 class="ds-type-title">Border</h3>
+      @for (size of chipSizes; track size) {
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }} — Default</div>
+          <div class="ds-row">
+            <pds-chip-tag type="border" [size]="size" label="Chip" />
+            <pds-chip-tag type="border" [size]="size" label="Chip" [showSupportingIcon]="true" supportingIcon="life-buoy" />
+            <pds-chip-tag type="border" [size]="size" label="Chip" [showAction]="true" />
+            <pds-chip-tag type="border" [size]="size" label="Chip" [showSupportingIcon]="true" supportingIcon="life-buoy" [showAction]="true" />
+          </div>
+        </div>
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }} — Disabled</div>
+          <div class="ds-row">
+            <pds-chip-tag type="border" [size]="size" label="Chip" [disabled]="true" />
+            <pds-chip-tag type="border" [size]="size" label="Chip" [showSupportingIcon]="true" supportingIcon="life-buoy" [disabled]="true" />
+            <pds-chip-tag type="border" [size]="size" label="Chip" [showAction]="true" [disabled]="true" />
+            <pds-chip-tag type="border" [size]="size" label="Chip" [showSupportingIcon]="true" supportingIcon="life-buoy" [showAction]="true" [disabled]="true" />
+          </div>
+        </div>
+      }
+      </div>
+    </section>
+
+    <!-- ── CARD HEADER ── -->
+    <section class="ds-section" id="sec-card-header">
+      <h2 class="ds-section__title">Card Header</h2>
+      <p class="ds-section__desc">Flexible header layout — Icon+Title · Subtitle · Action Buttons</p>
+
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">All elements visible</div>
+        <div class="ds-card-preview">
+          <pds-card-header
+            title="Card Title"
+            subtitle="Supporting subtitle text"
+            icon="life-buoy"
+            [showSubtitle]="true"
+            button1Icon="life-buoy"
+            button2Icon="life-buoy"
+            button3Icon="life-buoy"
+            button4Icon="life-buoy"
+          />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Title + Subtitle only</div>
+        <div class="ds-card-preview">
+          <pds-card-header
+            title="Card Title"
+            subtitle="Supporting subtitle text"
+            [showIcon]="false"
+            [showSubtitle]="true"
+            [showButton1]="false"
+            [showButton2]="false"
+            [showButton3]="false"
+            [showButton4]="false"
+          />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Icon + Title + Action buttons (no subtitle)</div>
+        <div class="ds-card-preview">
+          <pds-card-header
+            title="Card Title"
+            icon="life-buoy"
+            button1Icon="life-buoy"
+            button2Icon="life-buoy"
+          />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Title only</div>
+        <div class="ds-card-preview">
+          <pds-card-header
+            title="Card Title"
+            [showIcon]="false"
+            [showButton1]="false"
+            [showButton2]="false"
+            [showButton3]="false"
+            [showButton4]="false"
+          />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">All four action buttons</div>
+        <div class="ds-card-preview">
+          <pds-card-header
+            title="Section Title"
+            icon="life-buoy"
+            button1Icon="life-buoy"
+            button2Icon="life-buoy"
+            button3Icon="life-buoy"
+            button4Icon="life-buoy"
+          />
+        </div>
+      </div>
+
+      </div>
+
+    </section>
+
+    <!-- ── CARD FOOTER ── -->
+    <section class="ds-section" id="sec-card-footer">
+      <h2 class="ds-section__title">Card Footer</h2>
+      <p class="ds-section__desc">Flexible footer layout — Tertiary · Tertiary · Spacer · Secondary · Primary</p>
+
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">All buttons visible</div>
+        <div class="ds-card-preview">
+          <pds-card-footer
+            button4Label="Cancel"
+            button3Label="Reset"
+            button2Label="Save"
+            button1Label="Confirm"
+          />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Primary + Secondary only</div>
+        <div class="ds-card-preview">
+          <pds-card-footer
+            [showButton4]="false"
+            [showButton3]="false"
+            button2Label="Cancel"
+            button1Label="Confirm"
+          />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Tertiary buttons only (left)</div>
+        <div class="ds-card-preview">
+          <pds-card-footer
+            button4Label="Cancel"
+            button3Label="Reset"
+            [showButton2]="false"
+            [showButton1]="false"
+          />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Single primary button</div>
+        <div class="ds-card-preview">
+          <pds-card-footer
+            [showButton4]="false"
+            [showButton3]="false"
+            [showButton2]="false"
+            button1Label="Done"
+          />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Disabled state</div>
+        <div class="ds-card-preview">
+          <pds-card-footer
+            button4Label="Cancel"
+            button3Label="Reset"
+            button2Label="Save"
+            button1Label="Confirm"
+            [disabledButton1]="true"
+            [disabledButton2]="true"
+            [disabledButton3]="true"
+            [disabledButton4]="true"
+          />
+        </div>
+      </div>
+
+      </div>
+
+    </section>
+
+    <!-- ── TOAST ── -->
+    <section class="ds-section" id="sec-toast">
+      <h2 class="ds-section__title">Toast</h2>
+      <p class="ds-section__desc">Overlay notification — slides in from top-centre. Click a button to trigger.</p>
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Trigger</div>
+        <div class="ds-row">
+          <pds-button
+            type="primary"
+            [size]="1"
+            content="only-text"
+            label="Success"
+            (click)="showToast('success', 'Success Message!')"
+          />
+          <pds-button
+            type="secondary"
+            [size]="1"
+            content="only-text"
+            label="Warning"
+            (click)="showToast('warning', 'Warning Message!')"
+          />
+          <pds-button
+            type="tertiary"
+            [size]="1"
+            content="only-text"
+            label="Error"
+            (click)="showToast('error', 'Error Message!')"
+          />
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ── SWITCH ── -->
+    <section class="ds-section" id="sec-switch">
+      <h2 class="ds-section__title">Switch</h2>
+      <p class="ds-section__desc">Size 0–2 × On/Off × Default / Hover / Disabled</p>
+      <div class="play-area">
+
+      @for (size of switchSizes; track size; let i = $index) {
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }}</div>
+          <div class="ds-row">
+            <div class="ds-swatch-item">
+              <pds-switch [size]="size" [on]="switchStates[i][0]" (switched)="toggleSwitch(i, 0, $event)" />
+              <span class="ds-swatch-label">{{ switchStates[i][0] ? 'On' : 'Off' }}</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-switch [size]="size" [on]="switchStates[i][1]" (switched)="toggleSwitch(i, 1, $event)" />
+              <span class="ds-swatch-label">{{ switchStates[i][1] ? 'On' : 'Off' }}</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-switch [size]="size" [on]="false" [disabled]="true" />
+              <span class="ds-swatch-label">Off / Disabled</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-switch [size]="size" [on]="true" [disabled]="true" />
+              <span class="ds-swatch-label">On / Disabled</span>
+            </div>
+          </div>
+        </div>
+      }
+      </div>
+    </section>
+
+    <!-- ── RADIO ── -->
+    <section class="ds-section" id="sec-radio">
+      <h2 class="ds-section__title">Radio</h2>
+      <p class="ds-section__desc">Size 0–2 × Cleared/Selected × Default / Hover / Disabled</p>
+      <div class="play-area">
+
+      @for (size of radioSizes; track size; let i = $index) {
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }}</div>
+          <div class="ds-row">
+            <div class="ds-swatch-item">
+              <pds-radio [size]="size" [selected]="radioStates[i][0]" (changed)="toggleRadio(i, 0)" />
+              <span class="ds-swatch-label">{{ radioStates[i][0] ? 'Selected' : 'Cleared' }}</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-radio [size]="size" [selected]="radioStates[i][1]" (changed)="toggleRadio(i, 1)" />
+              <span class="ds-swatch-label">{{ radioStates[i][1] ? 'Selected' : 'Cleared' }}</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-radio [size]="size" [selected]="false" [disabled]="true" />
+              <span class="ds-swatch-label">Cleared / Disabled</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-radio [size]="size" [selected]="true" [disabled]="true" />
+              <span class="ds-swatch-label">Selected / Disabled</span>
+            </div>
+          </div>
+        </div>
+      }
+      </div>
+    </section>
+
+    <!-- ── CHECKBOX ── -->
+    <section class="ds-section" id="sec-checkbox">
+      <h2 class="ds-section__title">Checkbox</h2>
+      <p class="ds-section__desc">Size 0–2 × Checked / Indeterminate / Cleared × Default / Hover / Disabled</p>
+      <div class="play-area">
+
+      @for (size of checkboxSizes; track size; let i = $index) {
+        <div class="ds-token-group">
+          <div class="ds-token-label">Size {{ size }}</div>
+          <div class="ds-row">
+            <div class="ds-swatch-item">
+              <pds-checkbox [size]="size" [type]="checkboxStates[i][0]" (changed)="onCheckboxChanged(i, 0, $event)" />
+              <span class="ds-swatch-label">{{ checkboxStates[i][0] }}</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-checkbox [size]="size" [type]="checkboxStates[i][1]" (changed)="onCheckboxChanged(i, 1, $event)" />
+              <span class="ds-swatch-label">{{ checkboxStates[i][1] }}</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-checkbox [size]="size" type="indeterminate" [disabled]="true" />
+              <span class="ds-swatch-label">Indeterminate / Disabled</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-checkbox [size]="size" type="checked" [disabled]="true" />
+              <span class="ds-swatch-label">Checked / Disabled</span>
+            </div>
+            <div class="ds-swatch-item">
+              <pds-checkbox [size]="size" type="cleared" [disabled]="true" />
+              <span class="ds-swatch-label">Cleared / Disabled</span>
+            </div>
+          </div>
+        </div>
+      }
+      </div>
+    </section>
+
+    <!-- ── PROGRESS BAR ── -->
+    <section class="ds-section" id="sec-progress-bar">
+      <h2 class="ds-section__title">Progress Bar</h2>
+      <p class="ds-section__desc">Fluid width — Secondary/1 trail · Secondary/3 fill · 6px height</p>
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">0%</div>
+        <pds-progress-bar [progress]="0" />
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">25%</div>
+        <pds-progress-bar [progress]="25" />
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">50%</div>
+        <pds-progress-bar [progress]="50" />
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">75%</div>
+        <pds-progress-bar [progress]="75" />
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">100%</div>
+        <pds-progress-bar [progress]="100" />
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Interactive — {{ demoProgress() }}%</div>
+        <pds-progress-bar [progress]="demoProgress()" />
+        <div style="margin-top: 12px;">
+          <pds-button
+            type="primary"
+            [size]="1"
+            content="only-text"
+            label="Start"
+            (click)="startProgressDemo()"
+          />
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ── SCROLLER ── -->
+    <section class="ds-section" id="sec-scroller">
+      <h2 class="ds-section__title">Scroller</h2>
+      <p class="ds-section__desc">Custom scrollbar — 4px trail · 4→8px slider on hover · Elevation/2→3</p>
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Selector with scroller — appears automatically when more than 6 options</div>
+        <pds-selector [options]="selectorMany" />
+      </div>
+      </div>
+    </section>
+
+    <!-- ── POP-UP LAYOUT ── -->
+    <section class="ds-section" id="sec-pop-up-layout">
+      <h2 class="ds-section__title">Pop-up Layout</h2>
+      <p class="ds-section__desc">400×400px · Radius/6 · Spacing/6 · Elevation/3 · Dark/2 backdrop</p>
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Trigger</div>
+        <pds-button
+          type="primary"
+          [size]="1"
+          content="only-text"
+          label="Open Pop-up"
+          (click)="openPopup()"
+        />
+      </div>
+      </div>
+    </section>
+
+    <!-- ── SEMANTIC POP-UPS ── -->
+    <section class="ds-section" id="sec-semantic-pop-ups">
+      <h2 class="ds-section__title">Semantic Pop-ups</h2>
+      <p class="ds-section__desc">Success · Warning · Error — icon + title + illustration + Cancel / Confirm</p>
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Triggers</div>
+        <div class="ds-row">
+          <pds-button type="primary"   [size]="1" content="only-text" label="Success" (click)="successPopupOpen.set(true)" />
+          <pds-button type="secondary" [size]="1" content="only-text" label="Warning" (click)="warningPopupOpen.set(true)" />
+          <pds-button type="tertiary"  [size]="1" content="only-text" label="Error"   (click)="errorPopupOpen.set(true)" />
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ── PROFILE AVATAR ── -->
+    <section class="ds-section" id="sec-profile-avatar">
+      <h2 class="ds-section__title">Profile Avatar</h2>
+      <p class="ds-section__desc">Icon · Credentials · Image × Size 0–2 · Alert badge bottom-right half-in/half-out</p>
+      <div class="play-area">
+
+      <h3 class="ds-type-title">Icon</h3>
+      <div class="ds-token-group">
+        <div class="ds-token-label">Sizes — default colour</div>
+        <div class="ds-row" style="padding: 8px 20px;">
+          <pds-profile-avatar type="icon" [size]="0" icon="user" />
+          <pds-profile-avatar type="icon" [size]="1" icon="user" />
+          <pds-profile-avatar type="icon" [size]="2" icon="user" />
+        </div>
+      </div>
+
+      <h3 class="ds-type-title">Credentials</h3>
+      <div class="ds-token-group">
+        <div class="ds-token-label">Sizes — default colour</div>
+        <div class="ds-row" style="padding: 8px 20px;">
+          <pds-profile-avatar type="credentials" [size]="0" initials="PK" />
+          <pds-profile-avatar type="credentials" [size]="1" initials="PK" />
+          <pds-profile-avatar type="credentials" [size]="2" initials="PK" />
+        </div>
+      </div>
+
+      <h3 class="ds-type-title">Image</h3>
+      <div class="ds-token-group">
+        <div class="ds-token-label">Sizes</div>
+        <div class="ds-row" style="padding: 8px 20px;">
+          <pds-profile-avatar type="image" [size]="0" imageSrc="/images/avatar.png" />
+          <pds-profile-avatar type="image" [size]="1" imageSrc="/images/avatar.png" />
+          <pds-profile-avatar type="image" [size]="2" imageSrc="/images/avatar.png" />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">No badge</div>
+        <div class="ds-row" style="padding: 8px 20px;">
+          <pds-profile-avatar type="icon"        [size]="1" [showBadge]="false" />
+          <pds-profile-avatar type="credentials" [size]="1" [showBadge]="false" initials="PK" />
+          <pds-profile-avatar type="image"       [size]="1" [showBadge]="false" imageSrc="/images/avatar.png" />
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ── SIDE MENU ITEM ── -->
+    <section class="ds-section" id="sec-side-menu-item">
+      <h2 class="ds-section__title">Side Menu Item</h2>
+      <p class="ds-section__desc">4 states · supporting icon · title · chevron · 32px height</p>
+
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Default — with icon &amp; chevron</div>
+        <div style="width: 276px; padding: 4px 0;">
+          <pds-side-menu-item title="Home" icon="home" [showChevron]="true" />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Default Hover — hover over item</div>
+        <div style="width: 276px; padding: 4px 0;">
+          <pds-side-menu-item title="Dashboard" icon="grid" [showChevron]="true" />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Selected — active page</div>
+        <div style="width: 276px; padding: 4px 0;">
+          <pds-side-menu-item title="Settings" icon="settings" [showChevron]="false" [selected]="true" />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Selected Hover — hover over selected item</div>
+        <div style="width: 276px; padding: 4px 0;">
+          <pds-side-menu-item title="Profile" icon="user" [showChevron]="false" [selected]="true" />
+        </div>
+      </div>
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Variations — no icon / no chevron / expanded chevron</div>
+        <div style="width: 276px; padding: 4px 0; display: flex; flex-direction: column; gap: 4px;">
+          <pds-side-menu-item title="No supporting icon" [showChevron]="true" />
+          <pds-side-menu-item title="No chevron" icon="file" />
+          <pds-side-menu-item title="Expanded (chevron-up)" icon="file" [showChevron]="true" [isExpanded]="true" />
+        </div>
+      </div>
+
+      </div>
+
+    </section>
+
+    <!-- ── SIDE MENU ITEMS COLLECTION ── -->
+    <section class="ds-section" id="sec-side-menu-items-collection">
+      <h2 class="ds-section__title">Side Menu Items Collection</h2>
+      <p class="ds-section__desc">Expandable/collapsible groups · 3-level nesting · single-expand · single-select</p>
+
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Interactive — click header to expand · click item to select</div>
+        <div style="width: 276px; padding: 8px 0; display: flex; flex-direction: column; gap: 8px;">
+          @for (col of smicCollections; track col.id) {
+            <pds-side-menu-items-collection
+              [title]="col.title"
+              [icon]="col.icon"
+              [items]="col.items"
+              [isExpanded]="smicExpandedId === col.id"
+              [selectedId]="smicSelectedId"
+              (expandToggle)="onSmicExpandToggle(col.id)"
+              (itemSelected)="onSmicItemSelected($event)"
+            />
+          }
+        </div>
+      </div>
+
+      </div>
+
+    </section>
+
+    <!-- ── SEARCH ── -->
+    <section class="ds-section" id="sec-search">
+      <h2 class="ds-section__title">Search</h2>
+      <p class="ds-section__desc">Text input with search icon · Default · Hover · Selected</p>
+
+      <div class="play-area">
+
+      <div class="ds-token-group">
+        <div class="ds-token-label">Interactive — Click to search, type text, click X to clear</div>
+        <div class="ds-row" style="padding: 20px;">
+          <pds-search />
+        </div>
+      </div>
+
+      </div>
+
+    </section>
+
+    <!-- ── OPTION ── -->
+    <section class="ds-section" id="sec-option">
+      <h2 class="ds-section__title">Option</h2>
+      <p class="ds-section__desc">checkbox · avatar · icon · text — Default · Hover · Disabled</p>
+
+      <div class="play-area">
+        <div class="ds-token-group">
+          <div class="ds-token-label">States</div>
+          <div style="width: 260px; display: flex; flex-direction: column; gap: 4px;">
+            <pds-option label="Default" />
+            <pds-option label="Hover" [forceHover]="true" />
+            <pds-option label="Disabled" [disabled]="true" />
+            <pds-option label="Interactive — click me" [checked]="true" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SELECTOR ── -->
+    <section class="ds-section" id="sec-selector">
+      <h2 class="ds-section__title">Selector</h2>
+      <p class="ds-section__desc">List of options · scroller appears automatically when more than 6 options</p>
+
+      <div class="play-area">
+        <div class="ds-row" style="gap: 40px; align-items: flex-start; padding: 20px;">
+          <div class="ds-token-group">
+            <div class="ds-token-label">Without scroller — 6 options</div>
+            <pds-selector [options]="selectorFew" />
+          </div>
+          <div class="ds-token-group">
+            <div class="ds-token-label">With scroller — 12 options</div>
+            <pds-selector [options]="selectorMany" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WEB FOOTER — last body-section, scrolls with the body ── -->
+    <section class="ds-section" id="sec-web-footer">
+      <h2 class="ds-section__title">Web Footer</h2>
+      <p class="ds-section__desc">rights · powered-by · actions — placed as the last body-section</p>
+
+      <div class="play-area" style="padding: 0;">
+        <pds-web-footer
+          (action1Click)="onSearch('footer action 1')"
+          (action2Click)="onSearch('footer action 2')"
+        />
+      </div>
+    </section>
+
+    <!-- ── DATE-TIME SELECTION STATES ── -->
+    <section class="ds-section" id="sec-date-time-selection-states">
+      <h2 class="ds-section__title">Date-Time Selection States</h2>
+      <p class="ds-section__desc">All 8 states — 24×24px · Secondary colour scale · Used in Date Picker &amp; Time Picker</p>
+
+      <div class="play-area">
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">All states — side by side</div>
+          <div class="ds-row">
+            @for (s of dtStates; track s.state) {
+              <div class="ds-swatch-item">
+                <pds-date-time-selection-state [state]="s.state" label="8" />
+                <span class="ds-swatch-label">{{ s.label }}</span>
+              </div>
+            }
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ── DATE PICKER ── -->
+    <section class="ds-section" id="sec-date-picker">
+      <h2 class="ds-section__title">Date Picker</h2>
+      <p class="ds-section__desc">date-change &amp; year-change types — Pop-up Layout · Card Header · Play Area · Card Footer</p>
+
+      <div class="play-area">
+        <div class="ds-token-group">
+          <div class="ds-token-label">date-change — Secondary month/year · Tertiary prev/next · 7×24px grid</div>
+          <div class="ds-row" style="align-items: center; gap: 16px;">
+            <pds-button
+              type="primary"
+              [size]="1"
+              content="only-text"
+              label="Open Date Picker"
+              (click)="datePickerVisible.set(true)"
+            />
+            @if (selectedDateStr()) {
+              <span style="font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; color: #3f3f3f;">
+                Selected: {{ selectedDateStr() }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">year-change — Title range · Tertiary prev/next set · 5×3 grid · 48px year cells</div>
+          <div class="ds-row" style="align-items: center; gap: 16px;">
+            <pds-button
+              type="primary"
+              [size]="1"
+              content="only-text"
+              label="Open Year Picker"
+              (click)="yearPickerVisible.set(true)"
+            />
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">month-change — Year button · Tertiary prev/next year · 4×3 grid · 48px month cells</div>
+          <div class="ds-row" style="align-items: center; gap: 16px;">
+            <pds-button
+              type="primary"
+              [size]="1"
+              content="only-text"
+              label="Open Month Picker"
+              (click)="monthPickerVisible.set(true)"
+            />
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">date-range — Two date-change calendars · separation line · range selection (selected-range states)</div>
+          <div class="ds-row" style="align-items: center; gap: 16px;">
+            <pds-button
+              type="primary"
+              [size]="1"
+              content="only-text"
+              label="Open Range Picker"
+              (click)="rangePickerVisible.set(true)"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TIME PICKER ── -->
+    <section class="ds-section" id="sec-time-picker">
+      <h2 class="ds-section__title">Time Picker</h2>
+      <p class="ds-section__desc">12-hour &amp; 24-hour types — scroll-snap columns · centred cell = selected · 44px cells</p>
+
+      <div class="play-area">
+        <div class="ds-token-group">
+          <div class="ds-token-label">12-hour-time — hours · minutes · seconds · am/pm</div>
+          <div class="ds-row" style="align-items: center; gap: 16px;">
+            <pds-button
+              type="primary"
+              [size]="1"
+              content="only-text"
+              label="Open 12-Hour Picker"
+              (click)="time12Visible.set(true)"
+            />
+            @if (selectedTimeStr()) {
+              <span style="font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; color: #3f3f3f;">
+                Selected: {{ selectedTimeStr() }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">24-hour-time — hours · minutes · seconds</div>
+          <div class="ds-row" style="align-items: center; gap: 16px;">
+            <pds-button
+              type="primary"
+              [size]="1"
+              content="only-text"
+              label="Open 24-Hour Picker"
+              (click)="time24Visible.set(true)"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DROP AREA ── -->
+    <section class="ds-section" id="sec-upload-files">
+      <h2 class="ds-section__title">Upload Files</h2>
+      <p class="ds-section__desc">Pop-up Layout · header (title + count chips) · drop-area + files-list · footer · Files Attached &amp; Empty states</p>
+
+      <div class="play-area">
+        <div class="ds-token-group">
+          <div class="ds-token-label">Open the component</div>
+          <div class="ds-row" style="align-items: center; gap: 16px;">
+            <pds-button
+              type="primary"
+              [size]="1"
+              content="only-text"
+              label="Open (Files Attached)"
+              (click)="uploadFilesVisible.set(true)"
+            />
+            <pds-button
+              type="secondary"
+              [size]="1"
+              content="only-text"
+              label="Open (Empty)"
+              (click)="uploadEmptyVisible.set(true)"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INPUT FIELD ── -->
+    <section class="ds-section" id="sec-input-field">
+      <h2 class="ds-section__title">Input Field</h2>
+      <p class="ds-section__desc">Inner element — Label Container (supporting icon · label · optional · info icon · gap spacing/4)</p>
+
+      <div class="play-area">
+        <h3 class="ds-type-title">Label Container</h3>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">Label only</div>
+          <div style="width: 280px;">
+            <pds-label-container label="Label" />
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">Label + optional</div>
+          <div style="width: 280px;">
+            <pds-label-container label="Label" [showOptional]="true" />
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">Label + info icon</div>
+          <div style="width: 280px;">
+            <pds-label-container label="Label" [showInfo]="true" />
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">Supporting icon + label + optional + info</div>
+          <div style="width: 280px;">
+            <pds-label-container
+              label="Label"
+              [showSupportingIcon]="true" supportingIcon="user"
+              [showOptional]="true"
+              [showInfo]="true"
+            />
+          </div>
+        </div>
+
+        <h3 class="ds-type-title">Input Area</h3>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">Placeholder — editable text input</div>
+          <div style="width: 280px;">
+            <pds-input-area placeholder="Place holder" />
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">Value entered</div>
+          <div style="width: 280px;">
+            <pds-input-area placeholder="Place holder" value="Entered value" />
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">Supporting icon + placeholder + action icon</div>
+          <div style="width: 280px;">
+            <pds-input-area placeholder="Place holder" supportingIcon="search" actionIcon="x" />
+          </div>
+        </div>
+
+        <div class="ds-token-group">
+          <div class="ds-token-label">Drop down (read-only display + chevron-down action)</div>
+          <div style="width: 280px;">
+            <pds-input-area placeholder="Select" [editable]="false" actionIcon="chevron-down" />
+          </div>
+        </div>
+
+        <!-- ── Full component: types (with live validation) ── -->
+        <h3 class="ds-type-title">Input Field — Types</h3>
+        <div class="ds-token-group">
+          <div class="ds-token-label">Field · Drop Down · Calendar · Attachment · Text Area — enter a value to validate (type "error" / "warn" to see those states)</div>
+          <div class="ds-row" style="gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+            <div style="width: 300px;"><pds-input-field type="field"      label="Label" [validate]="validateInput" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+            <div style="width: 300px;"><pds-input-field type="drop-down"  label="Label" [options]="['Option One','Option Two','warn option','error option']" [validate]="validateInput" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+            <div style="width: 300px;"><pds-input-field type="calendar"   label="Label" [validate]="validateInput" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+            <div style="width: 300px;"><pds-input-field type="attachment" label="Label" [validate]="validateInput" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+            <div style="width: 300px;"><pds-input-field type="text-area"  label="Label" [validate]="validateInput" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+          </div>
+        </div>
+
+        <!-- ── Full component: states ── -->
+        <h3 class="ds-type-title">Input Field — States (Field type)</h3>
+        <div class="ds-token-group">
+          <div class="ds-token-label">Default · Value · Disabled · Error · Warning · Accepted</div>
+          <div class="ds-row" style="gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+            <div style="width: 300px;"><pds-input-field state="default"  label="Label" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+            <div style="width: 300px;"><pds-input-field state="value"    label="Label" value="Input Value" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+            <div style="width: 300px;"><pds-input-field state="disabled" label="Label" value="Input Value" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+            <div style="width: 300px;"><pds-input-field state="error"    label="Label" value="Input Value" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+            <div style="width: 300px;"><pds-input-field state="warning"  label="Label" value="Input Value" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+            <div style="width: 300px;"><pds-input-field state="accepted" label="Label" value="Input Value" [showOptional]="true" [showInfo]="true" [showSupportingMessage]="true" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TOOL TIP ── -->
+    <section class="ds-section" id="sec-tool-tip">
+      <h2 class="ds-section__title">Tool Tip</h2>
+      <p class="ds-section__desc">Four directions — Up · Down · Left · Right · pointer directs the target · Elevation/3</p>
+
+      <div class="play-area">
+
+        <h3 class="ds-type-title">With Action Button (footer shown)</h3>
+        <div class="ds-row" style="gap: 60px; align-items: center; flex-wrap: wrap; padding: 24px;">
+          <div class="ds-token-group">
+            <div class="ds-token-label">Up</div>
+            <pds-tool-tip direction="up" />
+          </div>
+          <div class="ds-token-group">
+            <div class="ds-token-label">Down</div>
+            <pds-tool-tip direction="down" />
+          </div>
+          <div class="ds-token-group">
+            <div class="ds-token-label">Left</div>
+            <pds-tool-tip direction="left" />
+          </div>
+          <div class="ds-token-group">
+            <div class="ds-token-label">Right</div>
+            <pds-tool-tip direction="right" />
+          </div>
+        </div>
+
+        <h3 class="ds-type-title">Without Action Button (footer hidden)</h3>
+        <div class="ds-row" style="gap: 60px; align-items: center; flex-wrap: wrap; padding: 24px;">
+          <div class="ds-token-group">
+            <div class="ds-token-label">Up</div>
+            <pds-tool-tip direction="up" [showFooter]="false" />
+          </div>
+          <div class="ds-token-group">
+            <div class="ds-token-label">Down</div>
+            <pds-tool-tip direction="down" [showFooter]="false" />
+          </div>
+          <div class="ds-token-group">
+            <div class="ds-token-label">Left</div>
+            <pds-tool-tip direction="left" [showFooter]="false" />
+          </div>
+          <div class="ds-token-group">
+            <div class="ds-token-label">Right</div>
+            <pds-tool-tip direction="right" [showFooter]="false" />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="ds-section" id="sec-filter-section">
+      <h2 class="ds-section__title">Filter Section</h2>
+      <p class="ds-section__desc">Inner element of the Filter Drawer — types: Multi-Selection · Input · states: Expanded · Collapsed</p>
+
+      <div class="play-area">
+
+        <h3 class="ds-type-title">Multi-Selection</h3>
+        <div class="ds-row" style="gap: 48px; align-items: flex-start; flex-wrap: wrap; padding: 24px;">
+          <div class="ds-token-group">
+            <div class="ds-token-label">Expanded</div>
+            <div style="width: 352px;">
+              <pds-filter-section type="multi-selection" state="expanded" title="Section Title" [options]="filterOptions" />
+            </div>
+          </div>
+          <div class="ds-token-group">
+            <div class="ds-token-label">Collapsed</div>
+            <div style="width: 352px;">
+              <pds-filter-section type="multi-selection" state="collapsed" title="Section Title" [options]="filterOptions" />
+            </div>
+          </div>
+        </div>
+
+        <h3 class="ds-type-title">Input</h3>
+        <div class="ds-row" style="gap: 48px; align-items: flex-start; flex-wrap: wrap; padding: 24px;">
+          <div class="ds-token-group">
+            <div class="ds-token-label">Expanded</div>
+            <div style="width: 352px;">
+              <pds-filter-section type="input" state="expanded" title="Section Title" [inputRows]="filterInputRows" />
+            </div>
+          </div>
+          <div class="ds-token-group">
+            <div class="ds-token-label">Collapsed</div>
+            <div style="width: 352px;">
+              <pds-filter-section type="input" state="collapsed" title="Section Title" [inputRows]="filterInputRowsFilled" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="ds-section" id="sec-filter-drawer">
+      <h2 class="ds-section__title">Filter Drawer</h2>
+      <p class="ds-section__desc">pop-up-layout · card-header · scroll-area of filter-sections (accordion — one expanded) · card-footer</p>
+
+      <div class="play-area">
+        <div class="ds-row" style="padding: 24px;">
+          <pds-button type="primary" [size]="1" content="left-icon" leftIcon="filter" label="Open Filter Drawer" [showBadge]="filterSelectionCount > 0" badgeType="count" [badgeCount]="filterSelectionCount" (click)="filterDrawerOpen = true" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Filter Drawer overlay — lives outside main so it covers the full viewport -->
+<pds-filter-drawer
+  [visible]="filterDrawerOpen"
+  title="Title Text"
+  subtitle="Long subtitle text will display here like this."
+  [sections]="filterDrawerSections"
+  (closed)="filterDrawerOpen = false"
+  (applyClick)="filterDrawerOpen = false"
+/>
+
+<!-- Pop-up lives outside main layout so it overlays the full viewport -->
+<pds-popup-layout
+  [visible]="popupVisible"
+  [width]="400"
+  [height]="400"
+  (closed)="closePopup()"
+>
+  <pds-card-header
+    title="Pop-up Title"
+    subtitle="Supporting subtitle text goes here."
+    [showSubtitle]="true"
+    [showIcon]="false"
+    [showButton1]="false"
+    [showButton2]="false"
+    [showButton3]="false"
+    [showButton4]="false"
+  />
+  <div style="padding: 16px; font-size: 13px; color: #3f3f3f; font-family: 'IBM Plex Sans', sans-serif; line-height: 1.5;">
+    <p style="margin: 0 0 8px;">This is the play area — place any content here.</p>
+    <p style="margin: 0; color: #5d5d5d;">It has a 1px Grey/3 border and Radius/4 (8px) corner radius.</p>
+  </div>
+  <pds-card-footer
+    button1Label="Confirm"
+    button2Label="Cancel"
+    [showButton3]="false"
+    [showButton4]="false"
+    (button1Click)="closePopup()"
+    (button2Click)="closePopup()"
+  />
+</pds-popup-layout>
+
+<!-- ── SUCCESS POP-UP ── -->
+<pds-popup-layout
+  [visible]="successPopupOpen()"
+  [width]="350"
+  [height]="350"
+  (closed)="successPopupOpen.set(false)"
+>
+  <pds-card-header
+    title="Success"
+    subtitle="Long subtitle text will display here like this."
+    icon="check-inside-circle"
+    iconColor="#51b389"
+    titleColor="#51b389"
+    [showSubtitle]="true"
+    [showButton1]="false"
+    [showButton2]="false"
+    [showButton3]="false"
+    [showButton4]="false"
+  />
+  <div style="display:flex; align-items:center; justify-content:center; height:100%;">
+    <img src="/illustrations/man-celebrating.svg" alt="Success illustration" style="width:200px; height:200px;" />
+  </div>
+  <pds-card-footer
+    button1Label="Confirm"
+    button2Label="Cancel"
+    [showButton3]="false"
+    [showButton4]="false"
+    (button1Click)="successPopupOpen.set(false)"
+    (button2Click)="successPopupOpen.set(false)"
+  />
+</pds-popup-layout>
+
+<!-- ── WARNING POP-UP ── -->
+<pds-popup-layout
+  [visible]="warningPopupOpen()"
+  [width]="350"
+  [height]="350"
+  (closed)="warningPopupOpen.set(false)"
+>
+  <pds-card-header
+    title="Warning"
+    subtitle="Long subtitle text will display here like this."
+    icon="alert-triangle"
+    iconColor="#ff9800"
+    titleColor="#ff9800"
+    [showSubtitle]="true"
+    [showButton1]="false"
+    [showButton2]="false"
+    [showButton3]="false"
+    [showButton4]="false"
+  />
+  <div style="display:flex; align-items:center; justify-content:center; height:100%;">
+    <img src="/illustrations/announcement.svg" alt="Warning illustration" style="width:200px; height:200px;" />
+  </div>
+  <pds-card-footer
+    button1Label="Confirm"
+    button2Label="Cancel"
+    [showButton3]="false"
+    [showButton4]="false"
+    (button1Click)="warningPopupOpen.set(false)"
+    (button2Click)="warningPopupOpen.set(false)"
+  />
+</pds-popup-layout>
+
+<!-- ── ERROR POP-UP ── -->
+<pds-popup-layout
+  [visible]="errorPopupOpen()"
+  [width]="350"
+  [height]="350"
+  (closed)="errorPopupOpen.set(false)"
+>
+  <pds-card-header
+    title="Error"
+    subtitle="Long subtitle text will display here like this."
+    icon="x-circle"
+    iconColor="#f44336"
+    titleColor="#f44336"
+    [showSubtitle]="true"
+    [showButton1]="false"
+    [showButton2]="false"
+    [showButton3]="false"
+    [showButton4]="false"
+  />
+  <div style="display:flex; align-items:center; justify-content:center; height:100%;">
+    <img src="/illustrations/faq.svg" alt="Error illustration" style="width:200px; height:200px;" />
+  </div>
+  <pds-card-footer
+    button1Label="Confirm"
+    button2Label="Cancel"
+    [showButton3]="false"
+    [showButton4]="false"
+    (button1Click)="errorPopupOpen.set(false)"
+    (button2Click)="errorPopupOpen.set(false)"
+  />
+</pds-popup-layout>
+
+<!-- Date Picker lives outside main layout so it overlays the full viewport -->
+<pds-date-picker
+  type="date-change"
+  [visible]="datePickerVisible()"
+  (closed)="datePickerVisible.set(false)"
+  (dateSelected)="onDateSelected($event)"
+/>
+
+<!-- Year Picker (year-change type) -->
+<pds-date-picker
+  type="year-change"
+  [visible]="yearPickerVisible()"
+  (closed)="yearPickerVisible.set(false)"
+/>
+
+<!-- Month Picker (month-change type) -->
+<pds-date-picker
+  type="month-change"
+  [visible]="monthPickerVisible()"
+  (closed)="monthPickerVisible.set(false)"
+/>
+
+<!-- Range Picker (date-range type) -->
+<pds-date-picker
+  type="date-range"
+  [visible]="rangePickerVisible()"
+  (closed)="rangePickerVisible.set(false)"
+/>
+
+<!-- Time Picker — 12-hour -->
+<pds-time-picker
+  type="12-hour-time"
+  [visible]="time12Visible()"
+  (closed)="time12Visible.set(false)"
+  (timeSelected)="onTimeSelected($event)"
+/>
+
+<!-- Time Picker — 24-hour -->
+<pds-time-picker
+  type="24-hour-time"
+  [visible]="time24Visible()"
+  (closed)="time24Visible.set(false)"
+  (timeSelected)="onTimeSelected($event)"
+/>
+
+<!-- Upload Files — Files Attached -->
+<pds-upload-files
+  [visible]="uploadFilesVisible()"
+  [files]="sampleUploadFiles"
+  (closed)="uploadFilesVisible.set(false)"
+/>
+
+<!-- Upload Files — Empty -->
+<pds-upload-files
+  [visible]="uploadEmptyVisible()"
+  [files]="[]"
+  (closed)="uploadEmptyVisible.set(false)"
+/>
+
+<!-- Toast lives outside main layout so it overlays the full viewport -->
+<pds-toast
+  [type]="toastType"
+  [message]="toastMessage"
+  [visible]="toastVisible"
+  (dismissed)="onToastDismissed()"
+/>

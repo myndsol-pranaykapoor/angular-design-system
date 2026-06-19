@@ -1,0 +1,101 @@
+<div [class]="hostClasses.join(' ')">
+
+  <!-- Main Row -->
+  <div [class]="'pds-card-header__main-row' + (buttonSpacing === 'space-between' ? ' pds-card-header__main-row--space-between' : '')"
+  >
+
+    <!-- Icon + Title Group -->
+    @if (showIconTitleGroup) {
+      <div class="pds-card-header__icon-title">
+        @if (showIcon && icon) {
+          <span
+            class="pds-card-header__icon"
+            [style.backgroundColor]="iconColor"
+            [style.maskImage]="'url(/icons/20px/' + icon + '.svg)'"
+            [style.webkitMaskImage]="'url(/icons/20px/' + icon + '.svg)'"
+            aria-hidden="true"
+          ></span>
+        }
+        @if (showTitle && title) {
+          <span class="pds-card-header__title" [style.color]="titleColor || null">{{ title }}</span>
+        }
+      </div>
+    }
+
+    <!-- Spacer 1 — hidden in space-between mode so flex:1 doesn't consume free space -->
+    @if (buttonSpacing !== 'space-between') {
+      <span class="pds-card-header__spacer"></span>
+    }
+
+    <!-- Button 4 -->
+    @if (showButton4 && (button4Icon || button4Label)) {
+      <pds-button
+        [type]="button4Type"
+        [size]="0"
+        [content]="getButtonContent(button4Icon, button4Label, button4RightIcon)"
+        [centerIcon]="button4Icon"
+        [label]="button4Label"
+        [rightIcon]="button4RightIcon"
+        [disabled]="disabledButton4"
+        (click)="button4Click.emit()"
+      />
+    }
+
+    <!-- Button 3 -->
+    @if (showButton3 && (button3Icon || button3Label)) {
+      <pds-button
+        [type]="button3Type"
+        [size]="0"
+        [content]="getButtonContent(button3Icon, button3Label, button3RightIcon)"
+        [centerIcon]="button3Icon"
+        [label]="button3Label"
+        [rightIcon]="button3RightIcon"
+        [disabled]="disabledButton3"
+        (click)="button3Click.emit()"
+      />
+    }
+
+    <!-- Spacer 2 — hidden in space-between mode -->
+    @if (buttonSpacing !== 'space-between') {
+      <span class="pds-card-header__spacer"></span>
+    }
+
+    <!-- Button 2 -->
+    @if (showButton2 && (button2Icon || button2Label)) {
+      <pds-button
+        [type]="button2Type"
+        [size]="0"
+        [content]="getButtonContent(button2Icon, button2Label, button2RightIcon)"
+        [centerIcon]="button2Icon"
+        [label]="button2Label"
+        [rightIcon]="button2RightIcon"
+        [disabled]="disabledButton2"
+        (click)="button2Click.emit()"
+      />
+    }
+
+    <!-- Button 1 -->
+    @if (showButton1 && (button1Icon || button1Label)) {
+      <pds-button
+        [type]="button1Type"
+        [size]="0"
+        [content]="getButtonContent(button1Icon, button1Label, button1RightIcon)"
+        [centerIcon]="button1Icon"
+        [label]="button1Label"
+        [rightIcon]="button1RightIcon"
+        [disabled]="disabledButton1"
+        (click)="button1Click.emit()"
+      />
+    }
+
+    <!-- Actions slot — custom right-aligned content (e.g. upload count chips) -->
+    <ng-content select="[card-header-actions]"></ng-content>
+
+  </div>
+
+  <!-- Subtitle Row -->
+  @if (showSubtitle && subtitle) {
+    <span class="pds-card-header__subtitle">{{ subtitle }}</span>
+  }
+
+</div>

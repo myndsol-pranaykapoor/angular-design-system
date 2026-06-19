@@ -1,0 +1,70 @@
+<!-- label-container · input-area · supporting-message · vertical · gap Spacing/1 -->
+
+<pds-label-container
+  [label]="label"
+  [showSupportingIcon]="hasStatusIcon"
+  [supportingIcon]="statusIcon"
+  [supportingIconColor]="statusIconColor"
+  [showOptional]="showOptional"
+  [showInfo]="showInfo"
+/>
+
+<pds-input-area
+  [editable]="isEditable"
+  [multiline]="isMultiline"
+  [placeholder]="resolvedPlaceholder"
+  [value]="value"
+  [supportingIcon]="leadingIcon"
+  [actionIcon]="trailingIcon"
+  [disabled]="disabled"
+  (click)="onInputAreaClick()"
+  (valueChange)="onValueChange($event)"
+  (actionClick)="onActionIconClick()"
+/>
+
+@if (hasMessage) {
+  <p class="pds-input-field__message">{{ effectiveMessage }}</p>
+}
+
+<!-- ── CALENDAR — date-picker anchored under the input-area, 2px gap ── -->
+@if (type === 'calendar') {
+  <pds-date-picker
+    type="date-change"
+    [visible]="datePickerOpen"
+    [anchored]="true"
+    [anchorTop]="anchorTop"
+    [anchorLeft]="anchorLeft"
+    (closed)="closeDatePicker()"
+    (dateSelected)="onDatePicked($event)"
+  />
+}
+
+<!-- ── ATTACHMENT — upload-files (centred modal · dark backdrop · not anchored) ── -->
+@if (type === 'attachment') {
+  <pds-upload-files
+    [visible]="uploadFilesOpen"
+    (closed)="uploadFilesOpen = false"
+    (confirmed)="onFilesConfirmed($event)"
+  />
+}
+
+<!-- ── DROP-DOWN SELECTOR OVERLAY — under the input-area, 2px gap ── -->
+@if (dropdownOpen) {
+  <div class="pds-input-field__dropdown-backdrop" (mousedown)="closeDropdown()"></div>
+  <div
+    class="pds-input-field__dropdown"
+    [style.top.px]="dropdownTop"
+    [style.left.px]="dropdownLeft"
+    [style.width.px]="dropdownWidth"
+    (mousedown)="$event.stopPropagation()"
+  >
+    <pds-selector
+      [options]="selectorOptions"
+      [width]="dropdownWidth"
+      [showCheckbox]="false"
+      [showAvatar]="false"
+      [showIcon]="false"
+      (selectionChange)="onOptionSelected($event)"
+    />
+  </div>
+}

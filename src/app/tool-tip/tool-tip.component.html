@@ -1,0 +1,31 @@
+<!-- tip — pointer (triangle, rounded apex) centred in a 42px tip -->
+<div class="pds-tool-tip__tip">
+  <svg class="pds-tool-tip__pointer" width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0 10 L5.1 0.8 Q6 0 6.9 0.8 L12 10 Z" fill="#263b74" />
+  </svg>
+</div>
+
+<!-- body — card-header (title + subtitle) + card-footer (spacer + button-1) -->
+<div class="pds-tool-tip__body" [style.width.px]="width">
+  <pds-card-header
+    [showIcon]="false"
+    [showTitle]="true"
+    [title]="title"
+    titleColor="#ffffff"
+    [subtitle]="subtitle"
+    [showSubtitle]="true"
+    [showButton4]="false"
+    [showButton3]="false"
+    [showButton2]="false"
+    [showButton1]="false"
+  />
+  @if (showFooter) {
+    <pds-card-footer
+      [showButton4]="false"
+      [showButton3]="false"
+      [showButton2]="false"
+      [button1Label]="actionLabel"
+      (button1Click)="actionClick.emit()"
+    />
+  }
+</div>

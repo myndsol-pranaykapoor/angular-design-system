@@ -1,0 +1,35 @@
+<!-- selector: border · Radius/4 · Elevation/3 · padding Spacing/2 · list (+ scroller when overflowing) -->
+<div class="pds-selector" [style.width.px]="width" [style.height.px]="computedHeight">
+
+  <!-- list: vertical, gap Spacing/2, scrollable; native scrollbar hidden -->
+  <div class="pds-selector__list" #viewport (scroll)="onScroll()">
+    @for (opt of options; track $index) {
+      <pds-option
+        [label]="opt.label"
+        [icon]="opt.icon ?? 'life-buoy'"
+        [avatarSrc]="opt.avatarSrc ?? '/images/avatar.png'"
+        [showAvatarBadge]="opt.showAvatarBadge ?? true"
+        [checked]="opt.checked ?? false"
+        [disabled]="opt.disabled ?? false"
+        [showCheckbox]="showCheckbox"
+        [showAvatar]="showAvatar"
+        [showIcon]="showIcon"
+        (selected)="onOptionSelected($index, $event)"
+      />
+    }
+  </div>
+
+  <!-- scroller: only when list overflows (more than 6 options) -->
+  @if (needsScroll) {
+    <div class="pds-selector__scroller" aria-hidden="true">
+      <div class="pds-selector__trail"></div>
+      <div
+        class="pds-selector__slider"
+        [style.height.px]="thumbHeight"
+        [style.top.px]="thumbTop"
+        (mousedown)="startDrag($event)"
+      ></div>
+    </div>
+  }
+
+</div>

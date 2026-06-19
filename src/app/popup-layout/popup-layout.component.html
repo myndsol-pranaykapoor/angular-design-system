@@ -1,0 +1,42 @@
+@if (visible) {
+  <!-- Backdrop — Dark/2 (30% black) · transparent when anchored · suppressed when filling parent -->
+  @if (!fillParent) {
+    <div
+      class="pds-popup__backdrop"
+      [class.pds-popup__backdrop--transparent]="anchored"
+      (click)="onBackdropClick()"
+    ></div>
+  }
+
+  <!-- Pop-up container — centred on screen (or anchored / fills parent) -->
+  <div
+    class="pds-popup__container"
+    [class.pds-popup__container--auto-height]="isAutoHeight"
+    [class.pds-popup__container--auto-width]="isAutoWidth"
+    [class.pds-popup__container--anchored]="anchored"
+    [class.pds-popup__container--fill-parent]="fillParent"
+    [style.width.px]="widthPx"
+    [style.height.px]="fillParent ? null : heightPx"
+    [style.top.px]="anchored ? anchorTop : null"
+    [style.left.px]="anchored ? anchorLeft : null"
+    role="dialog"
+    aria-modal="true"
+  >
+    <!-- Card header slot -->
+    @if (showHeader) {
+      <div class="pds-popup__header">
+        <ng-content select="pds-card-header"></ng-content>
+      </div>
+    }
+
+    <!-- Play area — customisable content zone -->
+    <div class="pds-popup__play-area" [class.pds-popup__play-area--no-chrome]="!playAreaChrome">
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Card footer slot -->
+    <div class="pds-popup__footer">
+      <ng-content select="pds-card-footer"></ng-content>
+    </div>
+  </div>
+}

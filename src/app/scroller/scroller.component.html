@@ -1,0 +1,17 @@
+<div class="pds-scroller__viewport" #viewport (scroll)="onScroll()">
+  <div class="pds-scroller__content">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+@if (showScrollbar) {
+  <div class="pds-scroller__scrollbar" aria-hidden="true">
+    <div class="pds-scroller__trail"></div>
+    <div
+      class="pds-scroller__slider"
+      [style.height.px]="thumbHeight"
+      [style.top.px]="thumbTop"
+      (mousedown)="startDrag($event)"
+    ></div>
+  </div>
+}

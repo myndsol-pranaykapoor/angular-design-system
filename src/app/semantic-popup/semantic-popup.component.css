@@ -1,0 +1,12 @@
+.pds-semantic-popup__illustration {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pds-semantic-popup__illustration img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+}

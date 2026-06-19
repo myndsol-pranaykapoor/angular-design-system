@@ -1,0 +1,32 @@
+<div class="pds-label-container">
+
+  <!-- supporting icon — 16px · only when required -->
+  @if (showSupportingIcon && supportingIcon) {
+    <span
+      class="pds-label-container__icon"
+      [style.backgroundColor]="supportingIconColor"
+      [style.maskImage]="'url(/icons/16px/' + supportingIcon + '.svg)'"
+      [style.webkitMaskImage]="'url(/icons/16px/' + supportingIcon + '.svg)'"
+      aria-hidden="true"
+    ></span>
+  }
+
+  <!-- label — Body Highlight/2 · fills width · truncates -->
+  <span class="pds-label-container__label">{{ label }}</span>
+
+  <!-- optional — Body/2 italic · only when not mandatory -->
+  @if (showOptional) {
+    <span class="pds-label-container__optional">{{ optionalText }}</span>
+  }
+
+  <!-- info icon — 16px · only when extra info to convey -->
+  @if (showInfo) {
+    <span
+      class="pds-label-container__info"
+      [style.maskImage]="'url(/icons/16px/' + infoIcon + '.svg)'"
+      [style.webkitMaskImage]="'url(/icons/16px/' + infoIcon + '.svg)'"
+      aria-hidden="true"
+    ></span>
+  }
+
+</div>

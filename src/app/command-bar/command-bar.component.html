@@ -1,0 +1,72 @@
+<!-- Outer wrapper: fixed position, 60px left offset for sidebar -->
+<div class="pds-command-bar">
+
+  <!-- Inner container: white bg, border-bottom, padding, gap -->
+  <div class="pds-command-bar__container">
+
+    <!-- 1. Back button — tertiary size/1, chevron-left -->
+    <pds-button
+      type="tertiary"
+      [size]="1"
+      content="only-icon"
+      centerIcon="chevron-left"
+      (click)="onBack()"
+    />
+
+    <!-- 2. Page title — Tight Body/3, Grey/7, fills remaining width -->
+    <span class="pds-command-bar__title">{{ title }}</span>
+
+    <!-- 3. Search component -->
+    <pds-search
+      [suggestions]="searchSuggestions"
+      (suggestionSelected)="searchSelected.emit($event)"
+    />
+
+    <!-- 4. Tertiary button 1 — optional -->
+    @if (showTertiary1) {
+      <pds-button
+        type="tertiary"
+        [size]="1"
+        [content]="tertiary1Label ? 'only-text' : 'only-icon'"
+        [centerIcon]="tertiary1Icon"
+        [label]="tertiary1Label"
+        (click)="tertiary1Click.emit()"
+      />
+    }
+
+    <!-- 5. Tertiary button 2 — optional -->
+    @if (showTertiary2) {
+      <pds-button
+        type="tertiary"
+        [size]="1"
+        [content]="tertiary2Label ? 'only-text' : 'only-icon'"
+        [centerIcon]="tertiary2Icon"
+        [label]="tertiary2Label"
+        (click)="tertiary2Click.emit()"
+      />
+    }
+
+    <!-- 6. Secondary button — optional -->
+    @if (showSecondary) {
+      <pds-button
+        type="secondary"
+        [size]="1"
+        content="only-text"
+        [label]="secondaryLabel"
+        (click)="secondaryClick.emit()"
+      />
+    }
+
+    <!-- 7. Primary button — optional -->
+    @if (showPrimary) {
+      <pds-button
+        type="primary"
+        [size]="1"
+        content="only-text"
+        [label]="primaryLabel"
+        (click)="primaryClick.emit()"
+      />
+    }
+
+  </div>
+</div>

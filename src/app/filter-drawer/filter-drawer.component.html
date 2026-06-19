@@ -1,0 +1,64 @@
+<!-- Filter Drawer — full-height overlay · panel slides in from the right edge -->
+<div class="pds-filter-drawer" [class.pds-filter-drawer--open]="visible">
+  <!-- backdrop — Dark/2 -->
+  <div class="pds-filter-drawer__backdrop" (click)="closed.emit()"></div>
+
+  <!-- right-docked panel · padding Spacing/6 top/bottom/right (flush left) -->
+  <div class="pds-filter-drawer__panel">
+    <!-- pop-up-layout fills the panel height (Elevation/3 · Radius/6 · Grey/3 border) -->
+    <pds-popup-layout
+      [visible]="true"
+      [fillParent]="true"
+      [width]="400"
+      [showHeader]="true"
+      [playAreaChrome]="true"
+    >
+  <!-- card-header — supporting icon · title · spacer · button-2 (close) · subtitle -->
+  <pds-card-header
+    [showIcon]="true"
+    [icon]="icon"
+    iconColor="#00ad61"
+    [showTitle]="true"
+    [title]="title"
+    [showSubtitle]="true"
+    [subtitle]="subtitle"
+    [showButton1]="false"
+    [showButton2]="true"
+    [showButton3]="false"
+    [showButton4]="false"
+    button2Type="secondary"
+    button2Icon="x"
+    (button2Click)="closed.emit()"
+  />
+
+  <!-- play-area content — scroll-area · filter-sections separated by lines · gap Spacing/6 -->
+  <div class="pds-filter-drawer__scroll-area">
+    @for (section of sections; track $index) {
+      <pds-filter-section
+        [type]="section.type"
+        [state]="$index === expandedIndex ? 'expanded' : 'collapsed'"
+        [title]="section.title"
+        [options]="section.options ?? []"
+        [inputRows]="section.inputRows ?? []"
+        [searchPlaceholder]="section.searchPlaceholder ?? 'Search'"
+        (stateChange)="onSectionToggle($index, $event)"
+      />
+      <div class="pds-filter-drawer__separator"></div>
+    }
+  </div>
+
+  <!-- card-footer — button-2 (Reset) · button-1 (Apply, fills) -->
+  <pds-card-footer
+    class="pds-filter-drawer__footer"
+    [showButton1]="true"
+    [button1Label]="applyLabel"
+    [showButton2]="true"
+    [button2Label]="resetLabel"
+    [showButton3]="false"
+    [showButton4]="false"
+    (button1Click)="applyClick.emit()"
+    (button2Click)="reset()"
+  />
+    </pds-popup-layout>
+  </div>
+</div>

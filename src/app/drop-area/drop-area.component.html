@@ -1,0 +1,33 @@
+<div
+  class="pds-drop-area"
+  [class.pds-drop-area--hover]="forceHover || dragging"
+  (click)="openFileDialog($event)"
+  (dragenter)="onDragEnter($event)"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+>
+
+  <!-- upload-image — default & hover SVGs, toggled by state -->
+  <div class="pds-drop-area__image">
+    <img class="pds-drop-area__img pds-drop-area__img--default" src="/images/upload-image-default.svg" alt="" aria-hidden="true" />
+    <img class="pds-drop-area__img pds-drop-area__img--hover"   src="/images/upload-image-hover.svg"   alt="" aria-hidden="true" />
+  </div>
+
+  <!-- directions — main + sub -->
+  <div class="pds-drop-area__directions">
+    <p class="pds-drop-area__main">{{ mainPrefix }}<span class="pds-drop-area__link" (click)="openFileDialog($event)">{{ linkLabel }}</span>{{ mainSuffix }}</p>
+    <p class="pds-drop-area__sub">{{ subText }}</p>
+  </div>
+
+  <!-- hidden file input — opened by the CLICK HERE text -->
+  <input
+    #fileInput
+    type="file"
+    class="pds-drop-area__input"
+    [accept]="accept"
+    [multiple]="multiple"
+    (change)="onFilesChosen($event)"
+  />
+
+</div>

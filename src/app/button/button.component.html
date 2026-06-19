@@ -1,0 +1,45 @@
+<button
+  [class]="hostClasses.join(' ')"
+  [disabled]="isDisabled"
+  [attr.aria-disabled]="isDisabled"
+>
+  @if (hasLeftIcon && leftIcon) {
+    <span
+      class="pds-button__icon pds-button__icon--left"
+      [style.maskImage]="'url(' + iconFolder + '/' + leftIcon + '.svg)'"
+      [style.webkitMaskImage]="'url(' + iconFolder + '/' + leftIcon + '.svg)'"
+      aria-hidden="true"
+    ></span>
+  }
+
+  @if (!isOnlyIcon && label) {
+    <span class="pds-button__label">{{ label }}</span>
+  }
+
+  @if (isOnlyIcon && centerIcon) {
+    <span
+      class="pds-button__icon pds-button__icon--center"
+      [style.maskImage]="'url(' + iconFolder + '/' + centerIcon + '.svg)'"
+      [style.webkitMaskImage]="'url(' + iconFolder + '/' + centerIcon + '.svg)'"
+      aria-hidden="true"
+    ></span>
+  }
+
+  @if (hasRightIcon && rightIcon) {
+    <span
+      class="pds-button__icon pds-button__icon--right"
+      [style.maskImage]="'url(' + iconFolder + '/' + rightIcon + '.svg)'"
+      [style.webkitMaskImage]="'url(' + iconFolder + '/' + rightIcon + '.svg)'"
+      aria-hidden="true"
+    ></span>
+  }
+
+  @if (showBadge && !isDisabled) {
+    <pds-alert-badge
+      class="pds-button__badge"
+      [type]="badgeType"
+      [size]="badgeSize"
+      [count]="badgeCount"
+    />
+  }
+</button>

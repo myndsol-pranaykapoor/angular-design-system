@@ -1,0 +1,74 @@
+/* PDS Input Field — label-container · input-area · supporting-message · gap Spacing/1 */
+/* Types: field · drop-down · calendar · attachment · text-area | States: default · value · disabled · error · warning · accepted */
+
+.pds-input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;                                   /* Spacing/1 */
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* ─── SUPPORTING MESSAGE — Tight Body/2 · Grey/6 (default) ─── */
+.pds-input-field__message {
+  margin: 0;
+  width: 100%;
+  font-size: 12px;
+  line-height: 14px;                          /* Tight Body/2 */
+  font-weight: 400;
+  color: #5d5d5d;                             /* Grey/6 */
+}
+
+/* ─── STATE: ERROR — Red/0 bg · Semantic/Error border & message ─── */
+.pds-input-field--error .pds-input-area {
+  background-color: #fff3f3;                  /* Red/0 */
+  border-color: #f44336;                      /* Semantic/Error */
+}
+.pds-input-field--error .pds-input-field__message { color: #f44336; }
+
+/* ─── STATE: WARNING — Orange/0 bg · Semantic/Alert border & message ─── */
+.pds-input-field--warning .pds-input-area {
+  background-color: #fffbf3;                  /* Orange/0 */
+  border-color: #ff9800;                      /* Semantic/Alert */
+}
+.pds-input-field--warning .pds-input-field__message { color: #ff9800; }
+
+/* ─── STATE: ACCEPTED — Green/0 bg · Semantic/Success border & message ─── */
+.pds-input-field--accepted .pds-input-area {
+  background-color: #f8fff9;                  /* Green/0 */
+  border-color: #51b389;                      /* Semantic/Success */
+}
+.pds-input-field--accepted .pds-input-field__message { color: #51b389; }
+
+/* ─── STATE: DISABLED — Grey/2 bg · Grey/5 text ─── */
+.pds-input-field--disabled .pds-input-area {
+  background-color: #efefef;                  /* Grey/2 */
+}
+.pds-input-field--disabled .pds-input-area__input,
+.pds-input-field--disabled .pds-input-area__text {
+  color: #9d9d9d;                             /* Grey/5 */
+  -webkit-text-fill-color: #9d9d9d;           /* keep disabled native input grey */
+}
+
+/* ─── DROP-DOWN / CALENDAR / ATTACHMENT — clickable input-area opens an overlay ─── */
+.pds-input-field--type-drop-down:not(.pds-input-field--disabled) .pds-input-area,
+.pds-input-field--type-calendar:not(.pds-input-field--disabled) .pds-input-area,
+.pds-input-field--type-attachment:not(.pds-input-field--disabled) .pds-input-area {
+  cursor: pointer;
+}
+
+/* backdrop above page content so outside clicks close the overlay */
+.pds-input-field__dropdown-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 401;
+  background: transparent;
+}
+
+/* selector positioned under the input-area (coords supplied by the component) */
+.pds-input-field__dropdown {
+  position: fixed;
+  z-index: 402;
+}

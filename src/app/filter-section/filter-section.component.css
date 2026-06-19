@@ -1,0 +1,133 @@
+/* PDS Filter Section — section-header + (search + list | input-rows) · vertical · gap Spacing/4 */
+
+pds-filter-section { display: block; width: 100%; }
+
+.pds-filter-section {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;                  /* Grey/0 */
+  font-family: 'IBM Plex Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+/* ─── EXPAND / COLLAPSE — smooth height + fade (grid-template-rows 0fr↔1fr) ─── */
+/* header→body gap lives on the header so it animates away to a clean 0 when collapsed */
+.pds-filter-section__header {
+  margin-bottom: 8px;                         /* Spacing/4 */
+  transition: margin-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pds-filter-section--collapsed .pds-filter-section__header {
+  margin-bottom: 0;
+}
+
+.pds-filter-section__body {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease;
+}
+.pds-filter-section--collapsed .pds-filter-section__body {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;                       /* not interactive while collapsed */
+}
+.pds-filter-section__body-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                                   /* Spacing/4 — between search/list/rows */
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pds-filter-section__header,
+  .pds-filter-section__body { transition: none; }
+}
+
+/* ─── SECTION HEADER — title · chip · chevron · gap Spacing/4 · centred ─── */
+.pds-filter-section__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                   /* Spacing/4 */
+  height: 24px;
+  width: 100%;
+}
+
+/* title — Body Highlight/3 (14/20 medium) Grey/7 · fills remaining space */
+.pds-filter-section__title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #3f3f3f;                             /* Grey/7 */
+  word-break: break-word;
+}
+
+/* ─── SEARCH — fills width (override the component's fixed 300px) ─── */
+pds-search.pds-filter-section__search { display: block; width: 100%; }
+.pds-filter-section__search .pds-search { width: 100%; box-sizing: border-box; }
+
+/* ─── LIST — border Grey/3 · Radius/4 (8px) · padding Spacing/4 ─── */
+.pds-filter-section__list {
+  width: 100%;
+  padding: 8px;                               /* Spacing/4 */
+  border: 1px solid #e4e4e4;                  /* Grey/3 */
+  border-radius: 8px;                         /* Radius/4 */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* compact (≤5 options) — list hugs the options, no scroller */
+.pds-filter-section__list--compact .pds-filter-section__list-scroll {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* list-scroll + scroller side-by-side · gap Spacing/4 · 160px tall
+   (keep the component's own inline flex — only set height + gap, never override display) */
+.pds-filter-section__list .pds-filter-section__scroller {
+  height: 160px;
+  width: 100%;
+  gap: 8px;                                   /* Spacing/4 (override default Spacing/6) */
+}
+/* list-scroll fills the width · scroller pinned to the right */
+.pds-filter-section__list .pds-filter-section__scroller .pds-scroller__viewport { flex: 1 1 0; min-width: 0; }
+.pds-filter-section__list .pds-filter-section__scroller .pds-scroller__scrollbar { flex: 0 0 12px; }
+/* no inner padding — filter-options own their Spacing/3 padding */
+.pds-filter-section__list .pds-filter-section__scroller .pds-scroller__content { padding: 0; }
+
+/* ─── FILTER OPTION — checkbox + label · padding Spacing/3 · gap Spacing/3 ─── */
+.pds-filter-section__option {
+  display: flex;
+  align-items: center;
+  gap: 6px;                                   /* Spacing/3 */
+  padding: 6px;                               /* Spacing/3 */
+  border-radius: 4px;                         /* Radius/2 */
+  width: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.pds-filter-section__option:hover { background-color: #f4f5f8; }   /* Secondary/0 */
+
+/* label — Body/2 (12/18 regular) Grey/7 */
+.pds-filter-section__option-label {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #3f3f3f;                             /* Grey/7 */
+  word-break: break-word;
+}
+
+/* ─── INPUT ROW — input-fields · horizontal · gap Spacing/4 ─── */
+.pds-filter-section__input-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;                                   /* Spacing/4 */
+  width: 100%;
+}
+.pds-filter-section__input-row pds-input-field { flex: 1 1 0; min-width: 0; }

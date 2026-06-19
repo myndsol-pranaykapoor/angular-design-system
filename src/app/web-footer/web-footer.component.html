@@ -1,0 +1,38 @@
+<!-- web-footer: horizontal · padding Spacing/6 all sides · gap Spacing/6 · cross-centre -->
+<footer class="pds-web-footer">
+
+  <!-- rights: fills width · h30 · text left-aligned & vertically centred -->
+  <div class="pds-wf__rights">
+    <span class="pds-wf__copy">© {{ year }} <span class="pds-wf__company">{{ companyName }}</span>, {{ rightsSuffix }}</span>
+  </div>
+
+  <!-- powered-by: hug · h30 · tool-logo + text + company-logo · gap Spacing/4 -->
+  <div class="pds-wf__powered">
+    <img
+      class="pds-wf__tool-logo"
+      [src]="toolLogoSrc"
+      [alt]="toolLogoAlt"
+      [style.width.px]="toolLogoWidth"
+      [style.height.px]="toolLogoHeight"
+    />
+    <span class="pds-wf__powered-text">{{ poweredByText }}</span>
+    <img
+      class="pds-wf__company-logo"
+      [src]="companyLogoSrc"
+      [alt]="companyLogoAlt"
+      [style.width.px]="companyLogoWidth"
+      [style.height.px]="companyLogoHeight"
+    />
+  </div>
+
+  <!-- actions: fills width · h30 · two tertiary buttons right-aligned · gap Spacing/6 -->
+  <div class="pds-wf__actions">
+    @if (showAction1) {
+      <pds-button type="tertiary" [size]="1" content="only-text" [label]="action1Label" (click)="action1Click.emit()" />
+    }
+    @if (showAction2) {
+      <pds-button type="tertiary" [size]="1" content="only-text" [label]="action2Label" (click)="action2Click.emit()" />
+    }
+  </div>
+
+</footer>

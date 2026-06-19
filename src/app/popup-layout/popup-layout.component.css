@@ -1,0 +1,96 @@
+/* PDS Pop-up Layout — Radius/6 · Spacing/6 · Elevation/3 · Dark/2 backdrop */
+
+/* ─── BACKDROP — Dark/2 = rgba(0,0,0,0.30) ─── */
+
+.pds-popup__backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.30);   /* Transparency Dark/2 */
+  z-index: 300;
+}
+
+/* ─── CONTAINER ─── */
+
+.pds-popup__container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 301;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;                                /* Spacing/6 */
+  padding: 12px;                            /* Spacing/6 all sides */
+  box-sizing: border-box;
+
+  background-color: #ffffff;               /* Grey/0 */
+  border: 1px solid #e4e4e4;               /* Grey/3 */
+  border-radius: 12px;                     /* Radius/6 */
+  box-shadow:                              /* Elevation/3 */
+    0px 4px 6px rgba(0, 0, 0, 0.12),
+    0px 4px 8px -1px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── HEADER ─── */
+
+.pds-popup__header {
+  flex-shrink: 0;
+}
+
+/* ─── PLAY AREA — customisable content zone ─── */
+
+.pds-popup__play-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 12px;                           /* Spacing/6 */
+  border: 1px solid #e4e4e4;               /* Grey/3 */
+  border-radius: 8px;                      /* Radius/4 */
+  box-sizing: border-box;
+}
+
+/* Auto-height mode — container hugs content, play-area sizes to content (no flex, no scroll) */
+.pds-popup__container--auto-height .pds-popup__play-area {
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+/* Auto-width mode — container hugs content horizontally */
+.pds-popup__container--auto-width {
+  width: max-content;
+}
+
+/* No-chrome mode — play-area has no border/padding (custom content provides its own) */
+.pds-popup__play-area--no-chrome {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+/* Anchored mode — positioned at supplied top/left (no centring), transparent backdrop */
+.pds-popup__container--anchored {
+  transform: none;
+}
+
+/* Fill-parent mode — relative, fills the host's height (e.g. a docked drawer panel) */
+.pds-popup__container--fill-parent {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  height: 100%;
+  max-height: 100%;
+  z-index: auto;
+}
+
+.pds-popup__backdrop--transparent {
+  background-color: transparent;
+}
+
+/* ─── FOOTER ─── */
+
+.pds-popup__footer {
+  flex-shrink: 0;
+}

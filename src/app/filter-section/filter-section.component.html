@@ -1,0 +1,79 @@
+<!-- section-header — title · chip-tag · chevron button · horizontal · gap Spacing/4 -->
+<div class="pds-filter-section__header">
+  <span class="pds-filter-section__title">{{ title }}</span>
+
+  @if (displayChip) {
+    <pds-chip-tag
+      type="border"
+      [size]="0"
+      [label]="countChip"
+      [showAction]="true"
+      (actionClick)="clearSelection()"
+    />
+  }
+
+  <pds-button
+    type="tertiary"
+    [size]="0"
+    content="only-icon"
+    [centerIcon]="isExpanded ? 'chevron-up' : 'chevron-down'"
+    (click)="toggleExpand()"
+  />
+</div>
+
+<!-- animated expand/collapse area — height/opacity transition via grid-template-rows -->
+<div class="pds-filter-section__body">
+  <div class="pds-filter-section__body-inner">
+    @if (type === 'multi-selection') {
+      <!-- shared filter-options loop -->
+      <ng-template #optionsList>
+        @for (option of options; track $index) {
+          <div class="pds-filter-section__option" (click)="toggleOption($index)">
+            <pds-checkbox [size]="0" [type]="option.checked ? 'checked' : 'cleared'" />
+            <span class="pds-filter-section__option-label">{{ option.label }}</span>
+          </div>
+        }
+      </ng-template>
+
+      <!-- search — hidden in compact mode (≤5 options) -->
+      @if (!compact) {
+        <pds-search
+          class="pds-filter-section__search"
+          [placeholder]="searchPlaceholder"
+          [suggestions]="optionLabels"
+          (search)="search.emit($event)"
+          (suggestionSelected)="onSuggestionSelected($event)"
+        />
+      }
+
+      <!-- list — padding Spacing/4 · compact hugs height (no scroller) -->
+      <div class="pds-filter-section__list" [class.pds-filter-section__list--compact]="compact">
+        @if (compact) {
+          <div class="pds-filter-section__list-scroll">
+            <ng-container [ngTemplateOutlet]="optionsList" />
+          </div>
+        } @else {
+          <pds-scroller class="pds-filter-section__scroller" layout="inline">
+            <ng-container [ngTemplateOutlet]="optionsList" />
+          </pds-scroller>
+        }
+      </div>
+    } @else {
+      <!-- input-rows — each row: input-fields · horizontal · gap Spacing/4 -->
+      @for (row of inputRows; track $index) {
+        <div class="pds-filter-section__input-row">
+          @for (field of row; track $index) {
+            <pds-input-field
+              [type]="field.type"
+              [state]="field.state ?? (field.value ? 'value' : 'default')"
+              [label]="field.label"
+              [value]="field.value ?? ''"
+              [placeholder]="field.placeholder ?? ''"
+              (valueChange)="onFieldValueChange(field, $event)"
+            />
+          }
+        </div>
+      }
+    }
+  </div>
+</div>

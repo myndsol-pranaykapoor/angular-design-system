@@ -1,0 +1,33 @@
+<div
+  [class]="hostClasses.join(' ')"
+  [style.backgroundColor]="type !== 'image' ? color : null"
+>
+  @if (type === 'icon') {
+    <span
+      class="pds-profile-avatar__icon"
+      [style.maskImage]="'url(' + iconFolder + '/' + icon + '.svg)'"
+      [style.webkitMaskImage]="'url(' + iconFolder + '/' + icon + '.svg)'"
+      aria-hidden="true"
+    ></span>
+  }
+
+  @if (type === 'credentials') {
+    <span class="pds-profile-avatar__initials" aria-label="initials">
+      {{ resolvedInitials }}
+    </span>
+  }
+
+  @if (type === 'image') {
+    <img
+      class="pds-profile-avatar__image"
+      [src]="imageSrc"
+      alt="profile avatar"
+    />
+  }
+
+  @if (showBadge) {
+    <span class="pds-profile-avatar__badge-wrap">
+      <pds-alert-badge type="alert-indicator" [size]="0" />
+    </span>
+  }
+</div>

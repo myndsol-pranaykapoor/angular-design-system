@@ -1,0 +1,55 @@
+<div class="pds-card-footer">
+
+  <!-- Button 4 — Tertiary (optional left icon) -->
+  @if (showButton4) {
+    <pds-button
+      type="tertiary"
+      [size]="0"
+      [content]="button4LeftIcon ? 'left-icon' : 'only-text'"
+      [label]="button4Label"
+      [leftIcon]="button4LeftIcon"
+      [disabled]="disabledButton4"
+      (click)="button4Click.emit()"
+    />
+  }
+
+  <!-- Button 3 — Tertiary -->
+  @if (showButton3) {
+    <pds-button
+      type="tertiary"
+      [size]="0"
+      content="only-text"
+      [label]="button3Label"
+      [disabled]="disabledButton3"
+      (click)="button3Click.emit()"
+    />
+  }
+
+  <!-- Spacer -->
+  <span class="pds-card-footer__spacer"></span>
+
+  <!-- Button 2 — Secondary -->
+  @if (showButton2) {
+    <pds-button
+      type="secondary"
+      [size]="0"
+      content="only-text"
+      [label]="button2Label"
+      [disabled]="disabledButton2"
+      (click)="button2Click.emit()"
+    />
+  }
+
+  <!-- Button 1 — Primary -->
+  @if (showButton1) {
+    <pds-button
+      type="primary"
+      [size]="0"
+      content="only-text"
+      [label]="button1Label"
+      [disabled]="disabledButton1"
+      (click)="button1Click.emit()"
+    />
+  }
+
+</div>
