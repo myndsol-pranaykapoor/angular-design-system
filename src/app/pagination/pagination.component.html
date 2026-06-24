@@ -1,0 +1,79 @@
+<!-- items-per-page: View [10 ˅] items per page -->
+<div class="pds-pagination__items-per-page">
+  <span class="pds-pagination__label">View</span>
+
+  <button
+    #sizeBtnRef
+    type="button"
+    class="pds-pagination__size-btn"
+    (click)="toggleSizeDropdown()"
+  >
+    <span class="pds-pagination__size-value">{{ pageSize }}</span>
+    <span class="pds-pagination__size-chevron"></span>
+  </button>
+
+  <span class="pds-pagination__label">items per page</span>
+</div>
+
+<!-- showing-out-of-total: fills remaining width -->
+<div class="pds-pagination__showing">{{ showingText }}</div>
+
+<!-- pagination-numbers: prev · page buttons · next -->
+<div class="pds-pagination__numbers">
+  <button
+    type="button"
+    class="pds-pagination__nav"
+    [class.pds-pagination__nav--disabled]="currentPage === 1"
+    [disabled]="currentPage === 1"
+    (click)="prevPage()"
+    aria-label="Previous page"
+  >
+    <span class="pds-pagination__nav-icon pds-pagination__nav-icon--prev"></span>
+  </button>
+
+  @for (p of visiblePages; track $index) {
+    @if (p === '...') {
+      <span class="pds-pagination__ellipsis">···</span>
+    } @else {
+      <button
+        type="button"
+        class="pds-pagination__page"
+        [class.pds-pagination__page--selected]="p === currentPage"
+        (click)="goToPage(+p)"
+        [attr.aria-current]="p === currentPage ? 'page' : null"
+      >{{ p }}</button>
+    }
+  }
+
+  <button
+    type="button"
+    class="pds-pagination__nav"
+    [class.pds-pagination__nav--disabled]="currentPage === totalPages"
+    [disabled]="currentPage === totalPages"
+    (click)="nextPage()"
+    aria-label="Next page"
+  >
+    <span class="pds-pagination__nav-icon pds-pagination__nav-icon--next"></span>
+  </button>
+</div>
+
+<!-- pds-selector overlay — opens above the size button, fixed-positioned -->
+@if (sizeDropdownOpen) {
+  <div
+    class="pds-pagination__size-overlay"
+    [style.top.px]="dropdownTop"
+    [style.left.px]="dropdownLeft"
+    [style.width.px]="dropdownWidth"
+    (mousedown)="$event.stopPropagation()"
+  >
+    <pds-selector
+      [options]="selectorOptions"
+      [width]="dropdownWidth"
+      [showCheckbox]="false"
+      [showAvatar]="false"
+      [showIcon]="false"
+      (selectionChange)="onSizeSelected($event)"
+    />
+  </div>
+  <div class="pds-pagination__backdrop" (click)="closeSizeDropdown()"></div>
+}

@@ -1,0 +1,108 @@
+<!-- TYPE: PROFILE — avatar · name · dropdown button -->
+@if (type === 'profile') {
+  <pds-profile-avatar
+    [type]="avatarSrc ? 'image' : 'credentials'"
+    [size]="0"
+    [imageSrc]="avatarSrc"
+    [initials]="avatarInitials"
+    [showBadge]="false"
+  />
+  <span class="pds-data-row-tab__name">{{ userName }}</span>
+  @if (showDropdown) {
+    <button type="button" class="pds-data-row-tab__icon-btn" (click)="dropdownClick.emit()" aria-label="Open dropdown">
+      <span class="pds-data-row-tab__icon" style="mask-image: url('/icons/16px/chevron-down.svg'); -webkit-mask-image: url('/icons/16px/chevron-down.svg');"></span>
+    </button>
+  }
+}
+
+<!-- TYPE: TEXT — plain text fills width -->
+@if (type === 'text') {
+  <span class="pds-data-row-tab__text">{{ text }}</span>
+}
+
+<!-- TYPE: FIELD — input-area fills width -->
+@if (type === 'field') {
+  <pds-input-area
+    class="pds-data-row-tab__field"
+    [value]="fieldValue"
+    [placeholder]="fieldPlaceholder"
+    [supportingIcon]="fieldSupportingIcon"
+  />
+}
+
+<!-- TYPE: ACTIONS — switch · radio · checkbox · 6 icon buttons -->
+@if (type === 'actions') {
+  @if (showSwitch) {
+    <pds-switch [size]="0" [on]="_switchOn" (switched)="onSwitchToggle($event)" />
+  }
+  @if (showRadio) {
+    <pds-radio [size]="0" [selected]="_radioSelected" (changed)="onRadioToggle()" />
+  }
+  @if (showCheckbox) {
+    <pds-checkbox [size]="0" [type]="_checkboxType" (changed)="onCheckboxToggle($event)" />
+  }
+  @if (showDownload) {
+    <button type="button" class="pds-data-row-tab__icon-btn" (click)="downloadClick.emit()" aria-label="Download">
+      <span class="pds-data-row-tab__icon" style="mask-image: url('/icons/16px/download.svg'); -webkit-mask-image: url('/icons/16px/download.svg');"></span>
+    </button>
+  }
+  @if (showEdit) {
+    <button type="button" class="pds-data-row-tab__icon-btn" (click)="editClick.emit()" aria-label="Edit">
+      <span class="pds-data-row-tab__icon" style="mask-image: url('/icons/16px/edit.svg'); -webkit-mask-image: url('/icons/16px/edit.svg');"></span>
+    </button>
+  }
+  @if (showView) {
+    <button type="button" class="pds-data-row-tab__icon-btn" (click)="viewClick.emit()" aria-label="View">
+      <span class="pds-data-row-tab__icon" style="mask-image: url('/icons/16px/eye.svg'); -webkit-mask-image: url('/icons/16px/eye.svg');"></span>
+    </button>
+  }
+  @if (showExternalLink) {
+    <button type="button" class="pds-data-row-tab__icon-btn" (click)="externalLinkClick.emit()" aria-label="Open in new tab">
+      <span class="pds-data-row-tab__icon" style="mask-image: url('/icons/16px/external-link.svg'); -webkit-mask-image: url('/icons/16px/external-link.svg');"></span>
+    </button>
+  }
+  @if (showTrash) {
+    <button type="button" class="pds-data-row-tab__icon-btn" (click)="trashClick.emit()" aria-label="Delete">
+      <span class="pds-data-row-tab__icon" style="mask-image: url('/icons/16px/trash-2.svg'); -webkit-mask-image: url('/icons/16px/trash-2.svg');"></span>
+    </button>
+  }
+  @if (showMoreActions) {
+    <button type="button" class="pds-data-row-tab__icon-btn" (click)="moreActionsClick.emit()" aria-label="More actions">
+      <span class="pds-data-row-tab__icon" style="mask-image: url('/icons/16px/more-horizontal.svg'); -webkit-mask-image: url('/icons/16px/more-horizontal.svg');"></span>
+    </button>
+  }
+}
+
+<!-- TYPE: CHIP TAG — Approved · Reconsidered · Rejected -->
+@if (type === 'chip-tag') {
+  @if (showApproved) {
+    <pds-chip-tag
+      type="border"
+      [size]="0"
+      colorScheme="success"
+      label="Approved"
+      [showSupportingIcon]="true"
+      supportingIcon="check-inside-circle"
+    />
+  }
+  @if (showReconsidered) {
+    <pds-chip-tag
+      type="border"
+      [size]="0"
+      colorScheme="alert"
+      label="Reconsidered"
+      [showSupportingIcon]="true"
+      supportingIcon="alert-triangle"
+    />
+  }
+  @if (showRejected) {
+    <pds-chip-tag
+      type="border"
+      [size]="0"
+      colorScheme="error"
+      label="Rejected"
+      [showSupportingIcon]="true"
+      supportingIcon="x-circle"
+    />
+  }
+}

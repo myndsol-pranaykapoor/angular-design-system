@@ -1,0 +1,25 @@
+@for (tab of tabs; track $index) {
+  <pds-data-row-tab
+    [type]="tab.type"
+    [avatarSrc]="tab.avatarSrc ?? ''"
+    [avatarInitials]="tab.avatarInitials ?? 'PK'"
+    [userName]="tab.userName ?? 'Pranay Kapoor'"
+    [showDropdown]="tab.showDropdown ?? true"
+    [text]="tab.text ?? 'Text appear like this.'"
+    [fieldValue]="tab.fieldValue ?? ''"
+    [fieldPlaceholder]="tab.fieldPlaceholder ?? 'Select date'"
+    [fieldSupportingIcon]="tab.fieldSupportingIcon ?? 'calendar'"
+    [showSwitch]="tab.showSwitch ?? true"
+    [showRadio]="tab.showRadio ?? true"
+    [showCheckbox]="tab.showCheckbox ?? true"
+    [showDownload]="tab.showDownload ?? true"
+    [showEdit]="tab.showEdit ?? true"
+    [showView]="tab.showView ?? true"
+    [showExternalLink]="tab.showExternalLink ?? true"
+    [showTrash]="tab.showTrash ?? true"
+    [showMoreActions]="tab.showMoreActions ?? true"
+    [showApproved]="tab.showApproved ?? true"
+    [showReconsidered]="tab.showReconsidered ?? true"
+    [showRejected]="tab.showRejected ?? true"
+  />
+}

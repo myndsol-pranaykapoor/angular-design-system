@@ -1,0 +1,103 @@
+/* PDS Data Row Tab — 34px fixed height · Spacing/4 (8px) L/R padding · gap Spacing/4 */
+
+.pds-data-row-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                    /* Spacing/4 */
+  height: 34px;
+  padding: 0 8px;                              /* Spacing/4 left & right only */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ── COLUMN FLEX — for standalone use (outside pds-table grid) ── */
+
+/* actions: shrinks to content width (checkbox-only or icon buttons) */
+.pds-data-row-tab--actions { flex-shrink: 0; }
+
+/* data columns: fill remaining space equally */
+.pds-data-row-tab--profile,
+.pds-data-row-tab--text,
+.pds-data-row-tab--field,
+.pds-data-row-tab--chip-tag { flex: 1; min-width: 0; }
+
+/* inside pds-table grid — fill the full grid cell width */
+.pds-table__dcell { width: 100%; min-width: 0; }
+
+/* ── PROFILE TYPE ──────────────────────────────────────────────── */
+
+.pds-data-row-tab__name {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #3f3f3f;                              /* Grey/7 */
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── TEXT TYPE ─────────────────────────────────────────────────── */
+
+.pds-data-row-tab__text {
+  flex: 1;
+  min-width: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #3f3f3f;                              /* Grey/7 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── FIELD TYPE ────────────────────────────────────────────────── */
+
+.pds-data-row-tab__field {
+  flex: 1;
+  min-width: 0;
+}
+
+/* make the inner input-area fill available width */
+.pds-data-row-tab__field .pds-input-area {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── ICON BUTTONS (profile dropdown · action buttons) ─────────── */
+
+.pds-data-row-tab__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 6px;                          /* Radius/3 */
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  color: var(--pds-primary-3);               /* tertiary button default */
+}
+
+.pds-data-row-tab__icon-btn:hover {
+  background-color: var(--pds-primary-1);    /* tertiary hover bg */
+  color: var(--pds-primary-4);              /* tertiary hover icon */
+}
+
+.pds-data-row-tab__icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+/* chip-tag type uses pds-chip-tag component — no local styles needed */

@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* ============================================================
+   PDS Primary Colour Themes
+   Seven products share the design system; each swaps the
+   --pds-primary-0..5 custom properties. Set the active theme
+   with  data-pds-theme="<product>"  on <html> (or any ancestor).
+   Default (no attribute) = ACT.
+   ============================================================ */
+
+:root,
+[data-pds-theme="act"] {
+  --pds-primary-0: #f6fcf9;
+  --pds-primary-1: #b0e6ce;
+  --pds-primary-2: #54c895;
+  --pds-primary-3: #00ad61;
+  --pds-primary-4: #007b45;
+  --pds-primary-5: #004929;
+}
+
+[data-pds-theme="hrx"] {
+  --pds-primary-0: #fdf8f7;
+  --pds-primary-1: #f7d4d1;
+  --pds-primary-2: #eea39b;
+  --pds-primary-3: #e5756a;
+  --pds-primary-4: #a3534b;
+  --pds-primary-5: #60312d;
+}
+
+[data-pds-theme="talkx"] {
+  --pds-primary-0: #fbfaf3;
+  --pds-primary-1: #e5e1b9;
+  --pds-primary-2: #c7bf67;
+  --pds-primary-3: #ac9f1c;
+  --pds-primary-4: #7a7114;
+  --pds-primary-5: #48430c;
+}
+
+[data-pds-theme="leasex"] {
+  --pds-primary-0: #fffcf6;
+  --pds-primary-1: #fbecc7;
+  --pds-primary-2: #f7d586;
+  --pds-primary-3: #f3c14a;
+  --pds-primary-4: #ad8935;
+  --pds-primary-5: #66511f;
+}
+
+[data-pds-theme="travelx"] {
+  --pds-primary-0: #f9f8ff;
+  --pds-primary-1: #ded6fe;
+  --pds-primary-2: #b8a7fd;
+  --pds-primary-3: #957cfc;
+  --pds-primary-4: #6a58b3;
+  --pds-primary-5: #3f346a;
+}
+
+[data-pds-theme="spendx"] {
+  --pds-primary-0: #f3fcfb;
+  --pds-primary-1: #b5ebe6;
+  --pds-primary-2: #5fd3c8;
+  --pds-primary-3: #10bead;
+  --pds-primary-4: #0b877b;
+  --pds-primary-5: #075049;
+}
+
+[data-pds-theme="apx"] {
+  --pds-primary-0: #f7f9f6;
+  --pds-primary-1: #cbdbc6;
+  --pds-primary-2: #8eb283;
+  --pds-primary-3: #578c46;
+  --pds-primary-4: #3e6332;
+  --pds-primary-5: #253b1d;
+}

@@ -16,7 +16,7 @@ pds-radio { display: flex; }
 }
 
 .pds-radio:focus-visible {
-  outline: 2px solid #00ad61;  /* Primary/3 */
+  outline: 2px solid var(--pds-primary-3);  /* Primary/3 */
   outline-offset: 3px;
 }
 
@@ -36,15 +36,15 @@ pds-radio { display: flex; }
 .pds-radio--cleared,
 .pds-radio--selected {
   background-color: #ffffff;   /* Grey/0 */
-  border-color: #00ad61;       /* Primary/3 */
+  border-color: var(--pds-primary-3);       /* Primary/3 */
 }
 
 /* ─── HOVER STATE — border: Primary/4, bg: Primary/1 ─── */
 
 .pds-radio--cleared:hover:not(:disabled):not(.pds-radio--disabled),
 .pds-radio--selected:hover:not(:disabled):not(.pds-radio--disabled) {
-  background-color: #b0e6ce;   /* Primary/1 */
-  border-color: #007b45;       /* Primary/4 */
+  background-color: var(--pds-primary-1);   /* Primary/1 */
+  border-color: var(--pds-primary-4);       /* Primary/4 */
 }
 
 /* ─── DISABLED STATE — border: Grey/5, bg: Grey/4 ─── */
@@ -65,7 +65,7 @@ pds-radio { display: flex; }
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 9999px;       /* Radius/Full */
-  background-color: #00ad61;   /* Primary/3 — default */
+  background-color: var(--pds-primary-3);   /* Primary/3 — default */
   transition: background-color 0.15s ease;
 }
 
@@ -78,7 +78,7 @@ pds-radio { display: flex; }
 
 /* Hover — dot: Primary/4 */
 .pds-radio--selected:hover:not(:disabled):not(.pds-radio--disabled) .pds-radio__dot {
-  background-color: #007b45;   /* Primary/4 */
+  background-color: var(--pds-primary-4);   /* Primary/4 */
 }
 
 /* Disabled — dot: Grey/5 */

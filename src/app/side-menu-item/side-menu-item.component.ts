@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'pds-side-menu-item',
@@ -29,6 +30,8 @@ export class SideMenuItemComponent {
 
   isHovered = false;
 
+  private readonly themeService = inject(ThemeService);
+
   get hostClasses(): Record<string, boolean> {
     return {
       'pds-side-menu-item': true,
@@ -43,9 +46,12 @@ export class SideMenuItemComponent {
     return `/icons/16px/${this.icon}.svg`;
   }
 
-  /** Dual-colour SVG used for default & default-hover states (preserves Primary/3 + Secondary/3) */
+  /** Dual-colour SVG used for default & default-hover states (preserves themed Primary/3 + Secondary/3).
+   *  ACT (default) lives at the top level; other products in a per-theme folder. */
   get dualIconPath(): string {
-    return `/dual-colour-icons/16px/${this.icon}.svg`;
+    const theme = this.themeService.theme();
+    const base = theme === 'act' ? '/dual-colour-icons' : `/dual-colour-icons/${theme}`;
+    return `${base}/16px/${this.icon}.svg`;
   }
 
   get chevronPath(): string {

@@ -1,0 +1,84 @@
+/* PDS Section Header — size/1 buttons (30px) · icon 24px · same token set as card-header */
+
+.pds-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* ─── MAIN ROW — height 30px matches size/1 button height ─── */
+
+.pds-section-header__main-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;                /* size/1 button height — title (26px) fits within */
+  gap: 12px;                   /* Spacing/6 */
+  width: 100%;
+}
+
+/* ─── ICON + TITLE GROUP ─── */
+
+.pds-section-header__icon-title {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;                    /* Spacing/4 */
+  flex-shrink: 0;
+}
+
+.pds-section-header__icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 24px;                 /* 24px — larger than card-header's 20px */
+  height: 24px;
+  background-color: var(--pds-primary-3);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.pds-section-header__title {
+  font-size: 20px;             /* Heading/3 */
+  line-height: 26px;
+  font-weight: 600;            /* SemiBold */
+  color: #5d5d5d;              /* Grey/6 */
+  white-space: nowrap;
+}
+
+/* ─── SPACERS ─── */
+
+.pds-section-header__spacer {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.pds-section-header__main-row--space-between {
+  justify-content: space-between;
+  gap: 0;
+}
+
+.pds-section-header__main-row--space-between .pds-section-header__spacer {
+  display: none;
+}
+
+/* ─── SUBTITLE ROW ─── */
+
+.pds-section-header__subtitle {
+  display: block;
+  height: 20px;
+  font-size: 14px;             /* Body/3 */
+  line-height: 20px;
+  font-weight: 400;            /* Regular */
+  color: #9d9d9d;              /* Grey/5 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

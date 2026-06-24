@@ -1,0 +1,33 @@
+/* PDS Heading Column Title — 38px · Secondary/0 bg · Spacing/4 L/R padding */
+
+.pds-heading-column-title {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 8px;                          /* Spacing/4 left & right only */
+  box-sizing: border-box;
+  background-color: #f4f5f8;               /* Secondary/0 */
+  overflow: hidden;
+}
+
+/* shrink — hugs content (standalone flex use: checkbox column or actions-label column) */
+.pds-heading-column-title--shrink { flex-shrink: 0; }
+
+/* grow — fills available column width (standalone flex use) */
+.pds-heading-column-title--grow { flex: 1; min-width: 0; }
+
+/* inside pds-table grid — fill the full grid cell width */
+.pds-table__hcell { width: 100%; min-width: 0; }
+
+.pds-heading-column-title__label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;                        /* Body Highlight/2 — Medium */
+  line-height: 18px;
+  color: #3f3f3f;                          /* Grey/7 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}

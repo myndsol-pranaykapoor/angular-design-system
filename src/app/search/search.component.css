@@ -68,14 +68,14 @@
 /* ─── HOVER STATE ─── */
 
 .pds-search--hover:not(.pds-search--selected) {
-  background-color: #f6fcf9;       /* Primary/0 */
-  border-color: #00ad61;           /* Primary/3 */
+  background-color: var(--pds-primary-0);       /* Primary/0 */
+  border-color: var(--pds-primary-3);           /* Primary/3 */
 }
 
 /* ─── SELECTED STATE ─── */
 
 .pds-search--selected {
-  border-color: #00ad61;           /* Primary/3 */
+  border-color: var(--pds-primary-3);           /* Primary/3 */
   background-color: #ffffff;       /* Grey/0 */
 }
 

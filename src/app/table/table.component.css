@@ -1,0 +1,45 @@
+/* PDS Table — outer border #e0e3eb · Radius/4 · overflow hidden */
+
+.pds-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #e4e4e4;             /* Grey/3 */
+  border-radius: 8px;
+}
+
+/* ── SHARED GRID — header + data cells as siblings, columns auto-align ── */
+
+.pds-table__grid {
+  display: grid;
+  /* grid-template-columns set via [style] binding from colsTemplate */
+  row-gap: 0;
+  background-color: #ffffff;             /* Grey/0 */
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 400px;
+  align-content: start;                 /* rows stay natural height; empty space below */
+}
+
+/* ── HEADER CELLS — sticky · inside-stroke border as separator ── */
+
+.pds-table__hcell {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  /* transparent top + Grey/3 bottom: inside stroke, total height stays 38px */
+  box-shadow: inset 0 1px 0 transparent, inset 0 -1px 0 #e4e4e4;
+}
+
+/* ── DATA CELLS — border-bottom as 1px row divider (box-sizing keeps height 34px) ── */
+
+.pds-table__dcell {
+  background-color: #ffffff;             /* Grey/0 — default row */
+  border-bottom: 1px solid #e4e4e4;     /* Grey/3 row divider */
+  box-sizing: border-box;               /* border included in 34px — equal 17px to both grey lines */
+}
+
+.pds-table__dcell--hover {
+  background-color: var(--pds-primary-0); /* Primary/0 — hover row */
+}

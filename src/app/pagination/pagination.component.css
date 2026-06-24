@@ -1,0 +1,202 @@
+/* PDS Pagination — 38px · top border Grey/3 · bottom border transparent · Spacing/6 L/R padding */
+
+.pds-pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;                              /* Spacing/6 */
+  height: 38px;
+  padding: 0 12px;                        /* Spacing/6 left & right only */
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-top: 1px solid #e4e4e4;         /* Grey/3 */
+  border-bottom: 1px solid transparent;  /* compensates centre alignment */
+}
+
+/* ── ITEMS PER PAGE ────────────────────────────────────────────── */
+
+.pds-pagination__items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 8px;                              /* Spacing/4 */
+  flex: 1;                               /* fills equal third of pagination width */
+}
+
+.pds-pagination__label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #3f3f3f;                        /* Grey/7 */
+  white-space: nowrap;
+}
+
+.pds-pagination__size-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px 0 10px;
+  border: 1.25px solid var(--pds-primary-3);
+  border-radius: 6px;                    /* Radius/3 */
+  background: transparent;
+  cursor: pointer;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: var(--pds-primary-3);
+}
+
+.pds-pagination__size-btn:hover {
+  background-color: var(--pds-primary-0);
+}
+
+.pds-pagination__size-chevron {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: var(--pds-primary-3);
+  mask-image: url('/icons/16px/chevron-down.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url('/icons/16px/chevron-down.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  flex-shrink: 0;
+}
+
+/* pds-selector overlay — fixed-positioned, opens above the trigger button */
+.pds-pagination__size-overlay {
+  position: fixed;
+  transform: translateY(-100%);
+  z-index: 300;
+}
+
+/* ── SHOWING OUT OF TOTAL ──────────────────────────────────────── */
+
+.pds-pagination__showing {
+  flex: 1;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #3f3f3f;                        /* Grey/7 */
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ── PAGINATION NUMBERS ────────────────────────────────────────── */
+
+.pds-pagination__numbers {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;             /* right-aligns page buttons within filled width */
+  gap: 2px;
+  flex: 1;                               /* fills equal third of pagination width */
+}
+
+/* prev / next icon buttons */
+.pds-pagination__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1.25px solid var(--pds-primary-3);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pds-pagination__nav:hover:not(.pds-pagination__nav--disabled) {
+  background-color: var(--pds-primary-0);
+}
+
+.pds-pagination__nav--disabled {
+  border-color: #e4e4e4;                 /* Grey/3 */
+  cursor: default;
+}
+
+.pds-pagination__nav-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: var(--pds-primary-3);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.pds-pagination__nav--disabled .pds-pagination__nav-icon {
+  background-color: #9d9d9d;            /* Grey/5 */
+}
+
+.pds-pagination__nav-icon--prev {
+  mask-image: url('/icons/16px/chevron-left.svg');
+  -webkit-mask-image: url('/icons/16px/chevron-left.svg');
+}
+
+.pds-pagination__nav-icon--next {
+  mask-image: url('/icons/16px/chevron-right.svg');
+  -webkit-mask-image: url('/icons/16px/chevron-right.svg');
+}
+
+/* page number buttons — tertiary until selected */
+.pds-pagination__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: var(--pds-primary-3);             /* tertiary default */
+}
+
+.pds-pagination__page:hover:not(.pds-pagination__page--selected) {
+  background-color: var(--pds-primary-1);  /* tertiary hover bg */
+  color: var(--pds-primary-4);             /* tertiary hover text */
+}
+
+.pds-pagination__page--selected {
+  background-color: var(--pds-primary-3);
+  border-color: var(--pds-primary-3);
+  color: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.10), 0px 2px 6px -1px rgba(0,0,0,0.06); /* Elevation/2 */
+  cursor: default;
+}
+
+/* ellipsis between page groups */
+.pds-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #9d9d9d;                        /* Grey/5 */
+  letter-spacing: 0.1em;
+}
+
+/* ── BACKDROP — closes size dropdown on outside click ──────────── */
+
+.pds-pagination__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+}

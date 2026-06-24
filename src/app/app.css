@@ -1,34 +1,104 @@
 * { margin: 0; padding: 0; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ─── Theme switcher — fixed bottom-right · swaps primary-colour set ─── */
+.ds-theme-switcher {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: #ffffff;
+  border: 1px solid #e4e4e4;          /* Grey/3 */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.08);
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+.ds-theme-switcher__label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #9d9d9d;                     /* Grey/5 */
+  margin-right: 2px;
+}
+.ds-theme-switcher__btn {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #5d5d5d;                     /* Grey/6 */
+  background: #f4f5f8;                /* Secondary/0 */
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.ds-theme-switcher__btn:hover {
+  border-color: var(--pds-primary-3);
+}
+.ds-theme-switcher__btn--active {
+  color: #ffffff;
+  background: var(--pds-primary-3);   /* live preview of the active theme */
+  border-color: var(--pds-primary-3);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
 app-root {
   display: block;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* The fixed-position layout components are inline custom elements by default;
+   without this, their inline line-height pushes .ds-main ~17px below where it should sit. */
+pds-side-menu,
+pds-web-header,
+pds-command-bar {
+  display: contents;
 }
 
 body {
   font-family: 'IBM Plex Sans', sans-serif;
-  background: #f6fcf9;             /* Primary/0 */
+  background: var(--pds-primary-0);             /* Primary/0 */
   color: #262626;
 }
 
-/* ── PREVIEW SHELL — fills viewport, scrolls vertically ── */
+/* ── PREVIEW SHELL — fixed-positioned to viewport, grid pins .ds-main precisely ── */
+/* position:fixed + inset:0 → .ds-preview is exactly 100vw × 100vh, pinned to top-left */
+/* Grid: col 1 (56px) = side-menu zone · row 1 (126px) = web-header (42) + command-bar (42) + top-nav-bar (42) zone */
 .ds-preview {
-  min-height: 100vh;
-  background: #f6fcf9;             /* Primary/0 */
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  grid-template-rows: 126px 1fr;
+  background: var(--pds-primary-0);             /* Primary/0 */
+  overflow-y: auto;                /* internal scroll for content longer than viewport */
+  overflow-x: hidden;
 }
 
-/* ── BODY — scrollable area with sections ── */
-/* Web-header (42px) + Command-bar (42px) = 84px top offset · Side-menu collapsed = 56px left offset */
-/* Gap: spacing/0 with collapsed side menu, command bar, and right edge */
-/* Inner padding: spacing/6 (12px) on all sides */
+/* ── BODY — pinned to column 2 / row 2 of .ds-preview's grid ── */
+/* Top-left at exact (56, 128) · 12px Spacing/6 padding all sides */
 .ds-main {
-  margin-top: 84px;                /* 42px web-header + 42px command-bar */
-  margin-left: 56px;               /* collapsed side-menu width */
+  grid-column: 2;
+  grid-row: 2;
+  min-width: 0;                    /* allow grid item to shrink below content intrinsic width */
+  margin: 0;                       /* no margins → no collapse, no inline jitter */
   padding: 12px;                   /* Spacing/6 on all sides */
   display: flex;
   flex-direction: column;
   gap: 12px;                       /* Spacing/6 between body-sections */
-  background: #f6fcf9;             /* Primary/0 */
+  background: var(--pds-primary-0);             /* Primary/0 */
 }
 
 /* ── PAGE HEADER — currently hidden, body-sections take over ── */
@@ -40,7 +110,7 @@ body {
 .ds-page-title {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 34px;
   color: #262626;
 }
@@ -64,6 +134,7 @@ body {
   background: #ffffff;             /* Grey/0 */
   border: 1px solid #e4e4e4;       /* Grey/3 */
   border-radius: 12px;             /* Radius/6 */
+  min-width: 0;                    /* allow flex item to shrink below content intrinsic width */
 }
 
 /* ── CARD-HEADER — title + description block ── */
@@ -71,7 +142,7 @@ body {
 .ds-section__title {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 26px;
   color: #262626;
 }
@@ -90,7 +161,7 @@ body {
 .play-area {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;                   /* Spacing/6 */
 }
 
 /* ── Type title (Primary / Secondary / Tertiary) ── */
@@ -98,7 +169,7 @@ body {
 .ds-type-title {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 22px;
   color: #263b74;
   margin: 16px 0 8px;
@@ -110,31 +181,26 @@ body {
   margin-top: 0;
 }
 
-/* ── Token group ── */
+/* ── Token group — play-area gap handles spacing between groups ── */
 .ds-token-group {
-  margin-bottom: 12px;
-}
-
-.ds-token-group:last-child {
   margin-bottom: 0;
 }
 
-/* Tight Body Highlight/2 — 12px / 14px, Medium · UPPERCASE styling preserved */
+/* Body Highlight/2 — 12px / 18px, Medium */
 .ds-token-label {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 12px;
   font-weight: 500;
-  line-height: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #8c8c8c;
-  margin-bottom: 8px;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: #9d9d9d;                      /* Grey/5 */
+  margin-bottom: 4px;                  /* Spacing/2 */
 }
 
 /* ── Matrix: Default | Hover | Disabled ── */
 .ds-matrix-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));  /* allow tracks to shrink below content */
   gap: 8px;
 }
 
@@ -163,7 +229,7 @@ body {
 }
 
 .ds-state-tag--hover {
-  color: #00ad61;
+  color: var(--pds-primary-3);
   background: #fdf0ef;
 }
 
@@ -178,10 +244,90 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  background: #fafafa;
+  background: #fcfcfc;                 /* Grey/1 */
   border: 1px solid #e8e8e8;
   border-radius: 8px;
   padding: 16px 20px;
+}
+
+/* Alert Badge section — Spacing/6 padding & gap · vertically centred (inherited from .ds-row) */
+#sec-alert-badge .ds-row {
+  padding: 12px;               /* Spacing/6 */
+  gap: 12px;                   /* Spacing/6 */
+  align-items: center;
+}
+
+/* Button section — Spacing/6 gap between cells · Secondary/0 background */
+#sec-button .ds-matrix-row {
+  gap: 12px;                   /* Spacing/6 */
+}
+
+#sec-button .ds-matrix-cell .ds-row {
+  gap: 12px;                   /* Spacing/6 between buttons */
+}
+
+#sec-button .ds-matrix-cell {
+  padding: 12px;               /* Spacing/6 */
+  background: #f4f5f8;         /* Secondary/0 */
+  border-color: #e4e4e4;       /* Grey/3 */
+}
+
+/* All body sections — tighter padding on rows (Spacing/6) */
+#sec-switch .ds-row,
+#sec-radio .ds-row,
+#sec-checkbox .ds-row,
+#sec-toast .ds-row,
+#sec-semantic-pop-ups .ds-row,
+#sec-profile-avatar .ds-row,
+#sec-search .ds-row,
+#sec-selector .ds-row,
+#sec-date-picker .ds-row,
+#sec-time-picker .ds-row,
+#sec-upload-files .ds-row,
+#sec-input-field .ds-row,
+#sec-tool-tip .ds-row,
+#sec-filter-drawer .ds-row,
+#sec-tab-bar .ds-row,
+#sec-bread-crumbs .ds-row,
+#sec-progress-bar .ds-row,
+#sec-scroller .ds-row,
+#sec-pop-up-layout .ds-row,
+#sec-top-navigation-bar .ds-row,
+#sec-table .ds-row {
+  padding: 12px;               /* Spacing/6 */
+}
+
+/* Chip Tag, Toast, Switch, Radio, Checkbox, Progress Bar, Semantic Pop-ups — Spacing/6 gap */
+#sec-chip-tag .ds-row,
+#sec-toast .ds-row,
+#sec-switch .ds-row,
+#sec-radio .ds-row,
+#sec-checkbox .ds-row,
+#sec-progress-bar .ds-row,
+#sec-semantic-pop-ups .ds-row,
+#sec-profile-avatar .ds-row,
+#sec-selector .ds-row,
+#sec-upload-files .ds-row,
+#sec-input-field .ds-row,
+#sec-tool-tip .ds-row,
+#sec-filter-drawer .ds-row,
+#sec-tab-bar .ds-row,
+#sec-bread-crumbs .ds-row,
+#sec-top-navigation-bar .ds-row,
+#sec-table .ds-row {
+  gap: 12px;                   /* Spacing/6 */
+}
+
+/* Chip Tag section — tighter padding on rows */
+#sec-chip-tag .ds-row {
+  padding: 12px;               /* Spacing/6 */
+}
+
+/* Card Header, Section Header & Card Footer sections — tighter padding on card previews */
+#sec-card-header .ds-card-preview,
+#sec-section-header .ds-card-preview,
+#sec-card-footer .ds-card-preview {
+  padding: 12px;               /* Spacing/6 */
 }
 
 /* Button rows inside matrix cells don't need card bg */
@@ -230,7 +376,7 @@ body {
 
 /* ── Card preview wrapper ── */
 .ds-card-preview {
-  background: #fafafa;
+  background: #fcfcfc;                 /* Grey/1 */
   border: 1px solid #e8e8e8;
   border-radius: 8px;
   padding: 16px 20px;

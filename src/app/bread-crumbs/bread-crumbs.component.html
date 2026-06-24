@@ -1,0 +1,31 @@
+<!-- crumbs separated by chevron-right (16px, Grey/5) · gap Spacing/4 -->
+@for (crumb of displayCrumbs; track $index; let last = $last) {
+  @if (crumb.kind === 'label') {
+    <pds-crumb
+      type="label"
+      [label]="crumb.label!"
+      [icon]="crumb.icon ?? 'life-buoy'"
+      (crumbClick)="onStageClick(crumb.stageIndex)"
+    />
+  } @else {
+    <pds-crumb type="more-options" (crumbClick)="toggleMoreOptions(crumb)" />
+  }
+
+  @if (!last) {
+    <span class="pds-bread-crumbs__sep" [style.--sep-icon]="chevronUrl"></span>
+  }
+}
+
+<!-- more-options selector — opens below to navigate to a collapsed stage -->
+@if (moreOpen) {
+  <div class="pds-bread-crumbs__overlay-backdrop" (click)="closeMore()"></div>
+  <div class="pds-bread-crumbs__overlay" [style.top.px]="overlayTop" [style.left.px]="overlayLeft">
+    <pds-selector
+      [options]="collapsedOptions"
+      [showCheckbox]="false"
+      [showAvatar]="false"
+      [showIcon]="true"
+      (selectionChange)="onCollapsedSelected($event)"
+    />
+  </div>
+}

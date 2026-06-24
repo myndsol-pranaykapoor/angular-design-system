@@ -1,0 +1,19 @@
+/* PDS Table Header — inside stroke · total height 38px including borders */
+
+.pds-table-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ::after overlay paints borders ON TOP of content — inside stroke, no height added */
+.pds-table-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-top: 1px solid transparent;       /* compensates centre alignment */
+  border-bottom: 1px solid #e4e4e4;        /* Grey/3 */
+  pointer-events: none;
+}

@@ -13,7 +13,7 @@ export class CardHeaderComponent {
   @Input() title = '';
   @Input() subtitle = '';
   @Input() icon = '';
-  @Input() iconColor = '#00ad61'; // Primary/3 default; override for semantic colours (e.g. toast)
+  @Input() iconColor = 'var(--pds-primary-3)'; // Primary/3 default; override for semantic colours (e.g. toast)
   @Input() titleColor = '';       // defaults to CSS (#3f3f3f); override for semantic colours (e.g. toast)
 
   @Input() showIcon = true;

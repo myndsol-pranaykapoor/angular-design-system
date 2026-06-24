@@ -1,0 +1,52 @@
+/* PDS Crumb — label / more-options · default & hover */
+
+.pds-crumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;                               /* fixed */
+  padding: 0 10px;                            /* Spacing/5 — left & right only */
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* label type — icon + label · gap Spacing/3 · Secondary/3 */
+.pds-crumb--label {
+  gap: 6px;                                   /* Spacing/3 */
+  color: #263b74;                            /* Secondary/3 */
+}
+
+/* more-options type — single icon · Secondary/4 */
+.pds-crumb--more-options {
+  color: #1b2a52;                            /* Secondary/4 */
+}
+
+/* supporting icon — 20px · tinted to the current colour via mask */
+.pds-crumb__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask: var(--crumb-icon) center / contain no-repeat;
+  mask: var(--crumb-icon) center / contain no-repeat;
+}
+
+/* label — Tight Body Highlight/3 (14/16 medium) · inherits colour */
+.pds-crumb__label {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* ─── HOVER — Secondary/1 fill · content darkens to Secondary/4 ─── */
+.pds-crumb:hover {
+  background-color: #bcc2d4;                  /* Secondary/1 */
+  color: #1b2a52;                            /* Secondary/4 */
+}

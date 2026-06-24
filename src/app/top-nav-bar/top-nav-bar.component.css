@@ -1,0 +1,44 @@
+/* PDS Top Navigation Bar — container with bottom Grey/3 border */
+
+.pds-top-nav-bar {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;                  /* Grey/0 */
+}
+
+/* Fixed app-shell variant — sits directly below command bar (top: 84px) */
+.pds-top-nav-bar--sticky {
+  position: fixed;
+  top: 84px;                                  /* web-header (42px) + command-bar (42px) — nav bar starts here */
+  left: 0;
+  right: 0;
+  z-index: 198;
+  padding-left: 56px;                         /* aligns with side-menu offset */
+}
+
+/* container — 5px top/bottom · Spacing/6 (12px) left/right · tabs at gap Spacing/4 */
+.pds-top-nav-bar__container {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                   /* Spacing/4 — between tabs */
+  width: 100%;
+  padding: 5px 12px;                          /* 5px vertical (border-box 42px total) · Spacing/6 horizontal */
+  box-sizing: border-box;
+  /* bottom: 1px Grey/3 · top: 1px transparent to keep the tabs vertically centred */
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid #e4e4e4;           /* Grey/3 */
+  /* horizontal scroll when tabs overflow (many sections) */
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-width: none;                      /* Firefox */
+}
+
+.pds-top-nav-bar__container::-webkit-scrollbar {
+  display: none;                              /* Chrome / Safari */
+}
+
+/* prevent tabs from shrinking inside the scrollable flex container */
+.pds-top-nav-bar__container > pds-top-nav-tab {
+  flex-shrink: 0;
+}

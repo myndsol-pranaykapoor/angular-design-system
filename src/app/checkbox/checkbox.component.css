@@ -21,7 +21,7 @@ pds-checkbox { display: flex; }
 }
 
 .pds-checkbox:focus-visible {
-  outline: 2px solid #00ad61;
+  outline: 2px solid var(--pds-primary-3);
   outline-offset: 3px;
 }
 
@@ -48,22 +48,22 @@ pds-checkbox { display: flex; }
 
 /* ─── CHECKED — Primary/3 fill, no border ─── */
 
-.pds-checkbox--checked                                                   { background-color: #00ad61; border-color: transparent; }
-.pds-checkbox--checked:hover:not(:disabled):not(.pds-checkbox--disabled) { background-color: #007b45; }
+.pds-checkbox--checked                                                   { background-color: var(--pds-primary-3); border-color: transparent; }
+.pds-checkbox--checked:hover:not(:disabled):not(.pds-checkbox--disabled) { background-color: var(--pds-primary-4); }
 .pds-checkbox--checked.pds-checkbox--disabled,
 .pds-checkbox--checked:disabled                                          { background-color: #9d9d9d; }
 
 /* ─── INDETERMINATE — border + bg ─── */
 
-.pds-checkbox--indeterminate                                                   { background-color: #ffffff; border-color: #00ad61; }
-.pds-checkbox--indeterminate:hover:not(:disabled):not(.pds-checkbox--disabled) { background-color: #b0e6ce; border-color: #007b45; }
+.pds-checkbox--indeterminate                                                   { background-color: #ffffff; border-color: var(--pds-primary-3); }
+.pds-checkbox--indeterminate:hover:not(:disabled):not(.pds-checkbox--disabled) { background-color: var(--pds-primary-1); border-color: var(--pds-primary-4); }
 .pds-checkbox--indeterminate.pds-checkbox--disabled,
 .pds-checkbox--indeterminate:disabled                                          { background-color: #e4e4e4; border-color: #9d9d9d; }
 
 /* ─── CLEARED — border + bg ─── */
 
-.pds-checkbox--cleared                                                   { background-color: #ffffff; border-color: #00ad61; }
-.pds-checkbox--cleared:hover:not(:disabled):not(.pds-checkbox--disabled) { background-color: #b0e6ce; border-color: #007b45; }
+.pds-checkbox--cleared                                                   { background-color: #ffffff; border-color: var(--pds-primary-3); }
+.pds-checkbox--cleared:hover:not(:disabled):not(.pds-checkbox--disabled) { background-color: var(--pds-primary-1); border-color: var(--pds-primary-4); }
 .pds-checkbox--cleared.pds-checkbox--disabled,
 .pds-checkbox--cleared:disabled                                          { background-color: #e4e4e4; border-color: #9d9d9d; }
 
@@ -91,7 +91,7 @@ pds-checkbox { display: flex; }
 .pds-checkbox--checked:disabled .pds-checkbox__icon                                          { background-color: #ffffff; }
 
 /* Indeterminate icon — matches border color */
-.pds-checkbox--indeterminate .pds-checkbox__icon                                                   { background-color: #00ad61; }
-.pds-checkbox--indeterminate:hover:not(:disabled):not(.pds-checkbox--disabled) .pds-checkbox__icon { background-color: #007b45; }
+.pds-checkbox--indeterminate .pds-checkbox__icon                                                   { background-color: var(--pds-primary-3); }
+.pds-checkbox--indeterminate:hover:not(:disabled):not(.pds-checkbox--disabled) .pds-checkbox__icon { background-color: var(--pds-primary-4); }
 .pds-checkbox--indeterminate.pds-checkbox--disabled .pds-checkbox__icon,
 .pds-checkbox--indeterminate:disabled .pds-checkbox__icon                                          { background-color: #9d9d9d; }

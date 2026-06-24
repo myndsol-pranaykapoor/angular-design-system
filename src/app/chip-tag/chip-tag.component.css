@@ -95,14 +95,14 @@
 /* ─── FILLED ─── */
 
 .pds-chip-tag--filled {
-  background-color: #00ad61;
+  background-color: var(--pds-primary-3);
   color: #ffffff;
   border: none;
 }
 
 .pds-chip-tag--filled:not(.pds-chip-tag--disabled):hover .pds-chip-tag__action,
 .pds-chip-tag--filled:not(.pds-chip-tag--disabled) .pds-chip-tag__action:hover {
-  background-color: #007b45;
+  background-color: var(--pds-primary-4);
 }
 
 .pds-chip-tag--filled.pds-chip-tag--disabled {
@@ -113,15 +113,15 @@
 /* ─── BORDER ─── */
 
 .pds-chip-tag--border {
-  background-color: #f6fcf9;
-  color: #00ad61;
-  border: 1.25px solid #00ad61;
+  background-color: var(--pds-primary-0);
+  color: var(--pds-primary-3);
+  border: 1.25px solid var(--pds-primary-3);
 }
 
 .pds-chip-tag--border:not(.pds-chip-tag--disabled):hover .pds-chip-tag__action,
 .pds-chip-tag--border:not(.pds-chip-tag--disabled) .pds-chip-tag__action:hover {
-  background-color: #b0e6ce;
-  color: #007b45;
+  background-color: var(--pds-primary-1);
+  color: var(--pds-primary-4);
 }
 
 .pds-chip-tag--border.pds-chip-tag--disabled {

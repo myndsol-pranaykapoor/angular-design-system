@@ -1,0 +1,44 @@
+/* PDS Bread Crumbs — Secondary/0 fill · 1px Grey/3 border · Radius/4 · crumbs + chevrons at gap Spacing/4 */
+
+.pds-bread-crumbs {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;                                   /* Spacing/4 — between crumbs & chevrons */
+  background-color: #f4f5f8;                  /* Secondary/0 */
+  border-radius: 8px;                         /* Radius/4 */
+  overflow: hidden;                           /* clips the end crumbs to the rounded corners */
+  box-sizing: border-box;
+  width: max-content;
+}
+
+/* 1px Grey/3 border drawn on top — keeps the bar 30px tall and overlaps the end crumbs */
+.pds-bread-crumbs::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid #e4e4e4;                  /* Grey/3 */
+  border-radius: 8px;                         /* Radius/4 */
+  pointer-events: none;
+}
+
+/* chevron-right separator — 16px · Grey/5 · points to the next page */
+.pds-bread-crumbs__sep {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background-color: #9d9d9d;                  /* Grey/5 */
+  -webkit-mask: var(--sep-icon) center / contain no-repeat;
+  mask: var(--sep-icon) center / contain no-repeat;
+}
+
+/* ─── MORE-OPTIONS SELECTOR OVERLAY — anchored below, follows scroll ─── */
+.pds-bread-crumbs__overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+}
+.pds-bread-crumbs__overlay {
+  position: fixed;
+  z-index: 301;
+}

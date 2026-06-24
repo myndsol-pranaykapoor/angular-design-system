@@ -1,0 +1,6 @@
+@if (type === 'checkbox') {
+  <pds-checkbox [size]="0" [type]="_checkboxType" (changed)="onCheckboxToggle($event)" />
+}
+@if (type === 'text') {
+  <span class="pds-heading-column-title__label">{{ label }}</span>
+}

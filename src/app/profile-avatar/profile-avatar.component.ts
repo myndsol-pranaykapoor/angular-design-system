@@ -16,7 +16,7 @@ export class ProfileAvatarComponent {
   @Input() type: AvatarType = 'credentials';
   @Input() size: AvatarSize = 1;
   /** Background colour — any colour per user context. Ignored for image type. */
-  @Input() color = '#00ad61';       // Primary/3 default
+  @Input() color = 'var(--pds-primary-3)';       // Primary/3 default
   /** Icon name from /icons/{size}px/ (icon type only) */
   @Input() icon = 'user';
   /** 1–2 letter initials (credentials type only) */

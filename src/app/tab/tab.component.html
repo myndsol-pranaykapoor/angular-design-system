@@ -1,0 +1,10 @@
+<!-- supporting icon (20px) · label · alert badge · horizontal · gap Spacing/3 -->
+@if (showIcon && icon) {
+  <span class="pds-tab__icon" [style.--tab-icon]="iconUrl"></span>
+}
+
+<span class="pds-tab__label">{{ label }}</span>
+
+@if (showAlertBadge) {
+  <pds-alert-badge type="count" [size]="0" [count]="badgeCount" />
+}

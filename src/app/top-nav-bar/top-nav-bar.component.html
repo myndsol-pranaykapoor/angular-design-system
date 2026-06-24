@@ -1,0 +1,14 @@
+<!-- Top-Navigation-Bar-container — padding Spacing/3 (top/bottom) · Spacing/6 (left/right) -->
+<div class="pds-top-nav-bar__container">
+  @for (tab of tabs; track $index) {
+    <pds-top-nav-tab
+      [selected]="$index === selectedIndex"
+      [label]="tab.label"
+      [icon]="tab.icon ?? 'life-buoy'"
+      [showIcon]="tab.showIcon ?? true"
+      [showAlertBadge]="tab.showAlertBadge ?? true"
+      [badgeCount]="tab.badgeCount ?? 0"
+      (tabClick)="select($index)"
+    />
+  }
+</div>

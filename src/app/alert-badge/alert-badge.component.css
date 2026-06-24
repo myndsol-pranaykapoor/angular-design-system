@@ -1,5 +1,12 @@
 /* PDS Alert Badge — Tokens: Semantic/Warning · Grey/0 · Radius/Full · Elevation/1 */
 
+/* Host element — inline-flex so the host participates correctly in parent flex containers */
+pds-alert-badge {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
 .pds-alert-badge {
   display: inline-flex;
   align-items: center;

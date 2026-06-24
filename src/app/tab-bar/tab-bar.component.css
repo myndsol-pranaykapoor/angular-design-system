@@ -1,0 +1,24 @@
+/* PDS Tab Bar — Secondary/0 fill · 1px Grey/3 border · Radius/4 · tabs at 0 gap */
+
+.pds-tab-bar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;                                     /* tabs sit flush */
+  background-color: #f4f5f8;                  /* Secondary/0 */
+  border-radius: 8px;                         /* Radius/4 */
+  overflow: hidden;                           /* clips the end tabs to the bar's rounded corners */
+  box-sizing: border-box;
+  width: max-content;
+}
+
+/* 1px Grey/3 border painted ON TOP of the tabs (so selected/hover fills don't cover it).
+   Inside the box → keeps the bar 30px tall (no added height). */
+.pds-tab-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid #e4e4e4;                  /* Grey/3 */
+  border-radius: 8px;                         /* Radius/4 */
+  pointer-events: none;
+}

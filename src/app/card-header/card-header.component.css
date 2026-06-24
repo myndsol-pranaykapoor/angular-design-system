@@ -36,7 +36,7 @@
   flex-shrink: 0;
   width: 20px;
   height: 20px;
-  background-color: #00ad61; /* Primary/3 default — overridden via [style.backgroundColor] input */
+  background-color: var(--pds-primary-3); /* Primary/3 default — overridden via [style.backgroundColor] input */
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -49,7 +49,7 @@
   font-size: 16px;            /* Heading/2 */
   line-height: 22px;
   font-weight: 600;           /* SemiBold */
-  color: #3f3f3f;             /* Grey/7 */
+  color: #5d5d5d;             /* Grey/6 */
   white-space: nowrap;
 }
 
@@ -78,7 +78,7 @@
   font-size: 12px;            /* Body/2 */
   line-height: 18px;
   font-weight: 400;           /* Regular */
-  color: #5d5d5d;             /* Grey/6 */
+  color: #9d9d9d;             /* Grey/5 */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

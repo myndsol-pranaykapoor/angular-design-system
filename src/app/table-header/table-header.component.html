@@ -1,0 +1,7 @@
+@for (col of columns; track $index) {
+  <pds-heading-column-title
+    [type]="col.type"
+    [label]="col.label ?? 'Column Title'"
+    [shrink]="col.shrink ?? false"
+  />
+}

@@ -1,0 +1,15 @@
+/* PDS Data Row — flex row of pds-data-row-tab instances · 0px gap · hover = Primary/0 */
+
+.pds-data-row {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #ffffff;             /* Grey/0 — default */
+  cursor: pointer;
+}
+
+/* hover: Primary/0 bg — triggered by CSS :hover or .pds-data-row--hover class */
+.pds-data-row:hover,
+.pds-data-row--hover {
+  background-color: var(--pds-primary-0);
+}

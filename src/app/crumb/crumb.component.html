@@ -1,0 +1,10 @@
+@if (type === 'label') {
+  <!-- label type — 20px supporting icon + label · gap Spacing/6 -->
+  @if (showIcon && icon) {
+    <span class="pds-crumb__icon" [style.--crumb-icon]="iconUrl"></span>
+  }
+  <span class="pds-crumb__label">{{ label }}</span>
+} @else {
+  <!-- more-options type — 20px more-horizontal icon -->
+  <span class="pds-crumb__icon" [style.--crumb-icon]="iconUrl"></span>
+}

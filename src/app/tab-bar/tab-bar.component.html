@@ -1,0 +1,12 @@
+<!-- tabs · horizontal · 0 gap · only one selected at a time -->
+@for (item of items; track $index) {
+  <pds-tab
+    [selected]="$index === selectedIndex"
+    [label]="item.label"
+    [icon]="item.icon ?? 'life-buoy'"
+    [showIcon]="item.showIcon ?? true"
+    [showAlertBadge]="item.showAlertBadge ?? true"
+    [badgeCount]="item.badgeCount ?? 0"
+    (tabClick)="select($index)"
+  />
+}

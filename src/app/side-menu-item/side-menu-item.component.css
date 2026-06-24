@@ -53,7 +53,7 @@
   align-self: center;              /* vertically centred inside flex row */
   width: 16px;
   height: 16px;
-  background-color: #00ad61;       /* Primary/3 */
+  background-color: var(--pds-primary-3);       /* Primary/3 */
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -66,13 +66,13 @@
 /* ─── DEFAULT HOVER ─── */
 
 .pds-side-menu-item--default-hover {
-  background-color: #f6fcf9;       /* Primary/0 */
+  background-color: var(--pds-primary-0);       /* Primary/0 */
 }
 
 /* ─── SELECTED ─── */
 
 .pds-side-menu-item--selected {
-  background-color: #00ad61;       /* Primary/3 */
+  background-color: var(--pds-primary-3);       /* Primary/3 */
 }
 
 .pds-side-menu-item--selected .pds-side-menu-item__icon {
@@ -100,7 +100,7 @@
 /* ─── SELECTED HOVER ─── */
 
 .pds-side-menu-item--selected-hover {
-  background-color: #007b45;       /* Primary/4 */
+  background-color: var(--pds-primary-4);       /* Primary/4 */
 }
 
 .pds-side-menu-item--selected-hover .pds-side-menu-item__icon {

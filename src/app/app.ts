@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject, AfterViewInit, OnDestroy } from '@angular/core';
+import { ThemeService } from './theme.service';
 import { AlertBadgeComponent } from './alert-badge/alert-badge.component';
 import { ButtonComponent, ButtonSize } from './button/button.component';
 import { ChipTagComponent, ChipTagSize } from './chip-tag/chip-tag.component';
@@ -32,14 +33,36 @@ import { InputFieldComponent, InputFieldState } from './input-field/input-field.
 import { ToolTipComponent } from './tool-tip/tool-tip.component';
 import { FilterSectionComponent, FilterOption, FilterInputRow } from './filter-section/filter-section.component';
 import { FilterDrawerComponent, FilterDrawerSection } from './filter-drawer/filter-drawer.component';
+import { TabComponent } from './tab/tab.component';
+import { TabBarComponent, TabBarItem } from './tab-bar/tab-bar.component';
+import { CrumbComponent } from './crumb/crumb.component';
+import { BreadCrumbsComponent, BreadCrumbStage } from './bread-crumbs/bread-crumbs.component';
+import { TopNavTabComponent } from './top-nav-tab/top-nav-tab.component';
+import { TopNavBarComponent, TopNavBarTab } from './top-nav-bar/top-nav-bar.component';
+import { PaginationComponent, PaginationState } from './pagination/pagination.component';
+import { DataRowTabComponent } from './data-row-tab/data-row-tab.component';
+import { DataRowComponent, DataRowTabConfig } from './data-row/data-row.component';
+import { HeadingColumnTitleComponent } from './heading-column-title/heading-column-title.component';
+import { TableHeaderComponent, TableHeaderColumn } from './table-header/table-header.component';
+import { TableComponent } from './table/table.component';
+import { SectionHeaderComponent } from './section-header/section-header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [AlertBadgeComponent, ButtonComponent, ChipTagComponent, CardHeaderComponent, CardFooterComponent, ToastComponent, SwitchComponent, RadioComponent, CheckboxComponent, ProgressBarComponent, ScrollerComponent, PopupLayoutComponent, ProfileAvatarComponent, WebHeaderComponent, SemanticPopupComponent, SearchComponent, CommandBarComponent, SideMenuItemComponent, SideMenuItemsCollectionComponent, SideMenuComponent, WebFooterComponent, OptionComponent, SelectorComponent, DateTimeSelectionStateComponent, DatePickerComponent, TimePickerComponent, UploadFilesComponent, LabelContainerComponent, InputAreaComponent, InputFieldComponent, ToolTipComponent, FilterSectionComponent, FilterDrawerComponent],
+  imports: [AlertBadgeComponent, ButtonComponent, ChipTagComponent, CardHeaderComponent, CardFooterComponent, ToastComponent, SwitchComponent, RadioComponent, CheckboxComponent, ProgressBarComponent, ScrollerComponent, PopupLayoutComponent, ProfileAvatarComponent, WebHeaderComponent, SemanticPopupComponent, SearchComponent, CommandBarComponent, SideMenuItemComponent, SideMenuItemsCollectionComponent, SideMenuComponent, WebFooterComponent, OptionComponent, SelectorComponent, DateTimeSelectionStateComponent, DatePickerComponent, TimePickerComponent, UploadFilesComponent, LabelContainerComponent, InputAreaComponent, InputFieldComponent, ToolTipComponent, FilterSectionComponent, FilterDrawerComponent, TabComponent, TabBarComponent, CrumbComponent, BreadCrumbsComponent, TopNavTabComponent, TopNavBarComponent, PaginationComponent, DataRowTabComponent, DataRowComponent, HeadingColumnTitleComponent, TableHeaderComponent, TableComponent, SectionHeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements AfterViewInit, OnDestroy {
+  /** Primary-colour themes — one per product. Default = ACT. */
+  protected readonly themes = ['act', 'hrx', 'talkx', 'leasex', 'travelx', 'spendx', 'apx'];
+  protected activeTheme = 'act';
+  private readonly themeService = inject(ThemeService);
+  protected setTheme(theme: string): void {
+    this.activeTheme = theme;
+    this.themeService.setTheme(theme);   // updates CSS vars (data attr) + dual-colour icons
+  }
+
   protected readonly sizes: ButtonSize[] = [0, 1, 2, 3];
   protected readonly scrollerItems = Array.from({ length: 14 }, (_, i) => `List item ${i + 1}`);
   protected readonly chipSizes: ChipTagSize[] = [0, 1];
@@ -131,6 +154,7 @@ export class App {
     'Button',
     'Chip Tag',
     'Card Header',
+    'Section Header',
     'Card Footer',
     'Toast',
     'Switch',
@@ -141,21 +165,180 @@ export class App {
     'Pop-up Layout',
     'Semantic Pop-ups',
     'Profile Avatar',
-    'Side Menu Item',
-    'Side Menu Items Collection',
     'Search',
-    'Option',
     'Selector',
     'Web Footer',
-    'Date-Time Selection States',
     'Date Picker',
     'Time Picker',
     'Upload Files',
     'Input Field',
     'Tool Tip',
-    'Filter Section',
     'Filter Drawer',
+    'Tab Bar',
+    'Bread Crumbs',
+    'Top Navigation Bar',
+    'Table',
   ];
+
+  /** Top Navigation Tabs demo */
+  protected topNavTabs = ['Dashboard', 'Analytics', 'Reports', 'Team'];
+  protected topNavActive = 0;
+
+  /** Top Navigation Bar demo (body section) — standalone interactive example */
+  protected topNavBarTabs: TopNavBarTab[] = [
+    { label: 'Dashboard', icon: 'home', showAlertBadge: true, badgeCount: 3 },
+    { label: 'Analytics', icon: 'bar-chart-2', showAlertBadge: true, badgeCount: 5 },
+    { label: 'Reports', icon: 'file', showAlertBadge: false, badgeCount: 0 },
+    { label: 'Team', icon: 'users', showAlertBadge: true, badgeCount: 2 },
+    { label: 'Settings', icon: 'settings', showAlertBadge: false, badgeCount: 0 },
+  ];
+  protected topNavBarSelected = 0;
+
+  /** Pagination demo */
+  protected paginationPage = 2;
+  protected paginationPageSize = 10;
+  protected readonly paginationTotal = 100;
+  protected onPageChange(state: PaginationState): void {
+    this.paginationPage = state.page;
+    this.paginationPageSize = state.pageSize;
+  }
+
+  /** Table demo */
+  protected readonly tableColumns: TableHeaderColumn[] = [
+    { type: 'checkbox' },
+    { type: 'text', label: 'Name' },
+    { type: 'text', label: 'Description' },
+    { type: 'text', label: 'Date' },
+    { type: 'text', label: 'Status' },
+    { type: 'text', label: 'Actions', shrink: true },
+  ];
+
+  private readonly tableAllRows: DataRowTabConfig[][] = Array.from({ length: 50 }, (_, i) => [
+    { type: 'actions', showSwitch: false, showRadio: false, showDownload: false, showEdit: false, showView: false, showExternalLink: false, showTrash: false, showMoreActions: false },
+    { type: 'profile', avatarInitials: (i + 1).toString().padStart(2, '0'), userName: `User ${i + 1}`, showDropdown: true },
+    { type: 'text', text: `Row ${i + 1} — description text appears here.` },
+    { type: 'field', fieldPlaceholder: 'Select date', fieldSupportingIcon: 'calendar' },
+    { type: 'chip-tag', showApproved: (i % 3 === 0), showReconsidered: (i % 3 === 1), showRejected: (i % 3 === 2) },
+    { type: 'actions', showSwitch: false, showRadio: false, showCheckbox: false, showView: false, showExternalLink: false, showMoreActions: false },
+  ]);
+
+  protected readonly tableTotal = 50;
+  protected tablePage = 1;
+  protected tablePageSize = 10;
+  protected readonly tablePageSizeOptions = [10, 20, 30, 40, 50];
+
+  get tableDisplayRows(): DataRowTabConfig[][] {
+    const start = (this.tablePage - 1) * this.tablePageSize;
+    return this.tableAllRows.slice(start, start + this.tablePageSize);
+  }
+
+  protected onTablePageChange(state: PaginationState): void {
+    this.tablePage = state.page;
+    this.tablePageSize = state.pageSize;
+  }
+
+  /** Table Header demo — matches the Figma column arrangement */
+  protected readonly tableHeaderColumns: TableHeaderColumn[] = [
+    { type: 'checkbox' },
+    { type: 'text', label: 'Name' },
+    { type: 'text', label: 'Description' },
+    { type: 'text', label: 'Date' },
+    { type: 'text', label: 'Status' },
+    { type: 'text', label: 'Actions', shrink: true },
+  ];
+
+  /** Data Row demo — Figma sequence: checkbox · profile · text · field · chip-tag · actions */
+  protected readonly dataRowTabs: DataRowTabConfig[] = [
+    { type: 'actions', showSwitch: false, showRadio: false, showDownload: false, showEdit: false, showView: false, showExternalLink: false, showTrash: false, showMoreActions: false },
+    { type: 'profile', avatarInitials: 'PK', userName: 'Pranay Kapoor', showDropdown: true },
+    { type: 'text', text: 'Text appear like this.' },
+    { type: 'field', fieldPlaceholder: 'Select date', fieldSupportingIcon: 'calendar' },
+    { type: 'chip-tag', showApproved: true, showReconsidered: false, showRejected: false },
+    { type: 'actions', showSwitch: false, showRadio: false, showCheckbox: false, showView: false, showExternalLink: false, showMoreActions: false },
+  ];
+
+  /** Fixed nav bar — one tab per body section, scrolls to that section on click */
+  protected navSectionTabs: TopNavBarTab[] = this.searchSuggestions.map(label => ({
+    label,
+    showIcon: false,
+    showAlertBadge: false,
+  }));
+  protected navSectionSelected = signal(0);
+
+  // ── NAV BAR SCROLL SYNC ───────────────────────────────────────────────────
+  private previewEl: HTMLElement | null = null;
+  private readonly onPreviewScroll = (): void => this.syncNavTabToScroll();
+
+  ngAfterViewInit(): void {
+    this.previewEl = document.querySelector('.ds-preview');
+    this.previewEl?.addEventListener('scroll', this.onPreviewScroll, { passive: true });
+  }
+
+  ngOnDestroy(): void {
+    this.previewEl?.removeEventListener('scroll', this.onPreviewScroll);
+  }
+
+  private sectionSlug(label: string): string {
+    return label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  private scrollToSection(label: string): void {
+    const el = document.getElementById(`sec-${this.sectionSlug(label)}`);
+    if (!el) return;
+    const scroller = document.querySelector('.ds-preview') as HTMLElement | null;
+    if (!scroller) return;
+    const fixedBarHeight = 126;
+    scroller.scrollTo({ top: scroller.scrollTop + el.getBoundingClientRect().top - fixedBarHeight, behavior: 'smooth' });
+  }
+
+  protected onNavBarTabSelect(index: number): void {
+    this.navSectionSelected.set(index);
+    this.scrollToSection(this.searchSuggestions[index] ?? '');
+  }
+
+  private syncNavTabToScroll(): void {
+    const threshold = 146; // 126px fixed bars + 20px buffer
+    let activeIndex = 0;
+    this.searchSuggestions.forEach((label, i) => {
+      const el = document.getElementById(`sec-${this.sectionSlug(label)}`);
+      if (el && el.getBoundingClientRect().top <= threshold) activeIndex = i;
+    });
+    this.navSectionSelected.set(activeIndex);
+  }
+
+  /** Bread Crumbs demo — 4 stages (all label) and 6 stages (collapses to more-options) */
+  protected breadcrumbStages4: BreadCrumbStage[] = [
+    { label: 'Home', icon: 'home' },
+    { label: 'Projects', icon: 'grid' },
+    { label: 'Design System', icon: 'layers' },
+    { label: 'Tokens', icon: 'file' },
+  ];
+  protected breadcrumbStages6: BreadCrumbStage[] = [
+    { label: 'Home', icon: 'home' },
+    { label: 'Workspace', icon: 'grid' },
+    { label: 'Projects', icon: 'folder' },
+    { label: 'Design System', icon: 'layers' },
+    { label: 'Components', icon: 'box' },
+    { label: 'Bread Crumbs', icon: 'file' },
+  ];
+  protected breadcrumbCurrent = -1;
+  protected onBreadcrumbNavigate(index: number): void {
+    this.breadcrumbCurrent = index;
+  }
+
+  /** Tabs demo — interactive group */
+  protected tabItems = ['Overview', 'Activity', 'Settings'];
+  protected activeTab = 0;
+
+  /** Tab Bar demo */
+  protected tabBarItems: TabBarItem[] = [
+    { label: 'Overview', badgeCount: 3 },
+    { label: 'Activity', badgeCount: 5 },
+    { label: 'Reports', badgeCount: 2 },
+    { label: 'Members', badgeCount: 8 },
+    { label: 'Settings', badgeCount: 1 },
+  ];
+  protected tabBarSelected = 0;
 
   /** Filter Drawer demo */
   protected filterDrawerOpen = false;
@@ -390,22 +573,12 @@ export class App {
     ],
   ];
 
-  /** When user picks a suggestion, smooth-scroll the page to that section */
+  /** When user picks a suggestion, smooth-scroll the page to that section.
+   *  Scroll target is `.ds-preview` (position:fixed + overflow-y:auto), NOT window. */
   protected onSearchSelected(value: string): void {
-    const slug = value
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-    const id = `sec-${slug}`;
-    const el = document.getElementById(id);
-    if (!el) {
-      console.warn('No section found for', value, '→ id:', id);
-      return;
-    }
-    // 84px = web-header (42) + command-bar (42); add 12px breathing room
-    const offset = 84 + 12;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+    const index = this.searchSuggestions.indexOf(value);
+    if (index >= 0) this.navSectionSelected.set(index);
+    this.scrollToSection(value);
   }
 
   protected onCommandBarBack(): void {

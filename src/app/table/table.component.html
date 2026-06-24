@@ -1,0 +1,68 @@
+<!-- Single shared CSS grid — heading cells + data cells are siblings so column widths align automatically -->
+<div class="pds-table__grid" [style.gridTemplateColumns]="colsTemplate">
+
+  <!-- Header row: checkbox column rendered directly so pds-checkbox is in the table's own view -->
+  @for (col of columns; track $index) {
+    @if (col.type === 'checkbox') {
+      <div class="pds-table__hcell pds-heading-column-title pds-heading-column-title--checkbox pds-heading-column-title--shrink">
+        <pds-checkbox
+          [size]="0"
+          [type]="headerCheckboxType()"
+          (changed)="onHeaderCheckboxChange($event)"
+        />
+      </div>
+    } @else {
+      <pds-heading-column-title
+        class="pds-table__hcell"
+        [type]="col.type"
+        [label]="col.label ?? 'Column Title'"
+        [shrink]="col.shrink ?? false"
+      />
+    }
+  }
+
+  <!-- Data rows: column 0 checkbox drives row selection -->
+  @for (row of rows; track ri; let ri = $index) {
+    @for (tab of row; track $index; let ci = $index) {
+      <pds-data-row-tab
+        class="pds-table__dcell"
+        [class.pds-table__dcell--hover]="hoveredRow === ri"
+        (mouseenter)="onRowEnter(ri)"
+        (mouseleave)="onRowLeave()"
+        [type]="tab.type"
+        [avatarSrc]="tab.avatarSrc ?? ''"
+        [avatarInitials]="tab.avatarInitials ?? 'PK'"
+        [userName]="tab.userName ?? 'Pranay Kapoor'"
+        [showDropdown]="tab.showDropdown ?? true"
+        [text]="tab.text ?? ''"
+        [fieldValue]="tab.fieldValue ?? ''"
+        [fieldPlaceholder]="tab.fieldPlaceholder ?? 'Select date'"
+        [fieldSupportingIcon]="tab.fieldSupportingIcon ?? 'calendar'"
+        [showSwitch]="tab.showSwitch ?? true"
+        [showRadio]="tab.showRadio ?? true"
+        [showCheckbox]="tab.showCheckbox ?? true"
+        [checkboxChecked]="ci === 0 && isRowSelected(ri)"
+        [showDownload]="tab.showDownload ?? true"
+        [showEdit]="tab.showEdit ?? true"
+        [showView]="tab.showView ?? true"
+        [showExternalLink]="tab.showExternalLink ?? true"
+        [showTrash]="tab.showTrash ?? true"
+        [showMoreActions]="tab.showMoreActions ?? true"
+        [showApproved]="tab.showApproved ?? true"
+        [showReconsidered]="tab.showReconsidered ?? true"
+        [showRejected]="tab.showRejected ?? true"
+        (checkboxChange)="onRowCheckboxChange(ri, ci)"
+      />
+    }
+  }
+
+</div>
+
+<!-- Pagination sits below the grid -->
+<pds-pagination
+  [totalItems]="totalItems"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [pageSizeOptions]="pageSizeOptions"
+  (pageChange)="onPaginationChange($event)"
+/>

@@ -1,0 +1,58 @@
+/* PDS Tab — selected (Primary/3 + Elevation/2) · unselected default & hover */
+
+.pds-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;                                   /* Spacing/3 */
+  height: 30px;                               /* fixed */
+  padding: 0 10px;                            /* Spacing/5 — left & right only */
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background-color: transparent;
+  color: #263b74;                            /* Secondary/3 — default unselected */
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* supporting icon — 20px · tinted to the current state colour via mask */
+.pds-tab__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask: var(--tab-icon) center / contain no-repeat;
+  mask: var(--tab-icon) center / contain no-repeat;
+}
+
+/* label — Tight Body Highlight/3 (14/16 medium) · inherits state colour */
+.pds-tab__label {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* alert-badge host hugs its circle (its default inline box adds line-box leading,
+   which otherwise pushes the visible badge ~2px below the tab's vertical centre) */
+.pds-tab pds-alert-badge {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ─── SELECTED — Primary/3 fill · Grey/0 content · Elevation/2 ─── */
+.pds-tab--selected {
+  background-color: var(--pds-primary-3);
+  color: #ffffff;                            /* Grey/0 */
+  box-shadow:                                /* Elevation/2 */
+    0px 2px 4px 0px rgba(0, 0, 0, 0.10),
+    0px 2px 6px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── UNSELECTED HOVER — Secondary/1 fill · Secondary/4 content ─── */
+.pds-tab--unselected:hover {
+  background-color: #bcc2d4;                  /* Secondary/1 */
+  color: #1b2a52;                            /* Secondary/4 */
+}

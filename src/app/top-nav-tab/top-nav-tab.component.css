@@ -1,0 +1,59 @@
+/* PDS Top Navigation Tab — selected (Primary/3) · unselected default (white) & hover */
+
+.pds-top-nav-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;                                   /* Spacing/3 */
+  height: 30px;                               /* fixed */
+  padding: 0 10px;                            /* Spacing/5 — left & right only */
+  border-radius: 8px;                         /* Radius/4 */
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans', sans-serif;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* supporting icon — 20px · tinted to the current state colour via mask */
+.pds-top-nav-tab__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask: var(--tab-icon) center / contain no-repeat;
+  mask: var(--tab-icon) center / contain no-repeat;
+}
+
+/* label — Tight Body Highlight/3 (14/16 medium) · inherits state colour */
+.pds-top-nav-tab__label {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* alert-badge host hugs its circle (keeps it vertically centred) */
+.pds-top-nav-tab pds-alert-badge {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ─── UNSELECTED · DEFAULT — Grey/0 fill · Secondary/3 content ─── */
+.pds-top-nav-tab--unselected {
+  background-color: #ffffff;                  /* Grey/0 */
+  color: #263b74;                            /* Secondary/3 */
+}
+
+/* ─── UNSELECTED · HOVER — Secondary/1 fill · Secondary/4 content ─── */
+.pds-top-nav-tab--unselected:hover {
+  background-color: #bcc2d4;                  /* Secondary/1 */
+  color: #1b2a52;                            /* Secondary/4 */
+}
+
+/* ─── SELECTED — Primary/3 fill · Grey/0 content ─── */
+.pds-top-nav-tab--selected {
+  background-color: var(--pds-primary-3);
+  color: #ffffff;                            /* Grey/0 */
+}
