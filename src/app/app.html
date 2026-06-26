@@ -1,16 +1,30 @@
 <div class="ds-preview">
 
-  <!-- Theme switcher — swaps the primary-colour set per product -->
-  <div class="ds-theme-switcher">
-    <span class="ds-theme-switcher__label">Theme</span>
-    @for (theme of themes; track theme) {
-      <button
-        type="button"
-        class="ds-theme-switcher__btn"
-        [class.ds-theme-switcher__btn--active]="activeTheme === theme"
-        (click)="setTheme(theme)"
-      >{{ theme }}</button>
-    }
+  <!-- Theme switcher — collapsible · swaps the primary-colour set per product -->
+  <div class="ds-theme-switcher"
+       [class.ds-theme-switcher--collapsed]="themeSwitcherCollapsed()">
+    <button type="button"
+            class="ds-theme-switcher__head"
+            (click)="toggleThemeSwitcher()"
+            [attr.aria-expanded]="!themeSwitcherCollapsed()"
+            [attr.aria-label]="themeSwitcherCollapsed() ? 'Expand theme switcher' : 'Collapse theme switcher'">
+      <span class="ds-theme-switcher__label">Theme</span>
+      <span class="ds-theme-switcher__active-chip">{{ activeTheme }}</span>
+      <span class="ds-theme-switcher__chevron"
+            [style.--chevron-url]="themeSwitcherCollapsed() ? 'url(/icons/16px/chevron-left.svg)' : 'url(/icons/16px/chevron-right.svg)'"
+            aria-hidden="true"></span>
+    </button>
+    <div class="ds-theme-switcher__list" [attr.aria-hidden]="themeSwitcherCollapsed()">
+      @for (theme of themes; track theme) {
+        <button
+          type="button"
+          class="ds-theme-switcher__btn"
+          [class.ds-theme-switcher__btn--active]="activeTheme === theme"
+          [tabindex]="themeSwitcherCollapsed() ? -1 : 0"
+          (click)="setTheme(theme)"
+        >{{ theme }}</button>
+      }
+    </div>
   </div>
 
   <!-- Side Menu — fixed left · no bg · 56px collapsed / 300px expanded on hover · z-index: 201 -->

@@ -1,28 +1,125 @@
 * { margin: 0; padding: 0; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ─── Theme switcher — fixed bottom-right · swaps primary-colour set ─── */
+/* ─── Theme switcher — fixed bottom-right · collapsible with smooth animation ─── */
 .ds-theme-switcher {
   position: fixed;
-  bottom: 16px;
+  bottom: 66px;                       /* 16px base + 50px lift */
   right: 16px;
   z-index: 500;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 10px;
+  gap: 8px;
+  padding: 6px 8px;
   background: #ffffff;
   border: 1px solid #e4e4e4;          /* Grey/3 */
   border-radius: 10px;
   box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.08);
   font-family: 'IBM Plex Sans', sans-serif;
+  /* container gap shrinks when list is hidden so head sits flush */
+  transition: gap 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.ds-theme-switcher--collapsed {
+  gap: 0;
+}
+
+/* ── Collapsible header (always visible) — click to expand/collapse ── */
+.ds-theme-switcher__head {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 4px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.ds-theme-switcher__head:hover {
+  background: #f4f5f8;                /* Secondary/0 */
+}
+
 .ds-theme-switcher__label {
   font-size: 11px;
   font-weight: 500;
   color: #9d9d9d;                     /* Grey/5 */
-  margin-right: 2px;
 }
+
+/* Active-theme chip — quick read when collapsed · animates away when expanded */
+.ds-theme-switcher__active-chip {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  background: var(--pds-primary-3);   /* live preview of the active theme */
+  border-radius: 6px;
+  padding: 3px 8px;
+  max-width: 120px;
+  opacity: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    max-width   0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity     0.18s ease,
+    padding     0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    margin      0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Chevron — 16px masked SVG · swapped between chevron-left / chevron-right by template */
+.ds-theme-switcher__chevron {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background-color: #9d9d9d;          /* Grey/5 */
+  mask-image: var(--chevron-url);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: var(--chevron-url);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  transition: background-color 0.15s ease;
+}
+.ds-theme-switcher__head:hover .ds-theme-switcher__chevron {
+  background-color: #5d5d5d;          /* Grey/6 */
+}
+
+/* When expanded the active-chip is redundant — animate it out smoothly */
+.ds-theme-switcher:not(.ds-theme-switcher--collapsed) .ds-theme-switcher__active-chip {
+  max-width: 0;
+  opacity: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: -6px;                  /* swallow the head-gap left by the gone chip */
+}
+
+/* ── Theme-button list — animates open via max-width ── */
+.ds-theme-switcher__list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 600px;                   /* fits all 7 theme buttons */
+  opacity: 1;
+  overflow: hidden;
+  transition:
+    max-width   0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity     0.22s ease 0.04s;
+}
+
+/* Collapsed: list shrinks to 0 width · fades out · clicks blocked */
+.ds-theme-switcher--collapsed .ds-theme-switcher__list {
+  max-width: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    max-width   0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity     0.16s ease;           /* fade out faster than fade in */
+}
+
 .ds-theme-switcher__btn {
   font-family: inherit;
   font-size: 11px;

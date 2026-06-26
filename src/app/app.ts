@@ -57,6 +57,11 @@ export class App implements AfterViewInit, OnDestroy {
   /** Primary-colour themes — one per product. Default = ACT. */
   protected readonly themes = ['act', 'hrx', 'talkx', 'leasex', 'travelx', 'spendx', 'apx'];
   protected activeTheme = 'act';
+  /** Theme switcher collapsed state — starts collapsed to take less screen space */
+  protected themeSwitcherCollapsed = signal(true);
+  protected toggleThemeSwitcher(): void {
+    this.themeSwitcherCollapsed.update(v => !v);
+  }
   private readonly themeService = inject(ThemeService);
   protected setTheme(theme: string): void {
     this.activeTheme = theme;
