@@ -8,7 +8,7 @@
             (click)="toggleThemeSwitcher()"
             [attr.aria-expanded]="!themeSwitcherCollapsed()"
             [attr.aria-label]="themeSwitcherCollapsed() ? 'Expand theme switcher' : 'Collapse theme switcher'">
-      <span class="ds-theme-switcher__label">Theme</span>
+      <span class="ds-theme-switcher__label">Products</span>
       <span class="ds-theme-switcher__active-chip">{{ activeTheme }}</span>
       <span class="ds-theme-switcher__chevron"
             [style.--chevron-url]="themeSwitcherCollapsed() ? 'url(/icons/16px/chevron-left.svg)' : 'url(/icons/16px/chevron-right.svg)'"
