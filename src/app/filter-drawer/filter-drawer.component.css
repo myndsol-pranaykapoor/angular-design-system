@@ -80,19 +80,19 @@
 }
 
 /* ─── FOOTER — Extra (hug, left) + Apply (fills) · py Spacing/2 · no leading spacer ─── */
-.pds-filter-drawer__footer .pds-card-footer {
+.pds-filter-drawer__footer .pds-pop-up-footer {
   padding: 4px 0;                             /* Spacing/2 vertical */
   justify-content: flex-start;
 }
-.pds-filter-drawer__footer .pds-card-footer__spacer {
+.pds-filter-drawer__footer .pds-pop-up-footer__spacer {
   display: none;
 }
 /* Apply (button-1, primary, last in DOM) fills the remaining width.
    Target the <pds-button> host element (not the inner .pds-button div). */
-.pds-filter-drawer__footer .pds-card-footer > pds-button:last-child {
+.pds-filter-drawer__footer .pds-pop-up-footer > pds-button:last-child {
   flex: 1 1 0;
   min-width: 0;
 }
-.pds-filter-drawer__footer .pds-card-footer > pds-button:last-child .pds-button {
+.pds-filter-drawer__footer .pds-pop-up-footer > pds-button:last-child .pds-button {
   width: 100%;
 }

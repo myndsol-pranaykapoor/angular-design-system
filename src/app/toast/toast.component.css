@@ -26,28 +26,28 @@
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-/* Toast card-header: icon+title | spacer | cancel button */
-.pds-toast-container .pds-card-header {
+/* Toast pop-up-header: icon+title | spacer | cancel button */
+.pds-toast-container .pds-pop-up-header {
   width: 100%;
 }
 
-.pds-toast-container .pds-card-header__main-row {
+.pds-toast-container .pds-pop-up-header__main-row {
   height: auto;
   min-height: 24px;
   align-items: center;
 }
 
-.pds-toast-container .pds-card-header__spacer:last-of-type {
+.pds-toast-container .pds-pop-up-header__spacer:last-of-type {
   display: none;
 }
 
-.pds-toast-container .pds-card-header__icon-title {
+.pds-toast-container .pds-pop-up-header__icon-title {
   flex-shrink: 1;
   min-width: 0;
   align-items: center;
 }
 
-.pds-toast-container .pds-card-header__title {
+.pds-toast-container .pds-pop-up-header__title {
   white-space: normal;
   display: -webkit-box;
   -webkit-line-clamp: 2;

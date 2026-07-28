@@ -22,10 +22,10 @@
     role="dialog"
     aria-modal="true"
   >
-    <!-- Card header slot -->
+    <!-- Pop-up header slot -->
     @if (showHeader) {
       <div class="pds-popup__header">
-        <ng-content select="pds-card-header"></ng-content>
+        <ng-content select="pds-pop-up-header"></ng-content>
       </div>
     }
 
@@ -34,9 +34,9 @@
       <ng-content></ng-content>
     </div>
 
-    <!-- Card footer slot -->
+    <!-- Pop-up footer slot -->
     <div class="pds-popup__footer">
-      <ng-content select="pds-card-footer"></ng-content>
+      <ng-content select="pds-pop-up-footer"></ng-content>
     </div>
   </div>
 }

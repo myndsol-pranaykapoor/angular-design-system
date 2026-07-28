@@ -1,6 +1,6 @@
-/* PDS Card Header — Tokens: Layout · Main Row · Icon+Title · Subtitle · Buttons */
+/* PDS Pop-up Header — Tokens: Layout · Main Row · Icon+Title · Subtitle · Buttons */
 
-.pds-card-header {
+.pds-pop-up-header {
   display: flex;
   flex-direction: column;
   gap: 2px;           /* Spacing/1 */
@@ -12,7 +12,7 @@
 
 /* ─── MAIN ROW ─── */
 
-.pds-card-header__main-row {
+.pds-pop-up-header__main-row {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,7 +23,7 @@
 
 /* ─── ICON + TITLE GROUP ─── */
 
-.pds-card-header__icon-title {
+.pds-pop-up-header__icon-title {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
@@ -31,7 +31,7 @@
   flex-shrink: 0;
 }
 
-.pds-card-header__icon {
+.pds-pop-up-header__icon {
   display: inline-block;
   flex-shrink: 0;
   width: 20px;
@@ -45,7 +45,7 @@
   -webkit-mask-position: center;
 }
 
-.pds-card-header__title {
+.pds-pop-up-header__title {
   font-size: 16px;            /* Heading/2 */
   line-height: 22px;
   font-weight: 600;           /* SemiBold */
@@ -55,24 +55,24 @@
 
 /* ─── SPACERS ─── */
 
-.pds-card-header__spacer {
+.pds-pop-up-header__spacer {
   flex: 1 1 0;
   min-width: 0;
 }
 
 /* space-between — distributes all buttons evenly; gap removed so space-between owns all spacing */
-.pds-card-header__main-row--space-between {
+.pds-pop-up-header__main-row--space-between {
   justify-content: space-between;
   gap: 0;
 }
 
-.pds-card-header__main-row--space-between .pds-card-header__spacer {
+.pds-pop-up-header__main-row--space-between .pds-pop-up-header__spacer {
   display: none;
 }
 
 /* ─── SUBTITLE ROW ─── */
 
-.pds-card-header__subtitle {
+.pds-pop-up-header__subtitle {
   display: block;
   height: 18px;
   font-size: 12px;            /* Body/2 */

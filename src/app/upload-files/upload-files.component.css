@@ -1,6 +1,6 @@
-/* PDS Upload Files — popup-layout · card-header (title + count chips) · play-area · card-footer */
+/* PDS Upload Files — popup-layout · pop-up-header (title + count chips) · play-area · pop-up-footer */
 
-/* ── COUNT CHIPS in card-header — gap spacing/6 ── */
+/* ── COUNT CHIPS in pop-up-header — gap spacing/6 ── */
 .pds-upload-files__counts {
   display: flex;
   flex-direction: row;

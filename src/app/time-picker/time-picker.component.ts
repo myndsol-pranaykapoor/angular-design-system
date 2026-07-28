@@ -3,8 +3,8 @@ import {
   ElementRef, ViewEncapsulation,
 } from '@angular/core';
 import { PopupLayoutComponent } from '../popup-layout/popup-layout.component';
-import { CardHeaderComponent } from '../card-header/card-header.component';
-import { CardFooterComponent } from '../card-footer/card-footer.component';
+import { PopUpHeaderComponent } from '../pop-up-header/pop-up-header.component';
+import { PopUpFooterComponent } from '../pop-up-footer/pop-up-footer.component';
 import { DateTimeSelectionStateComponent, DateTimeSelectionState } from '../date-time-selection-state/date-time-selection-state.component';
 
 export type TimePickerType = '12-hour-time' | '24-hour-time';
@@ -12,7 +12,7 @@ export type TimePickerType = '12-hour-time' | '24-hour-time';
 @Component({
   selector: 'pds-time-picker',
   standalone: true,
-  imports: [PopupLayoutComponent, CardHeaderComponent, CardFooterComponent, DateTimeSelectionStateComponent],
+  imports: [PopupLayoutComponent, PopUpHeaderComponent, PopUpFooterComponent, DateTimeSelectionStateComponent],
   templateUrl: './time-picker.component.html',
   styleUrl: './time-picker.component.css',
   encapsulation: ViewEncapsulation.None,

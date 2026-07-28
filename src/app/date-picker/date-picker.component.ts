@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef, ElementRef, HostBinding, Input, Output, EventEmitter, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { PopupLayoutComponent } from '../popup-layout/popup-layout.component';
-import { CardHeaderComponent } from '../card-header/card-header.component';
-import { CardFooterComponent } from '../card-footer/card-footer.component';
+import { PopUpHeaderComponent } from '../pop-up-header/pop-up-header.component';
+import { PopUpFooterComponent } from '../pop-up-footer/pop-up-footer.component';
 import { DateTimeSelectionStateComponent, DateTimeSelectionState } from '../date-time-selection-state/date-time-selection-state.component';
 import { SelectorComponent, SelectorOption } from '../selector/selector.component';
 
@@ -15,7 +15,7 @@ interface DayCell {
 @Component({
   selector: 'pds-date-picker',
   standalone: true,
-  imports: [PopupLayoutComponent, CardHeaderComponent, CardFooterComponent, DateTimeSelectionStateComponent, SelectorComponent],
+  imports: [PopupLayoutComponent, PopUpHeaderComponent, PopUpFooterComponent, DateTimeSelectionStateComponent, SelectorComponent],
   templateUrl: './date-picker.component.html',
   styleUrl: './date-picker.component.css',
   encapsulation: ViewEncapsulation.None,
@@ -311,7 +311,7 @@ export class DatePickerComponent implements OnDestroy {
   /** Which calendar the overlay targets: the single picker, or date-range's from/till */
   protected overlayTarget: 'single' | 'from' | 'till' = 'single';
 
-  /** Scope selector for locating the targeted calendar's card-header buttons */
+  /** Scope selector for locating the targeted calendar's pop-up-header buttons */
   private overlayScope(target: 'single' | 'from' | 'till'): string {
     if (target === 'from') return 'pds-date-picker .pds-date-picker__range-cal--from ';
     if (target === 'till') return 'pds-date-picker .pds-date-picker__range-cal--till ';
@@ -335,7 +335,7 @@ export class DatePickerComponent implements OnDestroy {
   // ── SCROLL REPOSITION — keep the open month/year overlay stuck under its button ──
   private overlayButton(): HTMLElement | null {
     const secs = document.querySelectorAll(
-      `${this.overlayScope(this.overlayTarget)}.pds-card-header__main-row .pds-button--secondary`,
+      `${this.overlayScope(this.overlayTarget)}.pds-pop-up-header__main-row .pds-button--secondary`,
     );
     if (this.monthOverlayVisible) return (secs[0] as HTMLElement) ?? null;            // month = first
     if (this.yearOverlayVisible)  return (secs[secs.length - 1] as HTMLElement) ?? null; // year = last
@@ -388,9 +388,9 @@ export class DatePickerComponent implements OnDestroy {
     }
     this.yearOverlayVisible = false;
     this.overlayTarget = target;
-    // Month button is the FIRST .pds-button--secondary in the targeted card-header.
+    // Month button is the FIRST .pds-button--secondary in the targeted pop-up-header.
     const monthBtn = document.querySelector(
-      `${this.overlayScope(target)}.pds-card-header__main-row .pds-button--secondary`,
+      `${this.overlayScope(target)}.pds-pop-up-header__main-row .pds-button--secondary`,
     ) as HTMLElement | null;
     if (!monthBtn) return;
     const rect = monthBtn.getBoundingClientRect();
@@ -445,10 +445,10 @@ export class DatePickerComponent implements OnDestroy {
     }
     this.monthOverlayVisible = false;
     this.overlayTarget = target;
-    // Year button is the LAST .pds-button--secondary in the targeted card-header
+    // Year button is the LAST .pds-button--secondary in the targeted pop-up-header
     // (date-change & date-range calendars have month+year; month-change has only year).
     const secondaryBtns = document.querySelectorAll(
-      `${this.overlayScope(target)}.pds-card-header__main-row .pds-button--secondary`,
+      `${this.overlayScope(target)}.pds-pop-up-header__main-row .pds-button--secondary`,
     );
     const yearBtn = secondaryBtns[secondaryBtns.length - 1] as HTMLElement | undefined;
     if (!yearBtn) return;

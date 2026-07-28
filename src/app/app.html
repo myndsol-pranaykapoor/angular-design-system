@@ -293,10 +293,10 @@
       </div>
     </section>
 
-    <!-- ── CARD HEADER ── -->
-    <section class="ds-section" id="sec-card-header">
+    <!-- ── POP-UP HEADER ── -->
+    <section class="ds-section" id="sec-pop-up-header">
       <pds-section-header
-        title="Card Header"
+        title="Pop-up Header"
         subtitle="Flexible header layout — Icon+Title · Subtitle · Action Buttons"
         [showSubtitle]="true"
         [showIcon]="false"
@@ -311,7 +311,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">All elements visible</div>
         <div class="ds-card-preview">
-          <pds-card-header
+          <pds-pop-up-header
             title="Card Title"
             subtitle="Supporting subtitle text"
             icon="life-buoy"
@@ -327,7 +327,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">Title + Subtitle only</div>
         <div class="ds-card-preview">
-          <pds-card-header
+          <pds-pop-up-header
             title="Card Title"
             subtitle="Supporting subtitle text"
             [showIcon]="false"
@@ -343,7 +343,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">Icon + Title + Action buttons (no subtitle)</div>
         <div class="ds-card-preview">
-          <pds-card-header
+          <pds-pop-up-header
             title="Card Title"
             icon="life-buoy"
             button1Icon="life-buoy"
@@ -355,7 +355,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">Title only</div>
         <div class="ds-card-preview">
-          <pds-card-header
+          <pds-pop-up-header
             title="Card Title"
             [showIcon]="false"
             [showButton1]="false"
@@ -369,7 +369,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">All four action buttons</div>
         <div class="ds-card-preview">
-          <pds-card-header
+          <pds-pop-up-header
             title="Section Title"
             icon="life-buoy"
             button1Icon="life-buoy"
@@ -388,7 +388,7 @@
     <section class="ds-section" id="sec-section-header">
       <pds-section-header
         title="Section Header"
-        subtitle="Same as Card Header — title · subtitle · buttons · icon — but using size/1 buttons (30px) and 24px icon"
+        subtitle="Same as Pop-up Header — title · subtitle · buttons · icon — but using size/1 buttons (30px) and 24px icon"
         [showSubtitle]="true"
         [showIcon]="false"
         [showButton1]="false"
@@ -478,10 +478,10 @@
       </div>
     </section>
 
-    <!-- ── CARD FOOTER ── -->
-    <section class="ds-section" id="sec-card-footer">
+    <!-- ── POP-UP FOOTER ── -->
+    <section class="ds-section" id="sec-pop-up-footer">
       <pds-section-header
-        title="Card Footer"
+        title="Pop-up Footer"
         subtitle="Flexible footer layout — Tertiary · Tertiary · Spacer · Secondary · Primary"
         [showSubtitle]="true"
         [showIcon]="false"
@@ -496,7 +496,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">All buttons visible</div>
         <div class="ds-card-preview">
-          <pds-card-footer
+          <pds-pop-up-footer
             button4Label="Cancel"
             button3Label="Reset"
             button2Label="Save"
@@ -508,7 +508,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">Primary + Secondary only</div>
         <div class="ds-card-preview">
-          <pds-card-footer
+          <pds-pop-up-footer
             [showButton4]="false"
             [showButton3]="false"
             button2Label="Cancel"
@@ -520,7 +520,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">Tertiary buttons only (left)</div>
         <div class="ds-card-preview">
-          <pds-card-footer
+          <pds-pop-up-footer
             button4Label="Cancel"
             button3Label="Reset"
             [showButton2]="false"
@@ -532,7 +532,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">Single primary button</div>
         <div class="ds-card-preview">
-          <pds-card-footer
+          <pds-pop-up-footer
             [showButton4]="false"
             [showButton3]="false"
             [showButton2]="false"
@@ -544,7 +544,7 @@
       <div class="ds-token-group">
         <div class="ds-token-label">Disabled state</div>
         <div class="ds-card-preview">
-          <pds-card-footer
+          <pds-pop-up-footer
             button4Label="Cancel"
             button3Label="Reset"
             button2Label="Save"
@@ -931,7 +931,7 @@
     <section class="ds-section" id="sec-date-picker">
       <pds-section-header
         title="Date Picker"
-        subtitle="date-change &amp; year-change types — Pop-up Layout · Card Header · Play Area · Card Footer"
+        subtitle="date-change &amp; year-change types — Pop-up Layout · Pop-up Header · Play Area · Pop-up Footer"
         [showSubtitle]="true"
         [showIcon]="false"
         [showButton1]="false"
@@ -1163,7 +1163,7 @@
     <section class="ds-section" id="sec-filter-drawer">
       <pds-section-header
         title="Filter Drawer"
-        subtitle="pop-up-layout · card-header · scroll-area of filter-sections (accordion — one expanded) · card-footer"
+        subtitle="pop-up-layout · pop-up-header · scroll-area of filter-sections (accordion — one expanded) · pop-up-footer"
         [showSubtitle]="true"
         [showIcon]="false"
         [showButton1]="false"
@@ -1313,7 +1313,7 @@
   [height]="400"
   (closed)="closePopup()"
 >
-  <pds-card-header
+  <pds-pop-up-header
     title="Pop-up Title"
     subtitle="Supporting subtitle text goes here."
     [showSubtitle]="true"
@@ -1327,7 +1327,7 @@
     <p style="margin: 0 0 8px;">This is the play area — place any content here.</p>
     <p style="margin: 0; color: #5d5d5d;">It has a 1px Grey/3 border and Radius/4 (8px) corner radius.</p>
   </div>
-  <pds-card-footer
+  <pds-pop-up-footer
     button1Label="Confirm"
     button2Label="Cancel"
     [showButton3]="false"
@@ -1344,7 +1344,7 @@
   [height]="350"
   (closed)="successPopupOpen.set(false)"
 >
-  <pds-card-header
+  <pds-pop-up-header
     title="Success"
     subtitle="Long subtitle text will display here like this."
     icon="check-inside-circle"
@@ -1359,7 +1359,7 @@
   <div style="display:flex; align-items:center; justify-content:center; height:100%;">
     <img src="/illustrations/man-celebrating.svg" alt="Success illustration" style="width:200px; height:200px;" />
   </div>
-  <pds-card-footer
+  <pds-pop-up-footer
     button1Label="Confirm"
     button2Label="Cancel"
     [showButton3]="false"
@@ -1376,7 +1376,7 @@
   [height]="350"
   (closed)="warningPopupOpen.set(false)"
 >
-  <pds-card-header
+  <pds-pop-up-header
     title="Warning"
     subtitle="Long subtitle text will display here like this."
     icon="alert-triangle"
@@ -1391,7 +1391,7 @@
   <div style="display:flex; align-items:center; justify-content:center; height:100%;">
     <img src="/illustrations/announcement.svg" alt="Warning illustration" style="width:200px; height:200px;" />
   </div>
-  <pds-card-footer
+  <pds-pop-up-footer
     button1Label="Confirm"
     button2Label="Cancel"
     [showButton3]="false"
@@ -1408,7 +1408,7 @@
   [height]="350"
   (closed)="errorPopupOpen.set(false)"
 >
-  <pds-card-header
+  <pds-pop-up-header
     title="Error"
     subtitle="Long subtitle text will display here like this."
     icon="x-circle"
@@ -1423,7 +1423,7 @@
   <div style="display:flex; align-items:center; justify-content:center; height:100%;">
     <img src="/illustrations/faq.svg" alt="Error illustration" style="width:200px; height:200px;" />
   </div>
-  <pds-card-footer
+  <pds-pop-up-footer
     button1Label="Confirm"
     button2Label="Cancel"
     [showButton3]="false"

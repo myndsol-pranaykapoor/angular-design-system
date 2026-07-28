@@ -1,5 +1,5 @@
 <pds-popup-layout [visible]="visible" (closed)="onCancel()">
-  <pds-card-header
+  <pds-pop-up-header
     [title]="resolvedTitle" [titleColor]="config.iconColor"
     [subtitle]="resolvedSubtitle" [showSubtitle]="true"
     [showIcon]="true" [icon]="config.icon" [iconColor]="config.iconColor"
@@ -8,7 +8,7 @@
   <div class="pds-semantic-popup__illustration">
     <img [src]="'/illustrations/' + config.illustration + '.svg'" [alt]="type" width="200" height="200" />
   </div>
-  <pds-card-footer
+  <pds-pop-up-footer
     [button1Label]="confirmLabel" [button2Label]="cancelLabel"
     [showButton3]="false" [showButton4]="false"
     (button1Click)="onConfirm()" (button2Click)="onCancel()"

@@ -2,14 +2,14 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angu
 import { ButtonComponent, ButtonContent, ButtonType } from '../button/button.component';
 
 @Component({
-  selector: 'pds-card-header',
+  selector: 'pds-pop-up-header',
   standalone: true,
   imports: [ButtonComponent],
-  templateUrl: './card-header.component.html',
-  styleUrl: './card-header.component.css',
+  templateUrl: './pop-up-header.component.html',
+  styleUrl: './pop-up-header.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class CardHeaderComponent {
+export class PopUpHeaderComponent {
   @Input() title = '';
   @Input() subtitle = '';
   @Input() icon = '';
@@ -73,8 +73,8 @@ export class CardHeaderComponent {
 
   get hostClasses(): string[] {
     return [
-      'pds-card-header',
-      this.showSubtitle ? 'pds-card-header--with-subtitle' : '',
+      'pds-pop-up-header',
+      this.showSubtitle ? 'pds-pop-up-header--with-subtitle' : '',
     ].filter(Boolean);
   }
 }

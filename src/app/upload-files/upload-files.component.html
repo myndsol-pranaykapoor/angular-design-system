@@ -6,8 +6,8 @@
   (closed)="onCancel()"
 >
 
-  <!-- ── CARD HEADER — title + count chips · subtitle ── -->
-  <pds-card-header
+  <!-- ── POP-UP HEADER — title + count chips · subtitle ── -->
+  <pds-pop-up-header
     [showIcon]="false"
     [showTitle]="true"
     [title]="title"
@@ -18,7 +18,7 @@
     [showButton2]="false"
     [showButton1]="false"
   >
-    <div card-header-actions class="pds-upload-files__counts">
+    <div pop-up-header-actions class="pds-upload-files__counts">
       <pds-chip-tag type="border" [size]="0" [colorScheme]="scheme(successCount, 'success')"
         [showSupportingIcon]="true" supportingIcon="check-inside-circle" [label]="pad(successCount)" />
       <pds-chip-tag type="border" [size]="0" [colorScheme]="scheme(failedCount, 'error')"
@@ -26,7 +26,7 @@
       <pds-chip-tag type="border" [size]="0" [colorScheme]="scheme(pendingCount, 'alert')"
         [showSupportingIcon]="true" supportingIcon="circle" [label]="pad(pendingCount)" />
     </div>
-  </pds-card-header>
+  </pds-pop-up-header>
 
   <!-- ── PLAY AREA — drop-area + files-list · gap spacing/6 ── -->
   <div class="pds-upload-files__play">
@@ -58,8 +58,8 @@
 
   </div>
 
-  <!-- ── CARD FOOTER — Download Sample · spacer · Cancel · Confirm ── -->
-  <pds-card-footer
+  <!-- ── POP-UP FOOTER — Download Sample · spacer · Cancel · Confirm ── -->
+  <pds-pop-up-footer
     [button4Label]="downloadSampleLabel"
     button4LeftIcon="download"
     [showButton3]="false"

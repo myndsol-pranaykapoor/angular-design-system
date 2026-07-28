@@ -1,13 +1,13 @@
 import { Component, Input, Output, EventEmitter, HostBinding, ViewEncapsulation } from '@angular/core';
-import { CardHeaderComponent } from '../card-header/card-header.component';
-import { CardFooterComponent } from '../card-footer/card-footer.component';
+import { PopUpHeaderComponent } from '../pop-up-header/pop-up-header.component';
+import { PopUpFooterComponent } from '../pop-up-footer/pop-up-footer.component';
 
 export type ToolTipDirection = 'up' | 'down' | 'left' | 'right';
 
 @Component({
   selector: 'pds-tool-tip',
   standalone: true,
-  imports: [CardHeaderComponent, CardFooterComponent],
+  imports: [PopUpHeaderComponent, PopUpFooterComponent],
   templateUrl: './tool-tip.component.html',
   styleUrl: './tool-tip.component.css',
   encapsulation: ViewEncapsulation.None,

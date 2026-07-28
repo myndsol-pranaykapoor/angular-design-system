@@ -13,7 +13,7 @@ export class PopupLayoutComponent {
   @Input() width: number | 'auto' = 400;
   /** Fixed pixel height, or 'auto' to hug content (no fixed height, no scroll) */
   @Input() height: number | 'auto' = 400;
-  /** Render the card-header slot. Set false when there is no header (e.g. date-range). */
+  /** Render the pop-up-header slot. Set false when there is no header (e.g. date-range). */
   @Input() showHeader = true;
   /** Apply the bordered play-area chrome (border · padding · radius). Set false for custom content. */
   @Input() playAreaChrome = true;

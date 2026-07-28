@@ -2,14 +2,14 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angu
 import { ButtonComponent } from '../button/button.component';
 
 @Component({
-  selector: 'pds-card-footer',
+  selector: 'pds-pop-up-footer',
   standalone: true,
   imports: [ButtonComponent],
-  templateUrl: './card-footer.component.html',
-  styleUrl: './card-footer.component.css',
+  templateUrl: './pop-up-footer.component.html',
+  styleUrl: './pop-up-footer.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class CardFooterComponent {
+export class PopUpFooterComponent {
   @Input() button1Label = 'Button';
   @Input() button2Label = 'Button';
   @Input() button3Label = 'Button';

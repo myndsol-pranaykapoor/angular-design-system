@@ -1,7 +1,7 @@
 /* PDS Time Picker — scroll-snap columns · centred cell = selected · 44px cells */
 
-/* Card-footer buttons hug content — override card-footer's global min-width */
-pds-time-picker .pds-card-footer .pds-button {
+/* Card-footer buttons hug content — override pop-up-footer's global min-width */
+pds-time-picker .pds-pop-up-footer .pds-button {
   min-width: unset;
 }
 

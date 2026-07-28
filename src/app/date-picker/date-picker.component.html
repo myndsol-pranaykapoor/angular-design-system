@@ -17,7 +17,7 @@
 
       <!-- ── DATE-FROM ── -->
       <div class="pds-date-picker__range-cal pds-date-picker__range-cal--from">
-        <pds-card-header
+        <pds-pop-up-header
           [showIcon]="false" [showTitle]="false"
           button4Type="secondary" [button4Label]="fromMonthName" button4RightIcon="chevron-down"
           button3Type="secondary" [button3Label]="fromYearStr"   button3RightIcon="chevron-down"
@@ -53,7 +53,7 @@
 
       <!-- ── DATE-TILL ── -->
       <div class="pds-date-picker__range-cal pds-date-picker__range-cal--till">
-        <pds-card-header
+        <pds-pop-up-header
           [showIcon]="false" [showTitle]="false"
           button4Type="secondary" [button4Label]="tillMonthName" button4RightIcon="chevron-down"
           button3Type="secondary" [button3Label]="tillYearStr"   button3RightIcon="chevron-down"
@@ -86,8 +86,8 @@
 
     </div>
 
-    <!-- ── CARD FOOTER ── -->
-    <pds-card-footer
+    <!-- ── POP-UP FOOTER ── -->
+    <pds-pop-up-footer
       button4Label="Today"
       [showButton3]="false"
       button2Label="Cancel"
@@ -103,11 +103,11 @@
 
 <pds-popup-layout [visible]="visible" [width]="244" height="auto" [anchored]="anchored" [anchorTop]="anchorTop" [anchorLeft]="anchorLeft" (closed)="cancel()">
 
-  <!-- ── CARD HEADER — single static child so it projects ABOVE the play-area ── -->
+  <!-- ── POP-UP HEADER — single static child so it projects ABOVE the play-area ── -->
   <!-- date-change:  month (b4) + year (b3) secondary buttons · single-chevron nav -->
   <!-- year-change:  title range · double-chevron nav (b4 & b3 hidden) -->
   <!-- month-change: year (b3) secondary button · double-chevron nav (b4 hidden) -->
-  <pds-card-header
+  <pds-pop-up-header
     [showIcon]="false"
     [showTitle]="type === 'year-change'"
     [title]="type === 'year-change' ? yearRangeTitle : ''"
@@ -189,9 +189,9 @@
 
   }
 
-  <!-- ── CARD FOOTER — single static child, same for all types ── -->
+  <!-- ── POP-UP FOOTER — single static child, same for all types ── -->
   <!-- button-4: Today (tertiary) · spacer · button-2: Cancel (secondary) · button-1: Okay (primary) -->
-  <pds-card-footer
+  <pds-pop-up-footer
     button4Label="Today"
     [showButton3]="false"
     button2Label="Cancel"

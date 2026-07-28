@@ -5,9 +5,9 @@
   </svg>
 </div>
 
-<!-- body — card-header (title + subtitle) + card-footer (spacer + button-1) -->
+<!-- body — pop-up-header (title + subtitle) + pop-up-footer (spacer + button-1) -->
 <div class="pds-tool-tip__body" [style.width.px]="width">
-  <pds-card-header
+  <pds-pop-up-header
     [showIcon]="false"
     [showTitle]="true"
     [title]="title"
@@ -20,7 +20,7 @@
     [showButton1]="false"
   />
   @if (showFooter) {
-    <pds-card-footer
+    <pds-pop-up-footer
       [showButton4]="false"
       [showButton3]="false"
       [showButton2]="false"

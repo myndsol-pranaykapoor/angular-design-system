@@ -3,8 +3,8 @@ import { ThemeService } from './theme.service';
 import { AlertBadgeComponent } from './alert-badge/alert-badge.component';
 import { ButtonComponent, ButtonSize } from './button/button.component';
 import { ChipTagComponent, ChipTagSize } from './chip-tag/chip-tag.component';
-import { CardHeaderComponent } from './card-header/card-header.component';
-import { CardFooterComponent } from './card-footer/card-footer.component';
+import { PopUpHeaderComponent } from './pop-up-header/pop-up-header.component';
+import { PopUpFooterComponent } from './pop-up-footer/pop-up-footer.component';
 import { ToastComponent, ToastType } from './toast/toast.component';
 import { SwitchComponent, SwitchSize } from './switch/switch.component';
 import { RadioComponent, RadioSize } from './radio/radio.component';
@@ -49,7 +49,7 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
 
 @Component({
   selector: 'app-root',
-  imports: [AlertBadgeComponent, ButtonComponent, ChipTagComponent, CardHeaderComponent, CardFooterComponent, ToastComponent, SwitchComponent, RadioComponent, CheckboxComponent, ProgressBarComponent, ScrollerComponent, PopupLayoutComponent, ProfileAvatarComponent, WebHeaderComponent, SemanticPopupComponent, SearchComponent, CommandBarComponent, SideMenuItemComponent, SideMenuItemsCollectionComponent, SideMenuComponent, WebFooterComponent, OptionComponent, SelectorComponent, DateTimeSelectionStateComponent, DatePickerComponent, TimePickerComponent, UploadFilesComponent, LabelContainerComponent, InputAreaComponent, InputFieldComponent, ToolTipComponent, FilterSectionComponent, FilterDrawerComponent, TabComponent, TabBarComponent, CrumbComponent, BreadCrumbsComponent, TopNavTabComponent, TopNavBarComponent, PaginationComponent, DataRowTabComponent, DataRowComponent, HeadingColumnTitleComponent, TableHeaderComponent, TableComponent, SectionHeaderComponent],
+  imports: [AlertBadgeComponent, ButtonComponent, ChipTagComponent, PopUpHeaderComponent, PopUpFooterComponent, ToastComponent, SwitchComponent, RadioComponent, CheckboxComponent, ProgressBarComponent, ScrollerComponent, PopupLayoutComponent, ProfileAvatarComponent, WebHeaderComponent, SemanticPopupComponent, SearchComponent, CommandBarComponent, SideMenuItemComponent, SideMenuItemsCollectionComponent, SideMenuComponent, WebFooterComponent, OptionComponent, SelectorComponent, DateTimeSelectionStateComponent, DatePickerComponent, TimePickerComponent, UploadFilesComponent, LabelContainerComponent, InputAreaComponent, InputFieldComponent, ToolTipComponent, FilterSectionComponent, FilterDrawerComponent, TabComponent, TabBarComponent, CrumbComponent, BreadCrumbsComponent, TopNavTabComponent, TopNavBarComponent, PaginationComponent, DataRowTabComponent, DataRowComponent, HeadingColumnTitleComponent, TableHeaderComponent, TableComponent, SectionHeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -158,9 +158,9 @@ export class App implements AfterViewInit, OnDestroy {
     'Alert Badge',
     'Button',
     'Chip Tag',
-    'Card Header',
+    'Pop-up Header',
     'Section Header',
-    'Card Footer',
+    'Pop-up Footer',
     'Toast',
     'Switch',
     'Radio',

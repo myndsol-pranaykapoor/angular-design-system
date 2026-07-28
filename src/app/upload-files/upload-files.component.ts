@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnDestroy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { PopupLayoutComponent } from '../popup-layout/popup-layout.component';
-import { CardHeaderComponent } from '../card-header/card-header.component';
-import { CardFooterComponent } from '../card-footer/card-footer.component';
+import { PopUpHeaderComponent } from '../pop-up-header/pop-up-header.component';
+import { PopUpFooterComponent } from '../pop-up-footer/pop-up-footer.component';
 import { ChipTagComponent, ChipTagColorScheme } from '../chip-tag/chip-tag.component';
 import { DropAreaComponent } from '../drop-area/drop-area.component';
 import { ScrollerComponent } from '../scroller/scroller.component';
@@ -18,7 +18,7 @@ export interface UploadFile {
   selector: 'pds-upload-files',
   standalone: true,
   imports: [
-    PopupLayoutComponent, CardHeaderComponent, CardFooterComponent,
+    PopupLayoutComponent, PopUpHeaderComponent, PopUpFooterComponent,
     ChipTagComponent, DropAreaComponent, ScrollerComponent, FileRowComponent,
   ],
   templateUrl: './upload-files.component.html',

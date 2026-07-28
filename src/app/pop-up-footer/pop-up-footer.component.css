@@ -1,6 +1,6 @@
-/* PDS Card Footer — Tokens: Layout · Button Slots · Typography */
+/* PDS Pop-up Footer — Tokens: Layout · Button Slots · Typography */
 
-.pds-card-footer {
+.pds-pop-up-footer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11,12 +11,12 @@
   box-sizing: border-box;
 }
 
-.pds-card-footer__spacer {
+.pds-pop-up-footer__spacer {
   flex: 1 1 0;
   min-width: 0;
 }
 
 /* Enforce minimum button width matching Figma */
-.pds-card-footer .pds-button {
+.pds-pop-up-footer .pds-button {
   min-width: 70px;
 }

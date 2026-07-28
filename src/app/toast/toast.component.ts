@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { CardHeaderComponent } from '../card-header/card-header.component';
+import { PopUpHeaderComponent } from '../pop-up-header/pop-up-header.component';
 
 export type ToastType = 'success' | 'warning' | 'error';
 
@@ -12,7 +12,7 @@ const TOAST_CONFIG: Record<ToastType, { iconColor: string; titleColor: string; b
 @Component({
   selector: 'pds-toast',
   standalone: true,
-  imports: [CardHeaderComponent],
+  imports: [PopUpHeaderComponent],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.css',
   encapsulation: ViewEncapsulation.None,

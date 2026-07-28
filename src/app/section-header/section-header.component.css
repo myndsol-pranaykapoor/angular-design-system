@@ -1,4 +1,4 @@
-/* PDS Section Header — size/1 buttons (30px) · icon 24px · same token set as card-header */
+/* PDS Section Header — size/1 buttons (30px) · icon 24px · same token set as pop-up-header */
 
 .pds-section-header {
   display: flex;
@@ -34,7 +34,7 @@
 .pds-section-header__icon {
   display: inline-block;
   flex-shrink: 0;
-  width: 24px;                 /* 24px — larger than card-header's 20px */
+  width: 24px;                 /* 24px — larger than pop-up-header's 20px */
   height: 24px;
   background-color: var(--pds-primary-3);
   mask-size: contain;

@@ -1,32 +1,32 @@
 /* PDS Date Picker — layout delegated to pds-popup-layout */
 
-/* ── CARD HEADER (date-change & date-range calendars): 4 buttons equal space-between, no spacers ── */
-/* year-change & month-change keep the default card-header layout (left anchor · spacer · nav buttons at gap spacing/6) */
-pds-date-picker.pds-date-picker--date-change .pds-card-header__main-row,
-pds-date-picker.pds-date-picker--date-range .pds-card-header__main-row {
+/* ── POP-UP HEADER (date-change & date-range calendars): 4 buttons equal space-between, no spacers ── */
+/* year-change & month-change keep the default pop-up-header layout (left anchor · spacer · nav buttons at gap spacing/6) */
+pds-date-picker.pds-date-picker--date-change .pds-pop-up-header__main-row,
+pds-date-picker.pds-date-picker--date-range .pds-pop-up-header__main-row {
   justify-content: space-between !important;
   gap: 0 !important;
 }
 
-pds-date-picker.pds-date-picker--date-change .pds-card-header__spacer,
-pds-date-picker.pds-date-picker--date-range .pds-card-header__spacer {
+pds-date-picker.pds-date-picker--date-change .pds-pop-up-header__spacer,
+pds-date-picker.pds-date-picker--date-range .pds-pop-up-header__spacer {
   display: none !important;
 }
 
 /* Fix month & year button widths — prevents layout shift when text changes */
-pds-date-picker.pds-date-picker--date-change .pds-card-header__main-row .pds-button--secondary,
-pds-date-picker.pds-date-picker--date-range .pds-card-header__main-row .pds-button--secondary {
+pds-date-picker.pds-date-picker--date-change .pds-pop-up-header__main-row .pds-button--secondary,
+pds-date-picker.pds-date-picker--date-range .pds-pop-up-header__main-row .pds-button--secondary {
   min-width: 70px;
   justify-content: center;
 }
 
 /* month-change: hide spacer-1 so the year button (button-3) anchors to the left */
-pds-date-picker.pds-date-picker--month-change .pds-card-header__spacer:first-of-type {
+pds-date-picker.pds-date-picker--month-change .pds-pop-up-header__spacer:first-of-type {
   display: none;
 }
 
-/* Card-footer buttons hug content — override card-footer's global min-width */
-pds-date-picker .pds-card-footer .pds-button {
+/* Card-footer buttons hug content — override pop-up-footer's global min-width */
+pds-date-picker .pds-pop-up-footer .pds-button {
   min-width: unset;
 }
 
@@ -101,7 +101,7 @@ pds-date-picker .pds-card-footer .pds-button {
   gap: 12px;                                  /* Spacing/6 */
 }
 
-/* Each calendar column — card-header + grid · gap spacing/6 · 216px wide */
+/* Each calendar column — pop-up-header + grid · gap spacing/6 · 216px wide */
 .pds-date-picker__range-cal {
   display: flex;
   flex-direction: column;

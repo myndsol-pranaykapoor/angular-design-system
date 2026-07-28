@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { PopupLayoutComponent } from '../popup-layout/popup-layout.component';
-import { CardHeaderComponent } from '../card-header/card-header.component';
-import { CardFooterComponent } from '../card-footer/card-footer.component';
+import { PopUpHeaderComponent } from '../pop-up-header/pop-up-header.component';
+import { PopUpFooterComponent } from '../pop-up-footer/pop-up-footer.component';
 import {
   FilterSectionComponent,
   FilterSectionType,
@@ -20,7 +20,7 @@ export interface FilterDrawerSection {
 @Component({
   selector: 'pds-filter-drawer',
   standalone: true,
-  imports: [PopupLayoutComponent, CardHeaderComponent, CardFooterComponent, FilterSectionComponent],
+  imports: [PopupLayoutComponent, PopUpHeaderComponent, PopUpFooterComponent, FilterSectionComponent],
   templateUrl: './filter-drawer.component.html',
   styleUrl: './filter-drawer.component.css',
   encapsulation: ViewEncapsulation.None,

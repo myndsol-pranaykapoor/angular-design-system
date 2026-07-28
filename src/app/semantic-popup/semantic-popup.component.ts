@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { PopupLayoutComponent } from '../popup-layout/popup-layout.component';
-import { CardHeaderComponent } from '../card-header/card-header.component';
-import { CardFooterComponent } from '../card-footer/card-footer.component';
+import { PopUpHeaderComponent } from '../pop-up-header/pop-up-header.component';
+import { PopUpFooterComponent } from '../pop-up-footer/pop-up-footer.component';
 
 export type SemanticPopupType = 'success' | 'warning' | 'error';
 
@@ -22,7 +22,7 @@ const CONFIG: Record<SemanticPopupType, SemanticConfig> = {
 @Component({
   selector: 'pds-semantic-popup',
   standalone: true,
-  imports: [PopupLayoutComponent, CardHeaderComponent, CardFooterComponent],
+  imports: [PopupLayoutComponent, PopUpHeaderComponent, PopUpFooterComponent],
   templateUrl: './semantic-popup.component.html',
   styleUrl: './semantic-popup.component.css',
   encapsulation: ViewEncapsulation.None,

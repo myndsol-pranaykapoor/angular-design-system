@@ -226,7 +226,7 @@ body {
 .ds-section {
   display: flex;
   flex-direction: column;
-  gap: 12px;                       /* Spacing/6 — between card-header and play-area */
+  gap: 12px;                       /* Spacing/6 — between pop-up-header and play-area */
   padding: 12px;                   /* Spacing/6 on all sides */
   background: #ffffff;             /* Grey/0 */
   border: 1px solid #e4e4e4;       /* Grey/3 */
@@ -420,10 +420,10 @@ body {
   padding: 12px;               /* Spacing/6 */
 }
 
-/* Card Header, Section Header & Card Footer sections — tighter padding on card previews */
-#sec-card-header .ds-card-preview,
+/* Pop-up Header, Section Header & Pop-up Footer sections — tighter padding on card previews */
+#sec-pop-up-header .ds-card-preview,
 #sec-section-header .ds-card-preview,
-#sec-card-footer .ds-card-preview {
+#sec-pop-up-footer .ds-card-preview {
   padding: 12px;               /* Spacing/6 */
 }
 

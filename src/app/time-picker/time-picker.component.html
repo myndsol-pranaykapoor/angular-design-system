@@ -1,7 +1,7 @@
 <pds-popup-layout [visible]="visible" [width]="240" height="auto" (closed)="cancel()">
 
-  <!-- ── CARD HEADER — title only (time-picker type) ── -->
-  <pds-card-header
+  <!-- ── POP-UP HEADER — title only (time-picker type) ── -->
+  <pds-pop-up-header
     [showIcon]="false"
     [showTitle]="true"
     [title]="title"
@@ -81,8 +81,8 @@
 
   </div>
 
-  <!-- ── CARD FOOTER — Now (tertiary) · spacer · Cancel (secondary) · Okay (primary) ── -->
-  <pds-card-footer
+  <!-- ── POP-UP FOOTER — Now (tertiary) · spacer · Cancel (secondary) · Okay (primary) ── -->
+  <pds-pop-up-footer
     button4Label="Now"
     [showButton3]="false"
     button2Label="Cancel"

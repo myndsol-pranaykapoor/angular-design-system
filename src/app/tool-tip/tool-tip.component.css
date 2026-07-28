@@ -52,13 +52,13 @@
   box-sizing: border-box;
 }
 
-/* title white (via card-header titleColor) · subtitle Grey/1 */
-.pds-tool-tip__body .pds-card-header__subtitle {
+/* title white (via pop-up-header titleColor) · subtitle Grey/1 */
+.pds-tool-tip__body .pds-pop-up-header__subtitle {
   color: #fcfcfc;                             /* Grey/1 */
 }
 
-/* Action button hugs its content — override card-footer's 70px min-width */
-.pds-tool-tip__body .pds-card-footer .pds-button {
+/* Action button hugs its content — override pop-up-footer's 70px min-width */
+.pds-tool-tip__body .pds-pop-up-footer .pds-button {
   min-width: unset;
   width: max-content;
 }
