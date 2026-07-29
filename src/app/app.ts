@@ -181,12 +181,17 @@ export class App implements AfterViewInit, OnDestroy {
     if (!userMenuOverlay) return;
     const rect = userMenuOverlay.getBoundingClientRect();
 
-    // Align theme selector top with "Change Theme" option (2nd option)
-    // Calculation: selector padding (4px) + option 1 height (40px) = 44px offset
-    // The gap between options is internal to flex layout
-    const changeThemeOptionOffset = 44;
+    // Get exact position of "Change Theme" option (2nd option in user menu)
+    const options = userMenuOverlay.querySelectorAll('pds-option');
+    if (options.length > 1) {
+      const changeThemeOption = options[1];
+      const optionRect = changeThemeOption.getBoundingClientRect();
+      this.themeMenuTop = optionRect.top;
+    } else {
+      // Fallback if option not found
+      this.themeMenuTop = rect.top + 44;
+    }
 
-    this.themeMenuTop = rect.top + changeThemeOptionOffset;
     this.themeMenuLeft = rect.left - 200;  // Position to left with no gap
   }
 
