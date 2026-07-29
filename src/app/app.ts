@@ -128,6 +128,21 @@ export class App implements AfterViewInit, OnDestroy {
     window.removeEventListener('resize', this.userMenuReposition);
   }
 
+  // ── THEME SELECTOR OVERLAY (opened from user menu) ──────────────────────
+  protected themeMenuVisible = false;
+  protected themeMenuTop = 0;
+  protected themeMenuLeft = 0;
+
+  protected readonly themeMenuOptions: SelectorOption[] = [
+    { label: 'act', icon: 'circle' },
+    { label: 'hrx', icon: 'circle' },
+    { label: 'talkx', icon: 'circle' },
+    { label: 'leasex', icon: 'circle' },
+    { label: 'travelx', icon: 'circle' },
+    { label: 'spendx', icon: 'circle' },
+    { label: 'apx', icon: 'circle' },
+  ];
+
   protected onUserMenuOptionSelected(event: { index: number; checked: boolean; option: SelectorOption }): void {
     const { index } = event;
     switch (index) {
@@ -138,16 +153,58 @@ export class App implements AfterViewInit, OnDestroy {
         this.handleChangeTheme();
         break;
     }
-    this.closeUserMenu();
   }
 
   private handleViewProfile(): void {
     console.log('View Profile clicked');
+    this.closeUserMenu();
   }
 
   private handleChangeTheme(): void {
     console.log('Change Theme clicked');
-    this.themeSwitcherCollapsed.set(false);
+    this.openThemeMenu();
+  }
+
+  private openThemeMenu(): void {
+    this.updateThemeMenuPosition();
+    this.themeMenuVisible = true;
+    this.addThemeMenuReposition();
+  }
+
+  protected closeThemeMenu(): void {
+    this.themeMenuVisible = false;
+    this.removeThemeMenuReposition();
+  }
+
+  private updateThemeMenuPosition(): void {
+    const userMenuOverlay = document.querySelector('.user-menu-overlay');
+    if (!userMenuOverlay) return;
+    const rect = userMenuOverlay.getBoundingClientRect();
+    this.themeMenuTop = rect.top;
+    this.themeMenuLeft = rect.left - 200 - 8;  // Position to left with 8px gap
+  }
+
+  private readonly themeMenuReposition = (): void => {
+    if (!this.themeMenuVisible) return;
+    this.updateThemeMenuPosition();
+    this.cdr.detectChanges();
+  };
+
+  private addThemeMenuReposition(): void {
+    window.addEventListener('scroll', this.themeMenuReposition, true);
+    window.addEventListener('resize', this.themeMenuReposition);
+  }
+
+  private removeThemeMenuReposition(): void {
+    window.removeEventListener('scroll', this.themeMenuReposition, true);
+    window.removeEventListener('resize', this.themeMenuReposition);
+  }
+
+  protected onThemeMenuOptionSelected(event: { index: number; checked: boolean; option: SelectorOption }): void {
+    const { option } = event;
+    this.setTheme(option.label);
+    this.closeThemeMenu();
+    this.closeUserMenu();
   }
 
   protected readonly sizes: ButtonSize[] = [0, 1, 2, 3];
@@ -364,6 +421,7 @@ export class App implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.previewEl?.removeEventListener('scroll', this.onPreviewScroll);
     this.removeUserMenuReposition();
+    this.removeThemeMenuReposition();
   }
 
   private sectionSlug(label: string): string {

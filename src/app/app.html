@@ -1518,3 +1518,21 @@
     />
   </div>
 }
+
+<!-- Theme Menu Selector — opened from Change Theme option, positioned to the left -->
+@if (themeMenuVisible) {
+  <div class="theme-menu-backdrop" (mousedown)="closeThemeMenu()"></div>
+  <div class="theme-menu-overlay"
+    [style.top.px]="themeMenuTop"
+    [style.left.px]="themeMenuLeft"
+    (mousedown)="$event.preventDefault()">
+    <pds-selector
+      [options]="themeMenuOptions"
+      [width]="200"
+      [showCheckbox]="false"
+      [showAvatar]="false"
+      [showIcon]="true"
+      (selectionChange)="onThemeMenuOptionSelected($event)"
+    />
+  </div>
+}

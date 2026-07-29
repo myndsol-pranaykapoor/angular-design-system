@@ -496,3 +496,16 @@ body {
   position: fixed;
   z-index: 9999;
 }
+
+/* ── THEME MENU SELECTOR — fixed overlay to the left of user menu ── */
+.theme-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  background: transparent;
+}
+
+.theme-menu-overlay {
+  position: fixed;
+  z-index: 9998;
+}
