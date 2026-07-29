@@ -63,9 +63,38 @@ export class App implements AfterViewInit, OnDestroy {
     this.themeSwitcherCollapsed.update(v => !v);
   }
   private readonly themeService = inject(ThemeService);
+
+  private readonly THEME_STORAGE_KEY = 'pds-selected-theme';
+
+  constructor() {
+    // Load saved theme from localStorage on app initialization
+    this.loadSavedTheme();
+  }
+
   protected setTheme(theme: string): void {
     this.activeTheme = theme;
     this.themeService.setTheme(theme);   // updates CSS vars (data attr) + dual-colour icons
+    this.saveThemeToStorage(theme);      // persist to localStorage
+  }
+
+  private saveThemeToStorage(theme: string): void {
+    try {
+      localStorage.setItem(this.THEME_STORAGE_KEY, theme);
+    } catch (e) {
+      console.warn('Failed to save theme to localStorage:', e);
+    }
+  }
+
+  private loadSavedTheme(): void {
+    try {
+      const savedTheme = localStorage.getItem(this.THEME_STORAGE_KEY);
+      if (savedTheme && this.themes.includes(savedTheme)) {
+        this.activeTheme = savedTheme;
+        this.themeService.setTheme(savedTheme);
+      }
+    } catch (e) {
+      console.warn('Failed to load theme from localStorage:', e);
+    }
   }
 
   // ── USER MENU DROPDOWN ────────────────────────────────────────────────────
