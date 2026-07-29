@@ -181,7 +181,7 @@ export class App implements AfterViewInit, OnDestroy {
     if (!userMenuOverlay) return;
     const rect = userMenuOverlay.getBoundingClientRect();
     this.themeMenuTop = rect.top;
-    this.themeMenuLeft = rect.left - 200 - 8;  // Position to left with 8px gap
+    this.themeMenuLeft = rect.left - 200;  // Position to left with no gap
   }
 
   private readonly themeMenuReposition = (): void => {
