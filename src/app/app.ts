@@ -69,7 +69,6 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   // ── USER MENU DROPDOWN ────────────────────────────────────────────────────
-  @ViewChild('userMenuHost') userMenuHost: ElementRef<HTMLDivElement> | null = null;
   private readonly cdr = inject(ChangeDetectorRef);
 
   protected userMenuVisible = false;
@@ -106,8 +105,9 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   private updateUserMenuPosition(): void {
-    if (!this.userMenuHost) return;
-    const rect = this.userMenuHost.nativeElement.getBoundingClientRect();
+    const userInfoElement = document.querySelector('.pds-web-header__user-info');
+    if (!userInfoElement) return;
+    const rect = userInfoElement.getBoundingClientRect();
     this.userMenuTop = rect.bottom + 2;    // 2px gap below user-info
     this.userMenuLeft = rect.right - 200;  // Align right edge: selector right edge = user-info right edge
   }

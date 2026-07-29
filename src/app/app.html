@@ -31,17 +31,15 @@
   <pds-side-menu [entries]="sideMenuEntries" version="1.1" />
 
   <!-- Web Header — fixed at top, z-index: 200 -->
-  <div #userMenuHost>
-    <pds-web-header
-      logoSrc="/images/myndx-logo.svg"
-      logoAlt="Myndx Logo"
-      [notificationCount]="5"
-      userAvatarSrc="/images/avatar.png"
-      userName="Design Team"
-      userDesignation="Product Designers"
-      (userMenuClick)="toggleUserMenu()"
-    />
-  </div>
+  <pds-web-header
+    logoSrc="/images/myndx-logo.svg"
+    logoAlt="Myndx Logo"
+    [notificationCount]="5"
+    userAvatarSrc="/images/avatar.png"
+    userName="Design Team"
+    userDesignation="Product Designers"
+    (userMenuClick)="toggleUserMenu()"
+  />
 
   <!-- Command Bar — fixed below web-header (0px gap), z-index: 199 -->
   <!-- Showing all 7 elements: back + title + search + 2 tertiary + secondary + primary -->
