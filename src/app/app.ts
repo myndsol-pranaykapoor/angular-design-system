@@ -1,4 +1,4 @@
-import { Component, signal, inject, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, signal, inject, AfterViewInit, OnDestroy, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { ThemeService } from './theme.service';
 import { AlertBadgeComponent } from './alert-badge/alert-badge.component';
 import { ButtonComponent, ButtonSize } from './button/button.component';
@@ -66,6 +66,88 @@ export class App implements AfterViewInit, OnDestroy {
   protected setTheme(theme: string): void {
     this.activeTheme = theme;
     this.themeService.setTheme(theme);   // updates CSS vars (data attr) + dual-colour icons
+  }
+
+  // ── USER MENU DROPDOWN ────────────────────────────────────────────────────
+  @ViewChild('userMenuHost') userMenuHost: ElementRef<HTMLDivElement> | null = null;
+  private readonly cdr = inject(ChangeDetectorRef);
+
+  protected userMenuVisible = false;
+  protected userMenuTop = 0;
+  protected userMenuLeft = 0;
+
+  protected readonly userMenuOptions: SelectorOption[] = [
+    {
+      label: 'View Profile',
+      icon: 'user',
+      showActionButton: false,
+    },
+    {
+      label: 'Change Theme',
+      icon: 'palette',
+      showActionButton: true,
+      actionButtonIcon: 'arrow-right',
+    },
+  ];
+
+  protected toggleUserMenu(): void {
+    this.userMenuVisible ? this.closeUserMenu() : this.openUserMenu();
+  }
+
+  private openUserMenu(): void {
+    this.updateUserMenuPosition();
+    this.userMenuVisible = true;
+    this.addUserMenuReposition();
+  }
+
+  protected closeUserMenu(): void {
+    this.userMenuVisible = false;
+    this.removeUserMenuReposition();
+  }
+
+  private updateUserMenuPosition(): void {
+    if (!this.userMenuHost) return;
+    const rect = this.userMenuHost.nativeElement.getBoundingClientRect();
+    this.userMenuTop = rect.bottom + 8;    // 8px gap below user-info
+    this.userMenuLeft = rect.right - 200;  // Align to right edge of user-info
+  }
+
+  private readonly userMenuReposition = (): void => {
+    if (!this.userMenuVisible) return;
+    this.updateUserMenuPosition();
+    this.cdr.detectChanges();
+  };
+
+  private addUserMenuReposition(): void {
+    window.addEventListener('scroll', this.userMenuReposition, true);
+    window.addEventListener('resize', this.userMenuReposition);
+  }
+
+  private removeUserMenuReposition(): void {
+    window.removeEventListener('scroll', this.userMenuReposition, true);
+    window.removeEventListener('resize', this.userMenuReposition);
+  }
+
+  protected onUserMenuOptionSelected(event: { index: number; checked: boolean; option: SelectorOption }): void {
+    const { index } = event;
+    switch (index) {
+      case 0:  // View Profile
+        this.handleViewProfile();
+        break;
+      case 1:  // Change Theme
+        this.handleChangeTheme();
+        break;
+    }
+    this.closeUserMenu();
+  }
+
+  private handleViewProfile(): void {
+    console.log('View Profile clicked');
+  }
+
+  private handleChangeTheme(): void {
+    console.log('Change Theme clicked');
+    this.themeSwitcherCollapsed.set(false);
   }
 
   protected readonly sizes: ButtonSize[] = [0, 1, 2, 3];
@@ -281,6 +363,7 @@ export class App implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.previewEl?.removeEventListener('scroll', this.onPreviewScroll);
+    this.removeUserMenuReposition();
   }
 
   private sectionSlug(label: string): string {
@@ -831,12 +914,12 @@ export class App implements AfterViewInit, OnDestroy {
   // ── SELECTOR DEMO ─────────────────────────────────────────────────────────
   // ≤ 6 options — no scroller
   protected selectorFew: SelectorOption[] = [
-    { label: 'Option One' },
-    { label: 'Option Two', checked: true },
+    { label: 'Option One', showActionButton: true },
+    { label: 'Option Two', checked: true, showActionButton: true },
     { label: 'Option Three' },
-    { label: 'Option Four', disabled: true },
+    { label: 'Option Four', disabled: true, showActionButton: true },
     { label: 'Option Five' },
-    { label: 'Option Six' },
+    { label: 'Option Six', showActionButton: true, actionButtonIcon: 'trash-2' },
   ];
 
   // > 6 options — scroller appears
@@ -844,5 +927,7 @@ export class App implements AfterViewInit, OnDestroy {
     label: `Option ${i + 1}`,
     checked: i === 1,
     disabled: i === 3,
+    showActionButton: i % 3 === 0,
+    actionButtonIcon: i % 2 === 0 ? 'more-vertical' : 'trash-2',
   }));
 }

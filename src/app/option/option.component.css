@@ -66,3 +66,9 @@
 .pds-option__avatar {
   flex-shrink: 0;
 }
+
+/* ── ACTION BUTTON — Size/0 tertiary only-icon, appears on right ── */
+.pds-option__action-button {
+  margin-left: auto;                 /* push to right side */
+  flex-shrink: 0;
+}

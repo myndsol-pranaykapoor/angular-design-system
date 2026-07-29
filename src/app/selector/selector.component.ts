@@ -12,6 +12,8 @@ export interface SelectorOption {
   showAvatarBadge?: boolean;
   checked?: boolean;
   disabled?: boolean;
+  showActionButton?: boolean;
+  actionButtonIcon?: string;
 }
 
 @Component({

@@ -32,4 +32,17 @@
 
   <!-- text — Body/2 -->
   <span class="pds-option__text">{{ label }}</span>
+
+  <!-- action button — Size/0 tertiary only-icon (appears on right when showActionButton is true) -->
+  @if (showActionButton) {
+    <pds-button
+      class="pds-option__action-button"
+      type="tertiary"
+      [size]="0"
+      content="only-icon"
+      [centerIcon]="actionButtonIcon"
+      [disabled]="disabled"
+      (click)="onActionButtonClick($event)"
+    />
+  }
 </div>

@@ -14,6 +14,8 @@
         [showCheckbox]="showCheckbox"
         [showAvatar]="showAvatar"
         [showIcon]="showIcon"
+        [showActionButton]="opt.showActionButton ?? false"
+        [actionButtonIcon]="opt.actionButtonIcon ?? 'more-vertical'"
         (selected)="onOptionSelected($index, $event)"
       />
     }

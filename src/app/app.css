@@ -483,3 +483,16 @@ body {
 .ds-divider {
   display: none;
 }
+
+/* ── USER MENU DROPDOWN — fixed overlay below web-header user-info ── */
+.user-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: transparent;
+}
+
+.user-menu-overlay {
+  position: fixed;
+  z-index: 9999;
+}
