@@ -83,7 +83,7 @@ export class App implements AfterViewInit, OnDestroy {
     },
     {
       label: 'Change Theme',
-      icon: 'palette',
+      icon: 'settings',
       showActionButton: true,
       actionButtonIcon: 'arrow-right',
     },
