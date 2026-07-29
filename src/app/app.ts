@@ -108,8 +108,8 @@ export class App implements AfterViewInit, OnDestroy {
   private updateUserMenuPosition(): void {
     if (!this.userMenuHost) return;
     const rect = this.userMenuHost.nativeElement.getBoundingClientRect();
-    this.userMenuTop = rect.bottom + 8;    // 8px gap below user-info
-    this.userMenuLeft = rect.right - 200;  // Align to right edge of user-info
+    this.userMenuTop = rect.bottom + 2;    // 2px gap below user-info
+    this.userMenuLeft = rect.right - 200;  // Align right edge: selector right edge = user-info right edge
   }
 
   private readonly userMenuReposition = (): void => {
